@@ -1,4 +1,4 @@
-# Bhavik Enterprises Polymer Materials — WordPress Theme (`v1.7.1`)
+# Bhavik Enterprises Polymer Materials — WordPress Theme (`v1.7.2`)
 
 A custom, lightweight classic WordPress theme engineered for **Bhavik Enterprises** — the authorised distributor of **Abiroverseas LLC** in India — with a structured Knowledge Center.
 
@@ -247,3 +247,11 @@ Run `PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests -v` for rou
 - **Interaction:** The shared `assets/js/navigation.js` controller supports desktop hover, focus, disclosure buttons, touch, Escape with focus return, outside-click dismissal and viewport resizing. At 1100px and below, navigation collapses before the logo, links and quote button can overlap; the mega menu expands inside that scrollable panel, so its final links remain reachable. Without JavaScript, desktop hover/focus still exposes the panel.
 - **Supply-page cleanup:** The new supply templates no longer render breadcrumb trails or the repeated supply disclaimer note. Their body copy, eyebrow labels and text-arrow links use 17px; the new supply-card headings use 22px. Typography overrides are scoped to the new supply-page layout and new supply-directory components, not older page headings or Knowledge Hub styles. The five-way links between separate supply pages remain intact.
 - **Checks:** Run `PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests -v`. In WordPress, also check your assigned primary menu's Products branch, any additional custom links, mobile scrolling, keyboard access and the new Home/About category destinations.
+
+
+### Mega-menu visual refinement and consistent supply bars (v1.7.2)
+
+- The Products panel follows a four-column desktop / two-column tablet (600–1100px) / single-column phone layout. It retains all seven material overview links, 28 supply links, both product directories, enquiry CTA and optional custom links. The panel and cards use no CSS borders: depth comes from inset highlights, soft shadows, rounded corners and translucent card fills over a pale blue/teal surface.
+- Material icons, link/disclosure arrows, molecules and pellet accents are inline SVG; the menu requires no raster images or external icon libraries. Its symbols and gradients are self-contained in `template-parts/products-mega-menu.php`. Decorative artwork is hidden from assistive technology and cannot intercept pointer events.
+- Every five-way material/supply navigation bar now uses 17px Reddit Sans with weight 600 on overview and grade pages, including mobile. The previous 12/14px overview and 13px mobile rules have been removed. This correction is limited to `.ab-material-switch`; other material typography and Knowledge Center code are unchanged.
+- Validation: 10 Python tests; PHP 8.2 syntax and controlled menu-render checks; Chromium checks from 320px to 1920px across the 599/600px and 1100/1101px boundaries, all 35 bars at desktop/phone sizes, and Home/About/Product stylesheet contexts. These are controlled theme fixtures, not validation of the live WordPress host.

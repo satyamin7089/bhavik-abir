@@ -34,6 +34,31 @@ class CategoryNavigationTests(unittest.TestCase):
         self.assertEqual(parser.errors, [])
         self.assertEqual(parser.stack, [])
 
+    def test_mega_menu_uses_self_contained_svg_artwork(self):
+        source = (ROOT / 'template-parts/products-mega-menu.php').read_text()
+        self.assertNotRegex(source, r'<(?:img|image|canvas)\b')
+        self.assertNotIn('data:image', source)
+        self.assertEqual(source.count('class="ab-mega-material-head"'), 7)
+        self.assertEqual(source.count('class="ab-mega-chevron"'), 28)
+        ids = set(re.findall(r'id="(ab-mega-[^"]+)"', source))
+        references = set(re.findall(r'href="#(ab-mega-[^"]+)"', source))
+        self.assertTrue(references.issubset(ids), references - ids)
+        for route in ('/products/', '/product-range/', '/contact-us/'):
+            self.assertIn(f"home_url( '{route}' )", source)
+        self.assertIn('$extra_links', source)
+
+    def test_supply_switch_typography_is_shared_at_every_size(self):
+        source = (ROOT / 'assets/css/material.css').read_text()
+        label = re.search(r'\.ab-material-switch-label\s*\{([^}]+)', source).group(1)
+        link = re.search(r'\.ab-material-switch-links a\s*\{([^}]+)', source).group(1)
+        for rule in (label, link):
+            self.assertIn('font-size: 17px;', rule)
+            self.assertIn('font-weight: 600;', rule)
+            self.assertIn('letter-spacing: normal;', rule)
+        self.assertIn('font-family: inherit;', link)
+        self.assertNotRegex(source, r'\.ab-material-switch-links a\s*\{[^}]*font-size: (?:13|14)px')
+        self.assertNotIn('.ab-material-grade-page .ab-material-switch', source)
+
     def test_breadcrumbs_and_repeated_supply_note_are_removed(self):
         for material in MATERIALS:
             for grade in (None,) + GRADES:

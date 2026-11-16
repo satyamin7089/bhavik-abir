@@ -56,6 +56,17 @@
     const button = document.createElement('button');
     button.type = 'button';
     button.className = 'ab-submenu-toggle';
+    if (item.classList.contains('ab-menu-mega')) {
+      const icon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      icon.classList.add('ab-mega-toggle-icon');
+      icon.setAttribute('viewBox', '0 0 24 24');
+      icon.setAttribute('aria-hidden', 'true');
+      icon.setAttribute('focusable', 'false');
+      const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      path.setAttribute('d', 'm6 9 6 6 6-6');
+      icon.appendChild(path);
+      button.appendChild(icon);
+    }
     button.setAttribute('aria-label', `Toggle ${link.textContent.trim()} submenu`);
     button.setAttribute('aria-expanded', 'false');
     button.setAttribute('aria-controls', submenuId);
