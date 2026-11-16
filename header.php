@@ -35,7 +35,7 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
 <header class="ab-mainnav" id="site-header">
   <div class="ab-wrap ab-nav-inner">
     <a class="ab-logo-slot" href="<?php echo esc_url( home_url( '/' ) ); ?>" aria-label="Bhavik Enterprises home">
-      <span class="ab-logo-text"><span class="ab-logo-name">Bhavik</span><span class="ab-logo-descriptor">Enterprises</span></span>
+      <span class="ab-logo-text">Bhavik Enterprises</span>
     </a>
     <button class="ab-nav-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="primary-navigation"><span class="ab-menu-line"></span><span class="ab-menu-line"></span><span class="ab-menu-line"></span></button>
     <nav class="ab-nav-links" id="primary-navigation" aria-label="Bhavik Enterprises navigation">
