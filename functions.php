@@ -1010,15 +1010,15 @@ add_action( 'admin_post_nopriv_ab_material_enquiry', 'ab_handle_material_enquiry
 add_action( 'admin_post_ab_material_enquiry', 'ab_handle_material_enquiry' );
 function ab_handle_material_enquiry() {
     $kind = isset( $_POST['enquiry_kind'] ) && is_scalar( $_POST['enquiry_kind'] ) ? sanitize_key( wp_unslash( $_POST['enquiry_kind'] ) ) : 'general';
-    $is_hdpe = 'hdpe' === $kind;
-    $fallback = home_url( $is_hdpe ? '/hdpe/' : '/' );
+    $is_material = in_array( $kind, array( 'hdpe', 'ldpe', 'pp', 'pvc', 'ps', 'abs', 'eva' ), true );
+    $fallback = home_url( $is_material ? '/' . $kind . '/' : '/' );
     $referer = wp_get_referer();
     $redirect = wp_validate_redirect( $referer ? $referer : $fallback, $fallback );
     $result = 'error';
     if ( isset( $_POST['ab_material_enquiry_nonce'] ) && is_scalar( $_POST['ab_material_enquiry_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['ab_material_enquiry_nonce'] ) ), 'ab_material_enquiry' ) && ( ! isset( $_POST['ab_website'] ) || ( is_scalar( $_POST['ab_website'] ) && '' === (string) $_POST['ab_website'] ) ) ) {
         $name = isset( $_POST['name'] ) && is_scalar( $_POST['name'] ) ? sanitize_text_field( wp_unslash( $_POST['name'] ) ) : '';
         $email = isset( $_POST['email'] ) && is_scalar( $_POST['email'] ) ? sanitize_email( wp_unslash( $_POST['email'] ) ) : '';
-        $required_key = $is_hdpe ? 'requirement' : 'message';
+        $required_key = $is_material ? 'requirement' : 'message';
         $required = isset( $_POST[ $required_key ] ) && is_scalar( $_POST[ $required_key ] ) ? sanitize_textarea_field( wp_unslash( $_POST[ $required_key ] ) ) : '';
         if ( $name && is_email( $email ) && $required ) {
             $labels = array(
@@ -1027,7 +1027,7 @@ function ab_handle_material_enquiry() {
             $lines = array( 'Name: ' . $name, 'Email: ' . $email );
             foreach ( $labels as $field => $label ) { if ( isset( $_POST[ $field ] ) && is_scalar( $_POST[ $field ] ) && '' !== (string) $_POST[ $field ] ) { $lines[] = $label . ': ' . sanitize_textarea_field( wp_unslash( $_POST[ $field ] ) ); } }
             $attachments = array();
-            if ( $is_hdpe && isset( $_FILES['datasheet'] ) && is_array( $_FILES['datasheet'] ) ) {
+            if ( $is_material && isset( $_FILES['datasheet'] ) && is_array( $_FILES['datasheet'] ) ) {
                 $file = $_FILES['datasheet'];
                 $upload_error = isset( $file['error'] ) && is_scalar( $file['error'] ) ? (int) $file['error'] : UPLOAD_ERR_NO_FILE;
                 if ( UPLOAD_ERR_NO_FILE !== $upload_error ) {
@@ -1036,23 +1036,23 @@ function ab_handle_material_enquiry() {
                     $file_name = isset( $file['name'] ) && is_scalar( $file['name'] ) ? $file['name'] : '';
                     $allowed = array( 'pdf' => 'application/pdf', 'doc' => 'application/msword', 'docx' => 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'xls' => 'application/vnd.ms-excel', 'xlsx' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'csv' => 'text/csv', 'jpg|jpeg|jpe' => 'image/jpeg', 'png' => 'image/png' );
                     $checked = ( UPLOAD_ERR_OK === $upload_error && $file_size > 0 && $file_size <= 5 * MB_IN_BYTES && $file_tmp && $file_name ) ? wp_check_filetype_and_ext( $file_tmp, $file_name, $allowed ) : array();
-                    if ( empty( $checked['type'] ) || ! is_uploaded_file( $file_tmp ) ) { ab_enquiry_redirect( $redirect, 'error', $is_hdpe ); }
+                    if ( empty( $checked['type'] ) || ! is_uploaded_file( $file_tmp ) ) { ab_enquiry_redirect( $redirect, 'error', $is_material ); }
                     $attachments[] = $file_tmp;
                     $lines[] = 'Attached file: ' . sanitize_file_name( $file_name );
                 }
             }
-            $subject = sprintf( '[%s] Material enquiry from %s', $is_hdpe ? 'HDPE' : 'Website', $name );
+            $subject = sprintf( '[%s] Material enquiry from %s', $is_material ? strtoupper( $kind ) : 'Website', $name );
             $headers = array( 'Reply-To: ' . $name . ' <' . $email . '>' );
             $sent = wp_mail( get_option( 'admin_email' ), $subject, implode( "\n", $lines ), $headers, $attachments );
             if ( $sent ) { $result = 'sent'; }
         }
     }
-    ab_enquiry_redirect( $redirect, $result, $is_hdpe );
+    ab_enquiry_redirect( $redirect, $result, $is_material );
 }
-function ab_enquiry_redirect( $url, $result, $is_hdpe ) {
+function ab_enquiry_redirect( $url, $result, $is_material ) {
     $url = remove_query_arg( 'ab_enquiry', $url );
     $url = add_query_arg( 'ab_enquiry', $result, $url );
-    $url .= $is_hdpe ? '#primary-enquiry' : '#quick-enquiry';
+    $url .= $is_material ? '#primary-enquiry' : '#quick-enquiry';
     wp_safe_redirect( $url );
     exit;
 }

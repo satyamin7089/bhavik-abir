@@ -191,3 +191,18 @@ All enquiry forms across **Home**, **Contact Us**, **all 8 Material pages**, and
  #   b h a v i k - a b i r 
  
  
+## Material supply types
+
+- The shared wordmark is two lines: **Bhavik** above **Enterprises**. Its proportions and colours are defined in `assets/css/site.css` for both header and footer.
+- HDPE, LDPE, PP, PVC, PS, ABS and EVA each contain four **literal HTML** supply panels: Prime / Virgin, Off-grade, Recycled, and Scrap / Regrind. Edit the copy directly in the corresponding `page-template/template-material*.php` file; there is no product-data array, AJAX request or database-driven grade renderer.
+- `assets/css/material.css` provides the shared responsive styling. `assets/js/material.js` progressively enhances those sections into keyboard-accessible tabs. Without JavaScript, all four sections stay visible.
+- Grade enquiry buttons select the corresponding supply type in the existing material form. The shared enquiry handler accepts the detailed form for all seven resin families and keeps the selected supply type in the email.
+- PS has its own Polystyrene guide (GPPS / HIPS) at `/ps/`, linked from the home page and both product directories. The existing material-page installer already provisions this route.
+
+### SEO behaviour
+
+`/ldpe/#prime`, `/ldpe/#off-grade`, `/ldpe/#recycled` and `/ldpe/#scrap-regrind` are shareable views of **one material page**, not separate indexable pages. All four sections are present in the server-rendered HTML. No `/ldpe-prime/` or similar routes are created, and no independent indexing is promised. If separate landing pages are added later, they should contain useful, substantially distinct content with their own metadata and internal links, not duplicate this page merely to change the selected tab.
+
+### Regression checks
+
+Run `python3 -m unittest discover -s tests -v` for static-content, heading, anchor, form-option, logo and PS-discovery contracts. Also check the grade selector in a browser at desktop and mobile widths, including keyboard navigation, direct hash links, Back/Forward, enquiry prefilling and JavaScript disabled. The Knowledge Hub is outside this change's scope.

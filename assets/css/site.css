@@ -332,17 +332,24 @@ body { margin: 0; }
 .ab-logo-slot { display:flex; width:190px; height:53px; flex:none; align-items:center; }
 .ab-logo-slot img { display:block; width:100%; height:100%; object-fit:contain; object-position:left center; }
 
-/* Bhavik Enterprises text wordmark, shared by the header and footer. */
+/* Two-line wordmark: identical proportions in the shared header and footer. */
 .ab-logo-slot .ab-logo-text {
-    display: block;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
     color: #17384a;
-    font-size: 19px;
-    font-weight: 800;
-    letter-spacing: .01em;
-    line-height: 1.15;
-    text-wrap: balance;
+    font-family: "Reddit Sans", Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+    white-space: nowrap;
 }
-.ab-footer-logo .ab-logo-text { color: #fff; font-size: 20px; }
+.ab-logo-text .ab-logo-name { font-size: 32px; font-weight: 800; line-height: 1; letter-spacing: .045em; }
+.ab-logo-text .ab-logo-descriptor { font-size: 10px; font-weight: 700; line-height: 1.2; letter-spacing: .28em; padding-left: .28em; }
+.ab-footer-logo .ab-logo-text { color: #fff; }
+@media (max-width: 600px) {
+    .ab-nav-inner .ab-logo-name { font-size: 28px; }
+    .ab-nav-inner .ab-logo-descriptor { font-size: 9px; }
+}
 .ab-nav-toggle { display:none; width:46px; height:44px; margin-left:auto; align-items:center; justify-content:center; flex-direction:column; gap:5px; border:0; border-radius:12px; background:#fff; color:#142334; box-shadow:0 5px 14px rgba(22,44,62,.09),inset 0 1px 0 #fff; cursor:pointer; position:relative; z-index:130; }
 .ab-nav-toggle .ab-menu-line { display:block; width:22px; height:2px; flex:0 0 2px; border-radius:999px; background:currentColor; opacity:1; transform:none; transition:transform .2s ease, opacity .2s ease; }
 .ab-nav-toggle[aria-expanded="true"] .ab-menu-line:first-child { transform:translateY(7px) rotate(45deg); }
