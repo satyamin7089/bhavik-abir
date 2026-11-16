@@ -126,7 +126,6 @@ get_header();
                     <a class="ab-link" href="<?php echo esc_url( home_url( '/hdpe-scrap-regrind/' ) ); ?>">Explore scrap / regrind HDPE <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
                 </article>
             </div>
-            <p class="ab-supply-route-note">Grade, availability, documents and application suitability are confirmed per enquiry. No regulatory approval is implied.</p>
         </div>
     </section>
 

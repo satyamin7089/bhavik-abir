@@ -3022,23 +3022,19 @@ input[type="submit"],
 .ab-material-switch-links a { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 10px 18px; border: 1px solid var(--ab-line); border-radius: 10px; background: #fff; color: var(--ab-ink); font-size: 14px; font-weight: 700; line-height: 1.4; text-align: center; transition: border-color .18s, color .18s, background .18s; }
 .ab-material-switch-links a:hover { border-color: var(--ab-teal); color: var(--ab-teal); background: var(--ab-mist); }
 .ab-material-switch-links a[aria-current="page"] { border-color: var(--ab-teal); background: var(--ab-teal); color: #fff; box-shadow: inset 0 -3px 0 rgba(0,0,0,.1); }
-.ab-material-breadcrumb { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: -30px 0 30px; color: var(--ab-muted); font-size: 14px; }
-.ab-material-breadcrumb a:hover { color: var(--ab-teal); }
-.ab-material-breadcrumb [aria-current] { color: var(--ab-ink); font-weight: 700; }
 .ab-supply-route-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
 .ab-supply-route-grid--three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .ab-supply-route-card { display: flex; flex-direction: column; align-items: flex-start; padding: 28px; border: 1px solid var(--ab-line); border-radius: var(--ab-radius); background: #fff; box-shadow: 0 12px 28px rgba(22,44,62,.04); }
-.ab-supply-route-kicker { display: block; margin-bottom: 12px; color: var(--ab-teal); font-size: 12px; font-weight: 700; line-height: 1.5; letter-spacing: .08em; text-transform: uppercase; }
-.ab-supply-route-card h3 { margin: 0 0 14px; color: var(--ab-ink); font-size: 23px; line-height: 1.3; letter-spacing: -.02em; }
-.ab-supply-route-card p { margin: 0 0 22px; color: var(--ab-muted); font-size: 16px; line-height: 1.7; }
-.ab-supply-route-card .ab-link { margin-top: auto; font-size: 15px; }
-.ab-supply-route-note { margin: 22px 0 16px; color: var(--ab-muted); font-size: 13px; }
+.ab-supply-route-kicker { display: block; margin-bottom: 12px; color: var(--ab-teal); font-size: 17px; font-weight: 700; line-height: 1.5; letter-spacing: .08em; text-transform: uppercase; }
+.ab-supply-route-card h3 { margin: 0 0 14px; color: var(--ab-ink); font-size: 22px; line-height: 1.3; letter-spacing: -.02em; }
+.ab-supply-route-card p { margin: 0 0 22px; color: var(--ab-muted); font-size: 17px; line-height: 1.7; }
+.ab-supply-route-card .ab-link { margin-top: auto; font-size: 17px; }
 .ab-grade-intro { display: grid; grid-template-columns: 1.3fr 1fr; gap: 48px; align-items: start; }
 .ab-grade-intro h2 { margin: 14px 0 22px; }
 .ab-grade-intro p { color: var(--ab-muted); }
 .ab-grade-brief { padding: 28px; border-radius: var(--ab-radius); background: var(--ab-mist); }
 .ab-grade-brief h3 { margin: 0 0 16px; font-size: 24px; line-height: 1.3; }
-.ab-grade-brief p { margin: 0 0 14px; font-size: 16px; }
+.ab-grade-brief p { margin: 0 0 14px; font-size: 17px; }
 .ab-grade-brief p:last-child { margin-bottom: 0; }
 .ab-material-grade-page .ab-enquiry-details > p { padding: 0 20px 20px; color: var(--ab-muted); }
 .ab-primary-enquiry,
@@ -3057,6 +3053,18 @@ input[type="submit"],
     .ab-grade-intro { grid-template-columns: minmax(0, 1fr); gap: 18px; }
     .ab-supply-route-card,
     .ab-grade-brief { padding: 24px; }
-    .ab-material-breadcrumb { margin-top: -10px; }
 }
 @media (prefers-reduced-motion: reduce) { .ab-material-switch-links a { transition: none; } }
+
+/* Typography refinements are scoped to the new supply pages, not legacy layouts. */
+.ab-material-grade-page .ab-prod-copy > p,
+.ab-material-grade-page .ab-link,
+.ab-material-grade-page .ab-supply-route-kicker,
+.ab-material-grade-page .ab-material-switch-label,
+.ab-material-grade-page .ab-material-switch-links a { font-size: 17px; }
+.ab-material-grade-page .ab-grade-brief h3 { font-size: 22px; }
+.ab-material-grade-page p,
+.ab-material-grade-page .ab-prod-sticky a { font-size: 17px; }
+/* The legacy material sheet forces button text to 16px; override only new supply pages. */
+.ab-material-grade-page .ab-btn { font-size: 17px !important; }
+.ab-supply-routes > .ab-wrap > .ab-link { display: inline-flex; margin-top: 24px; }

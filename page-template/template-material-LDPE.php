@@ -126,7 +126,6 @@ get_header();
                     <a class="ab-link" href="<?php echo esc_url( home_url( '/ldpe-scrap-regrind/' ) ); ?>">Explore scrap / regrind LDPE <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
                 </article>
             </div>
-            <p class="ab-supply-route-note">Grade, availability, documents and application suitability are confirmed per enquiry. No regulatory approval is implied.</p>
         </div>
     </section>
 

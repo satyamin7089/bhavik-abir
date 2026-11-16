@@ -1,0 +1,30 @@
+/* Shared static category section, loaded on Home and About only. */
+.ab-product-categories { padding: 76px 0; background: #edf5f4; color: #142334; font-family: "Reddit Sans", Arial, Helvetica, sans-serif; }
+.ab-product-categories *, .ab-product-categories *::before, .ab-product-categories *::after { box-sizing: border-box; }
+.ab-category-heading { display: grid; grid-template-columns: 1.35fr 1fr; align-items: end; gap: 36px; margin-bottom: 30px; }
+.ab-category-heading h2 { margin: 14px 0 0; font-size: clamp(30px, 3.4vw, 46px); line-height: 1.15; letter-spacing: -.025em; }
+.ab-category-heading > p { max-width: 440px; margin: 0; color: #536572; font-size: 17px; line-height: 1.7; }
+.ab-category-polymers { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 10px; margin-bottom: 28px; }
+.ab-category-polymers a { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; padding: 18px 14px; border: 1px solid #dce5e5; border-radius: 14px; background: #fff; color: #142334; text-decoration: none; }
+.ab-category-polymers strong { font-size: 22px; line-height: 1.25; }
+.ab-category-polymers span { flex: 1; font-size: 14px; line-height: 1.5; color: #536572; overflow-wrap: anywhere; }
+.ab-category-polymers .ab-icon { width: 20px; height: 20px; color: #008080; }
+.ab-category-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.ab-category-card { padding: 28px; border: 1px solid #dce5e5; border-radius: 22px; background: #fff; box-shadow: 0 12px 30px rgba(22,44,62,.04); }
+.ab-category-kicker { display: block; margin-bottom: 14px; color: #008080; font-size: 17px; font-weight: 700; line-height: 1.5; }
+.ab-category-card h3 { margin: 0 0 12px; font-size: 22px; line-height: 1.3; color: #142334; }
+.ab-category-card > p { margin: 0 0 24px; color: #536572; font-size: 17px; line-height: 1.7; }
+.ab-category-material-links { display: flex; flex-wrap: wrap; gap: 10px; }
+.ab-category-material-links a { display: inline-flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 44px; padding: 9px 12px; border: 1px solid #dce5e5; border-radius: 9px; color: #17384a; font-size: 17px; font-weight: 700; line-height: 1.4; text-decoration: none; }
+.ab-category-material-links .ab-icon { width: 16px; height: 16px; flex: none; }
+.ab-category-polymers a:hover, .ab-category-material-links a:hover { border-color: #008080; color: #008080; background: #f6faf9; }
+.ab-product-categories a:focus-visible { outline: 3px solid #008080; outline-offset: 3px; }
+@media (max-width: 1100px) { .ab-category-polymers { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+@media (max-width: 700px) {
+    .ab-product-categories { padding: 54px 0; }
+    .ab-category-heading { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+    .ab-category-polymers { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .ab-category-polymers a:last-child { grid-column: 1 / -1; }
+    .ab-category-grid { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+    .ab-category-card { padding: 24px; }
+}
