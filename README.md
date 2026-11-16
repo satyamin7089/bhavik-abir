@@ -1,4 +1,4 @@
-# Bhavik Enterprises Polymer Materials — WordPress Theme (`v1.7.2`)
+# Bhavik Enterprises Polymer Materials — WordPress Theme (`v1.7.3`)
 
 A custom, lightweight classic WordPress theme engineered for **Bhavik Enterprises** — the authorised distributor of **Abiroverseas LLC** in India — with a structured Knowledge Center.
 
@@ -255,3 +255,19 @@ Run `PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests -v` for rou
 - Material icons, link/disclosure arrows, molecules and pellet accents are inline SVG; the menu requires no raster images or external icon libraries. Its symbols and gradients are self-contained in `template-parts/products-mega-menu.php`. Decorative artwork is hidden from assistive technology and cannot intercept pointer events.
 - Every five-way material/supply navigation bar now uses 17px Reddit Sans with weight 600 on overview and grade pages, including mobile. The previous 12/14px overview and 13px mobile rules have been removed. This correction is limited to `.ab-material-switch`; other material typography and Knowledge Center code are unchanged.
 - Validation: 10 Python tests; PHP 8.2 syntax and controlled menu-render checks; Chromium checks from 320px to 1920px across the 599/600px and 1100/1101px boundaries, all 35 bars at desktop/phone sizes, and Home/About/Product stylesheet contexts. These are controlled theme fixtures, not validation of the live WordPress host.
+
+
+### Mega-menu scrolling correction (v1.7.3)
+
+At mobile/tablet widths (1100px and below), `.ab-nav-links` is the single scroll container. The inline mega panel explicitly uses `overflow: visible` and `overscroll-behavior: auto`, rather than inheriting the desktop panel's `overflow-y: auto` and `overscroll-behavior: contain`. Those desktop rules trapped wheel/touch gestures inside a full-height inner panel, so real input could fail even when `scrollIntoView()` appeared to work. The outer menu list also opts out of flex shrinking. Desktop retains its independently bounded, scrollable dropdown. No PHP rendering, menu content, Knowledge Center logic or visual design is changed.
+
+Regression test: `tests/test_navigation_scroll.cjs` serves a controlled header using the real menu markup, CSS and JavaScript. It tests actual wheel input at nine desktop/tablet/phone/landscape sizes, scroll-to-bottom reachability, background-scroll isolation, Escape, and CDP touch swipes in both directions with rotation while open. It reproduced the previous mobile failure before the CSS correction.
+
+Run with Node.js and a Chromium browser:
+
+```sh
+npm install --prefix /tmp/bhavik-scroll-tests playwright-core @sparticuz/chromium
+NODE_PATH=/tmp/bhavik-scroll-tests/node_modules node tests/test_navigation_scroll.cjs
+```
+
+Alternatively set `CHROMIUM_PATH` to a local Chromium executable (only `playwright-core` is then needed). Minimal Linux environments may need Chromium's shared libraries installed or available through `LD_LIBRARY_PATH`. These are controlled browser checks, not verification of the deployed WordPress server or of the separately reported live PHP critical error.

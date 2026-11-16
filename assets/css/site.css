@@ -2379,7 +2379,11 @@ span#ab-marquee-title {font-family: "Reddit Sans", Arial, Helvetica, sans-serif 
 @media (max-width: 1100px) {
     .ab-nav-menu > li.ab-menu-mega { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) 44px; }
     .ab-menu-mega > .ab-submenu-toggle { width: 44px; }
-    .ab-nav-menu > li.ab-menu-mega > .ab-mega-menu { position: static; grid-column: 1 / -1; max-height: none; margin-top: 8px; padding: 24px; border: 0; border-radius: 20px; }
+    /* The outer navigation is the only mobile scroll container. Leaving the
+       desktop overflow:auto + overscroll:contain here traps wheel/touch input
+       inside this unconstrained panel instead of scrolling the navigation. */
+    .ab-nav-links > .ab-nav-menu { flex: 0 0 auto; min-height: 0; }
+    .ab-nav-menu > li.ab-menu-mega > .ab-mega-menu { position: static; grid-column: 1 / -1; max-height: none; overflow: visible; overscroll-behavior: auto; margin-top: 8px; padding: 24px; border: 0; border-radius: 20px; }
     .ab-mega-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
     .ab-mega-heading { padding-right: 120px; }
     .ab-mega-heading .ab-mega-intro { display: none; }
