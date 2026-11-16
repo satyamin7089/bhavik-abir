@@ -3,12 +3,22 @@
   const toggle = document.querySelector('.ab-nav-toggle');
   if (!nav || !toggle || toggle.dataset.navReady === 'true') return;
   toggle.dataset.navReady = 'true';
+  nav.dataset.navReady = 'true';
 
-  const mobileQuery = window.matchMedia('(max-width: 850px)');
+  const mobileQuery = window.matchMedia('(max-width: 1100px)');
+  const fitMegaMenu = () => {
+    const header = nav.closest('.ab-mainnav');
+    if (!header || mobileQuery.matches) {
+      nav.style.removeProperty('--ab-mega-max');
+      return;
+    }
+    nav.style.setProperty('--ab-mega-max', `${Math.max(160, Math.floor(window.innerHeight - header.getBoundingClientRect().bottom - 16))}px`);
+  };
 
   // Size the dropdown against the header's real position instead of a fixed
   // viewport offset, so the last menu item is always reachable on touch.
   const fitPanel = () => {
+    fitMegaMenu();
     if (!mobileQuery.matches) {
       nav.style.removeProperty('--ab-nav-panel-max');
       return;
@@ -58,6 +68,38 @@
       closeSubmenus(item);
       item.classList.toggle('is-submenu-open', willOpen);
       button.setAttribute('aria-expanded', String(willOpen));
+      if (willOpen) fitPanel();
+    });
+  });
+
+  // The mega menu uses one disclosure state for pointer, keyboard and touch.
+  nav.querySelectorAll('.ab-menu-mega').forEach((item) => {
+    const link = item.querySelector(':scope > a');
+    const button = item.querySelector(':scope > .ab-submenu-toggle');
+    if (!button) return;
+    const open = () => {
+      closeSubmenus(item);
+      item.classList.add('is-submenu-open');
+      button.setAttribute('aria-expanded', 'true');
+      fitPanel();
+    };
+    const close = () => {
+      item.classList.remove('is-submenu-open');
+      button.setAttribute('aria-expanded', 'false');
+    };
+    item.addEventListener('pointerenter', (event) => {
+      if (!mobileQuery.matches && event.pointerType !== 'touch') open();
+    });
+    item.addEventListener('pointerleave', () => {
+      if (!mobileQuery.matches && !item.contains(document.activeElement)) close();
+    });
+    item.addEventListener('focusin', (event) => {
+      if (!mobileQuery.matches && event.target === link) open();
+    });
+    item.addEventListener('focusout', () => {
+      requestAnimationFrame(() => {
+        if (!item.contains(document.activeElement)) close();
+      });
     });
   });
 
@@ -96,14 +138,23 @@
   });
 
   document.addEventListener('click', (event) => {
-    if (mobileQuery.matches && nav.classList.contains('is-open') &&
-        !nav.contains(event.target) && !toggle.contains(event.target)) closeMenu();
+    if (!nav.contains(event.target) && !toggle.contains(event.target)) {
+      if (mobileQuery.matches && nav.classList.contains('is-open')) closeMenu();
+      else closeSubmenus();
+    }
   });
 
   document.addEventListener('keydown', (event) => {
     if (event.key !== 'Escape') return;
-    closeMenu();
-    toggle.focus();
+    const expanded = nav.querySelector('li.is-submenu-open');
+    if (expanded) {
+      const disclosure = expanded.querySelector(':scope > .ab-submenu-toggle');
+      closeSubmenus();
+      disclosure?.focus();
+    } else if (nav.classList.contains('is-open')) {
+      closeMenu();
+      toggle.focus();
+    }
   });
 
   const onBreakpointChange = () => {
@@ -115,10 +166,11 @@
 
   // Keep the open panel inside the viewport after a rotation or toolbar resize.
   const refitPanel = () => {
-    if (nav.classList.contains('is-open')) fitPanel();
+    if (nav.classList.contains('is-open') || nav.querySelector('li.is-submenu-open')) fitPanel();
   };
   window.addEventListener('resize', refitPanel, { passive: true });
   window.addEventListener('orientationchange', refitPanel, { passive: true });
+  window.addEventListener('scroll', refitPanel, { passive: true });
   window.addEventListener('pageshow', () => {
     if (!nav.classList.contains('is-open')) closeMenu();
   });

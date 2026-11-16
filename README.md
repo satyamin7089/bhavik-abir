@@ -1,4 +1,4 @@
-# Bhavik Enterprises Polymer Materials — WordPress Theme (`v1.7.0`)
+# Bhavik Enterprises Polymer Materials — WordPress Theme (`v1.7.1`)
 
 A custom, lightweight classic WordPress theme engineered for **Bhavik Enterprises** — the authorised distributor of **Abiroverseas LLC** in India — with a structured Knowledge Center.
 
@@ -238,3 +238,12 @@ These are separate published pages with distinct titles, descriptions and materi
 ### Regression checks
 
 Run `PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests -v` for route, link, active-state, static-content, HTML-nesting, form-default, PS and logo contracts. Also perform PHP lint and browser checks on deployment. Knowledge Hub templates, assets and logic are outside this change and remain untouched.
+
+
+## 10. Product category navigation (v1.7.1)
+
+- **Home and About:** Each now has a static product-category section with seven polymer overview links and four supply-category cards. Each card links directly to all seven matching supply pages. Edit these literal sections in `page-template/template-home.php` and `page-template/template-about.php`; their shared styling is in `assets/css/product-categories.css`, loaded only on those layouts (including the legacy Bhavik home alias).
+- **Products mega menu:** `template-parts/products-mega-menu.php` contains the static seven-polymer/four-supply-type link grid. `inc/navigation-mega-menu.php` attaches it to the primary menu's top-level Products item, recognised by its Products/Product Range URL, Products title, or explicit `ab-menu-mega` CSS class. The fallback primary menu uses the same panel. Saved menu items are not deleted or rewritten. Additional custom links under Products are retained under “More product links”; other menu branches and locations are left alone.
+- **Interaction:** The shared `assets/js/navigation.js` controller supports desktop hover, focus, disclosure buttons, touch, Escape with focus return, outside-click dismissal and viewport resizing. At 1100px and below, navigation collapses before the logo, links and quote button can overlap; the mega menu expands inside that scrollable panel, so its final links remain reachable. Without JavaScript, desktop hover/focus still exposes the panel.
+- **Supply-page cleanup:** The new supply templates no longer render breadcrumb trails or the repeated supply disclaimer note. Their body copy, eyebrow labels and text-arrow links use 17px; the new supply-card headings use 22px. Typography overrides are scoped to the new supply-page layout and new supply-directory components, not older page headings or Knowledge Hub styles. The five-way links between separate supply pages remain intact.
+- **Checks:** Run `PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests -v`. In WordPress, also check your assigned primary menu's Products branch, any additional custom links, mobile scrolling, keyboard access and the new Home/About category destinations.

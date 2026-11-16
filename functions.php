@@ -2,9 +2,10 @@
 /** Bhavik Enterprises — WordPress theme functions (authorised distributor of Abiroverseas LLC). */
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
-define( 'AB_THEME_VERSION', '1.7.0' );
+define( 'AB_THEME_VERSION', '1.7.1' );
 
 require_once __DIR__ . '/inc/material-supply-pages.php';
+require_once __DIR__ . '/inc/navigation-mega-menu.php';
 
 /**
  * Determine whether the current request renders the Bhavik Enterprises page.
@@ -88,10 +89,10 @@ function ab_enqueue_assets() {
 
         if ( is_front_page() || 'home' === $slug || in_array( $template, array( 'page-template/template-home.php', 'page-templates/template-home.php' ), true ) ) {
             // The home page is the Bhavik Enterprises layout, so it keeps the Bhavik stylesheet and script.
-            $styles = array( 'bhavik.css' );
+            $styles = array( 'bhavik.css', 'product-categories.css' );
             $script = 'bhavik.js';
         } elseif ( 'about' === $slug || in_array( $template, array( 'page-template/template-about.php', 'page-templates/template-about.php' ), true ) ) {
-            $styles = array( 'about.css' );
+            $styles = array( 'about.css', 'product-categories.css' );
             $script = 'about.js';
         } elseif ( in_array( $slug, array( 'products', 'product-families', 'product-range' ), true ) || in_array( $template, array( 'page-template/template-product-families.php', 'page-template/template-product-range.php', 'page-templates/template-product-families.php', 'page-templates/template-product-range.php' ), true ) ) {
             // Both product directories share one responsive design system and live-search controller.
@@ -108,7 +109,7 @@ function ab_enqueue_assets() {
             $styles = array( 'legal.css' );
         } elseif ( ab_is_bhavik_page() ) {
             // The legacy /bhavik-enterprises/ route renders the same Bhavik home layout.
-            $styles = array( 'bhavik.css' );
+            $styles = array( 'bhavik.css', 'product-categories.css' );
             $script = 'bhavik.js';
         } elseif (
             preg_match( '~^(hdpe|ldpe|pp|pvc|ps|abs|eva)-(prime|offgrade|recycled|scrap-regrind)$~', $slug )
@@ -670,8 +671,11 @@ function ab_primary_menu_fallback() {
     );
     $html = '<ul id="ab-primary-menu" class="ab-nav-menu">';
     foreach ( $items as $item ) {
-        $class = isset( $item[2] ) ? ' class="' . esc_attr( $item[2] ) . '"' : '';
-        $html .= '<li' . $class . '><a href="' . esc_url( $item[1] ) . '">' . esc_html( $item[0] ) . '</a></li>';
+        $is_products = 'Products' === $item[0];
+        $class = $is_products ? ' class="menu-item-has-children ab-menu-mega"' : ( isset( $item[2] ) ? ' class="' . esc_attr( $item[2] ) . '"' : '' );
+        $html .= '<li' . $class . '><a href="' . esc_url( $item[1] ) . '">' . esc_html( $item[0] ) . '</a>';
+        if ( $is_products ) { $html .= ab_products_mega_menu_markup(); }
+        $html .= '</li>';
     }
     $html .= '</ul>';
     return $html;

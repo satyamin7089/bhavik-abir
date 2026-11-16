@@ -80,6 +80,72 @@ get_header();
       </div>
     </section>
 
+    <!-- PRODUCT CATEGORIES -->
+    <section class="ab-section ab-product-categories" id="about-product-categories" aria-labelledby="about-product-categories-title">
+        <div class="ab-wrap">
+            <div class="ab-category-heading"><div><span class="ab-eyebrow">Explore by category</span><h2 id="about-product-categories-title">Your material. Your supply type.</h2></div><p>Start with a polymer, or choose a supply category below to open the dedicated material page.</p></div>
+            <div class="ab-category-polymers" aria-label="Browse polymer families">
+                <a href="<?php echo esc_url( home_url( '/ldpe/' ) ); ?>"><strong>LDPE</strong><span>Low-Density Polyethylene</span><svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
+                <a href="<?php echo esc_url( home_url( '/hdpe/' ) ); ?>"><strong>HDPE</strong><span>High-Density Polyethylene</span><svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
+                <a href="<?php echo esc_url( home_url( '/pp/' ) ); ?>"><strong>PP</strong><span>Polypropylene</span><svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
+                <a href="<?php echo esc_url( home_url( '/pvc/' ) ); ?>"><strong>PVC</strong><span>Polyvinyl Chloride</span><svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
+                <a href="<?php echo esc_url( home_url( '/ps/' ) ); ?>"><strong>PS</strong><span>Polystyrene</span><svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
+                <a href="<?php echo esc_url( home_url( '/abs/' ) ); ?>"><strong>ABS</strong><span>Acrylonitrile Butadiene Styrene</span><svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
+                <a href="<?php echo esc_url( home_url( '/eva/' ) ); ?>"><strong>EVA</strong><span>Ethylene Vinyl Acetate</span><svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
+            </div>
+            <div class="ab-category-grid">
+                <article class="ab-category-card">
+                    <span class="ab-category-kicker">01 · Supply category</span><h3>Prime / Virgin</h3><p>Fresh polymer resin selected by its manufacturer grade and technical specification.</p>
+                    <div class="ab-category-material-links" aria-label="Prime / Virgin materials">
+                        <a href="<?php echo esc_url( home_url( '/ldpe-prime/' ) ); ?>">LDPE <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
+                        <a href="<?php echo esc_url( home_url( '/hdpe-prime/' ) ); ?>">HDPE <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
+                        <a href="<?php echo esc_url( home_url( '/pp-prime/' ) ); ?>">PP <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
+                        <a href="<?php echo esc_url( home_url( '/pvc-prime/' ) ); ?>">PVC <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
+                        <a href="<?php echo esc_url( home_url( '/ps-prime/' ) ); ?>">PS <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
+                        <a href="<?php echo esc_url( home_url( '/abs-prime/' ) ); ?>">ABS <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
+                        <a href="<?php echo esc_url( home_url( '/eva-prime/' ) ); ?>">EVA <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
+                    </div>
+                </article>
+                <article class="ab-category-card">
+                    <span class="ab-category-kicker">02 · Supply category</span><h3>Off-grade</h3><p>Lot-specific materials reviewed against the declared variation and your process needs.</p>
+                    <div class="ab-category-material-links" aria-label="Off-grade materials">
+                        <a href="<?php echo esc_url( home_url( '/ldpe-offgrade/' ) ); ?>">LDPE <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
+                        <a href="<?php echo esc_url( home_url( '/hdpe-offgrade/' ) ); ?>">HDPE <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
+                        <a href="<?php echo esc_url( home_url( '/pp-offgrade/' ) ); ?>">PP <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
+                        <a href="<?php echo esc_url( home_url( '/pvc-offgrade/' ) ); ?>">PVC <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
+                        <a href="<?php echo esc_url( home_url( '/ps-offgrade/' ) ); ?>">PS <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
+                        <a href="<?php echo esc_url( home_url( '/abs-offgrade/' ) ); ?>">ABS <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
+                        <a href="<?php echo esc_url( home_url( '/eva-offgrade/' ) ); ?>">EVA <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
+                    </div>
+                </article>
+                <article class="ab-category-card">
+                    <span class="ab-category-kicker">03 · Supply category</span><h3>Recycled</h3><p>Recovered and reprocessed polymers selected by source, consistency and end use.</p>
+                    <div class="ab-category-material-links" aria-label="Recycled materials">
+                        <a href="<?php echo esc_url( home_url( '/ldpe-recycled/' ) ); ?>">LDPE <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
+                        <a href="<?php echo esc_url( home_url( '/hdpe-recycled/' ) ); ?>">HDPE <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
+                        <a href="<?php echo esc_url( home_url( '/pp-recycled/' ) ); ?>">PP <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
+                        <a href="<?php echo esc_url( home_url( '/pvc-recycled/' ) ); ?>">PVC <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
+                        <a href="<?php echo esc_url( home_url( '/ps-recycled/' ) ); ?>">PS <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
+                        <a href="<?php echo esc_url( home_url( '/abs-recycled/' ) ); ?>">ABS <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
+                        <a href="<?php echo esc_url( home_url( '/eva-recycled/' ) ); ?>">EVA <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
+                    </div>
+                </article>
+                <article class="ab-category-card">
+                    <span class="ab-category-kicker">04 · Supply category</span><h3>Scrap / Regrind</h3><p>Sorted scrap and size-reduced feedstock for a suitable recovery or conversion process.</p>
+                    <div class="ab-category-material-links" aria-label="Scrap / Regrind materials">
+                        <a href="<?php echo esc_url( home_url( '/ldpe-scrap-regrind/' ) ); ?>">LDPE <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
+                        <a href="<?php echo esc_url( home_url( '/hdpe-scrap-regrind/' ) ); ?>">HDPE <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
+                        <a href="<?php echo esc_url( home_url( '/pp-scrap-regrind/' ) ); ?>">PP <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
+                        <a href="<?php echo esc_url( home_url( '/pvc-scrap-regrind/' ) ); ?>">PVC <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
+                        <a href="<?php echo esc_url( home_url( '/ps-scrap-regrind/' ) ); ?>">PS <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
+                        <a href="<?php echo esc_url( home_url( '/abs-scrap-regrind/' ) ); ?>">ABS <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
+                        <a href="<?php echo esc_url( home_url( '/eva-scrap-regrind/' ) ); ?>">EVA <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
     <!-- 3. MISSION / VISION / PROMISE -->
     <section class="ab-section ab-section--mist" id="mission" aria-labelledby="mission-title">
       <div class="ab-wrap">

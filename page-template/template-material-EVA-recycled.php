@@ -21,9 +21,6 @@ get_header();
         </div>
     </nav>
     <section class="ab-prod-hero" aria-labelledby="material-title">
-        <div class="ab-wrap">
-            <nav class="ab-material-breadcrumb" aria-label="Breadcrumb"><a href="<?php echo esc_url( home_url( '/' ) ); ?>">Home</a><span aria-hidden="true">/</span><a href="<?php echo esc_url( home_url( '/eva/' ) ); ?>">EVA</a><span aria-hidden="true">/</span><span aria-current="page">Recycled</span></nav>
-        </div>
         <div class="ab-wrap ab-prod-hero-grid">
             <div class="ab-prod-copy  is-visible">
                 <span class="ab-eyebrow">Ethylene Vinyl Acetate · Recovered &amp; reprocessed</span>
@@ -229,7 +226,6 @@ get_header();
                     <a class="ab-link" href="<?php echo esc_url( home_url( '/eva-scrap-regrind/' ) ); ?>">Explore scrap / regrind EVA <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
                 </article>
             </div>
-            <p class="ab-supply-route-note">Grade, availability, documents and application suitability are confirmed per enquiry. No regulatory approval is implied.</p>
             <a class="ab-link" href="<?php echo esc_url( home_url( '/eva/' ) ); ?>">Back to all EVA materials <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
         </div>
     </section>
