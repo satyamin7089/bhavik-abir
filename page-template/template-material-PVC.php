@@ -6,22 +6,34 @@
  */
 get_header();
 ?>
-<main id="main-content">
+<main id="main-content" class="ab-material-overview">
+    <nav class="ab-material-switch" aria-label="PVC material and supply types">
+        <div class="ab-wrap ab-material-switch-inner">
+            <span class="ab-material-switch-label">PVC supply options</span>
+            <div class="ab-material-switch-links">
+                <a href="<?php echo esc_url( home_url( '/pvc/' ) ); ?>" aria-current="page">All PVC</a>
+                <a href="<?php echo esc_url( home_url( '/pvc-prime/' ) ); ?>">Prime / Virgin</a>
+                <a href="<?php echo esc_url( home_url( '/pvc-offgrade/' ) ); ?>">Off-grade</a>
+                <a href="<?php echo esc_url( home_url( '/pvc-recycled/' ) ); ?>">Recycled</a>
+                <a href="<?php echo esc_url( home_url( '/pvc-scrap-regrind/' ) ); ?>">Scrap / Regrind</a>
+            </div>
+        </div>
+    </nav>
+
         <!-- 1. Hero section -->
         <section class="ab-prod-hero" aria-labelledby="hdpe-title">
             <div class="ab-wrap ab-prod-hero-grid">
                 <div class="ab-prod-copy ab-reveal is-visible">
                   <span
-                        class="ab-eyebrow">Reprocessed
-                        &amp; recycled · polyvinyl chloride</span>
-                    <h1 id="hdpe-title">Reprocessed and Recycled PVC Materials</h1>
+                        class="ab-eyebrow">Prime · Off-grade · Recycled · Scrap</span>
+                    <h1 id="hdpe-title">Polyvinyl Chloride (PVC) Materials</h1>
                     <p>PVC stands for Polyvinyl Chloride. It is a versatile thermoplastic valued for durability, chemical resistance, and adaptability in rigid or flexible forms. PVC is widely used in pipes, profiles, cable insulation, flooring, and industrial applications.</p>
-                    <p>Explore reprocessed and recycled PVC in rigid, flexible, compound, or application-specific forms. Grade, source, documentation, and availability should be verified for every material enquiry before supply.</p>
+                    <p>Explore prime / virgin, off-grade, recycled and scrap / regrind PVC on separate supply-type pages. Match source, specification and form to your application, and confirm availability per enquiry.</p>
                    
                     <div class="ab-prod-actions"><a class="ab-btn" href="<?php echo home_url('/contact-us/'); ?>">REQUEST A PVC QUOTE <svg
                                 class="ab-icon" aria-hidden="true">
                                 <use href="#ab-icon-arrow" />
-                            </svg></a><a class="ab-btn ab-btn--outline" href="#ab-ctm-b">UPLOAD A DATASHEET</a>
+                            </svg></a><a class="ab-btn ab-btn--outline" href="#datasheet-upload">UPLOAD A DATASHEET</a>
                     </div>
                    
                 </div>
@@ -78,13 +90,46 @@ get_header();
         </section>
         <nav class="ab-prod-sticky-wrap" aria-label="PVC page sections">
             <div class="ab-prod-sticky" id="product-section-nav"><span class="ab-prod-sticky-label">On this
-                    page</span><a href="#overview">Overview</a><a href="#grades-processing">Grades &amp;
+                    page</span><a href="#supply-types">Supply types</a><a href="#overview">Overview</a><a href="#grades-processing">Grades &amp;
                     Processing</a><a href="#forms">Forms</a><a href="#applications">Applications</a><a
                     href="#industries">Industries</a><a href="#selection-guide">Selection Guide</a><a
                     href="#technical-support">Technical Support</a><a href="#faqs">FAQs</a><a
                     href="#related-knowledge">Related Knowledge</a><a href="#related-materials">Related
                     Materials</a></div>
         </nav>
+    <section class="ab-section ab-section--white ab-supply-routes" id="supply-types" aria-labelledby="supply-types-title">
+        <div class="ab-wrap">
+            <div class="ab-section-head"><span class="ab-eyebrow">Same polymer. Different supply routes.</span><h2 id="supply-types-title">Explore PVC supply types</h2><p>Choose a supply type to read its own material guide, selection checks and enquiry details. These links open separate pages.</p></div>
+            <div class="ab-supply-route-grid">
+                <article class="ab-supply-route-card">
+                    <span class="ab-supply-route-kicker">Fresh resin</span>
+                    <h3>Prime / Virgin PVC</h3>
+                    <p>Fresh PVC resin selected by manufacturer grade, datasheet and documented properties. Prime is not the same as near-virgin or recycled material.</p>
+                    <a class="ab-link" href="<?php echo esc_url( home_url( '/pvc-prime/' ) ); ?>">Explore prime / virgin PVC <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
+                </article>
+                <article class="ab-supply-route-card">
+                    <span class="ab-supply-route-kicker">Lot-specific supply</span>
+                    <h3>Off-grade PVC</h3>
+                    <p>PVC supplied outside its original prime specification or as a declared off-grade lot. Review the actual deviation and batch results before deciding suitability.</p>
+                    <a class="ab-link" href="<?php echo esc_url( home_url( '/pvc-offgrade/' ) ); ?>">Explore off-grade PVC <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
+                </article>
+                <article class="ab-supply-route-card">
+                    <span class="ab-supply-route-kicker">Recovered &amp; reprocessed</span>
+                    <h3>Recycled PVC</h3>
+                    <p>Recovered PVC reprocessed for further use. Source, segregation and lot consistency matter as much as the polymer name.</p>
+                    <a class="ab-link" href="<?php echo esc_url( home_url( '/pvc-recycled/' ) ); ?>">Explore recycled PVC <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
+                </article>
+                <article class="ab-supply-route-card">
+                    <span class="ab-supply-route-kicker">Sorted recovery feedstock</span>
+                    <h3>Scrap / Regrind PVC</h3>
+                    <p>Sorted PVC scrap or mechanically reduced regrind for an agreed recovery or conversion process. Feedstock is not automatically equivalent to ready-to-use resin.</p>
+                    <a class="ab-link" href="<?php echo esc_url( home_url( '/pvc-scrap-regrind/' ) ); ?>">Explore scrap / regrind PVC <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
+                </article>
+            </div>
+            <p class="ab-supply-route-note">Grade, availability, documents and application suitability are confirmed per enquiry. No regulatory approval is implied.</p>
+        </div>
+    </section>
+
         <!-- 2. PVC overview -->
         <section class="ab-section" id="overview" aria-labelledby="overview-title">
             <div class="ab-wrap ab-overview-layout">
@@ -249,7 +294,7 @@ get_header();
             </div>
         </section>
         <!-- 5. Primary enquiry CTA -->
-        <section class="ab-primary-enquiry" id="ab-ctm-b" aria-labelledby="primary-enquiry-title">
+        <section class="ab-primary-enquiry" id="primary-enquiry" aria-labelledby="primary-enquiry-title">
             <div class="ab-wrap ab-primary-layout">
                 <div class="ab-primary-copy ab-reveal"><span class="ab-eyebrow">PVC enquiry</span>
                     <h2 id="primary-enquiry-title">Request a PVC quote</h2>
@@ -272,11 +317,13 @@ get_header();
                         <div class="ab-product-field"><label for="hdpe-email">Business email *</label><input
                                 id="hdpe-email" name="email" type="email" autocomplete="email" required
                                 placeholder="name@company.com"></div>
-                        <div class="ab-product-field"><label for="hdpe-material-type">Material type</label><select
+                        <div class="ab-product-field"><label for="hdpe-material-type">Supply type</label><select
                                 id="hdpe-material-type" name="material_type">
-                                <option value="">Select if known</option>
-                                <option>Reprocessed</option>
+                                <option value="">Select supply type</option>
+                                <option>Prime / Virgin</option>
+                                <option>Off-grade</option>
                                 <option>Recycled</option>
+                                <option>Scrap / Regrind</option>
                                 <option>Not sure</option>
                             </select></div>
                         <div class="ab-product-field"><label for="hdpe-process">Processing method</label><select
@@ -596,8 +643,8 @@ get_header();
                     <div class="ab-secondary-actions"><a class="ab-btn" href="<?php echo home_url('/contact-us/'); ?>">REQUEST A PVC QUOTE
                             <svg class="ab-icon" aria-hidden="true">
                                 <use href="#ab-icon-arrow" />
-                            </svg></a><a class="ab-btn ab-btn--outline" href="#ab-ctm-b">UPLOAD A DATASHEET</a><a
-                            class="ab-btn ab-btn--outline" href="#ab-ctm-b">ASK A PRODUCT QUESTION</a></div>
+                            </svg></a><a class="ab-btn ab-btn--outline" href="#datasheet-upload">UPLOAD A DATASHEET</a><a
+                            class="ab-btn ab-btn--outline" href="#primary-enquiry">ASK A PRODUCT QUESTION</a></div>
                 </div>
             </div>
         </section>
