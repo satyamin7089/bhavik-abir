@@ -7,20 +7,53 @@
 get_header();
 ?>
 <main id="main-content">
+    <!-- Static supply-type guide: all four panels remain readable without JavaScript. -->
+    <section class="ab-supply" id="supply-types" aria-labelledby="supply-title" data-supply-guide>
+        <div class="ab-wrap">
+            <nav class="ab-supply-breadcrumb" aria-label="Breadcrumb"><a href="<?php echo esc_url( home_url( '/' ) ); ?>">Home</a><span aria-hidden="true">/</span><a href="<?php echo esc_url( home_url( '/product-range/' ) ); ?>">Products</a><span aria-hidden="true">/</span><span aria-current="page">ABS</span></nav>
+            <div class="ab-supply-heading"><div><span class="ab-eyebrow">One material. Four supply routes.</span><h1 id="supply-title">Acrylonitrile Butadiene Styrene <span>(ABS)</span></h1></div><p>Start with your supply type. Then match the grade, processing route and specification to your application.</p></div>
+            <nav class="ab-supply-tabs" aria-label="ABS supply types">
+                <a id="supply-tab-prime" href="#prime"><span class="ab-supply-number">01</span><span>Prime / Virgin<small>Fresh polymer resin</small></span></a>
+                <a id="supply-tab-off-grade" href="#off-grade"><span class="ab-supply-number">02</span><span>Off-grade<small>Batch-specific value</small></span></a>
+                <a id="supply-tab-recycled" href="#recycled"><span class="ab-supply-number">03</span><span>Recycled<small>Reprocessed material</small></span></a>
+                <a id="supply-tab-scrap-regrind" href="#scrap-regrind"><span class="ab-supply-number">04</span><span>Scrap / Regrind<small>Feedstock for recovery</small></span></a>
+            </nav>
+            <div class="ab-supply-panels">
+                <section class="ab-supply-panel" id="prime" aria-labelledby="supply-heading-prime" data-grade="Prime / Virgin">
+                    <div class="ab-supply-copy"><span class="ab-supply-kicker">Fresh resin · specification-led</span><h2 id="supply-heading-prime">Prime / Virgin ABS</h2><p>Fresh ABS resin for requirements that call for a defined manufacturer grade and documented properties. Select by the exact datasheet rather than assuming all virgin resin performs alike.</p><a class="ab-btn" href="#primary-enquiry" data-grade-choice="Prime / Virgin">Enquire about prime / virgin ABS <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a></div>
+                    <div class="ab-supply-spec"><span class="ab-supply-kicker">Your enquiry checklist</span><h3>Impact performance &amp; surface finish</h3><ul><li>Manufacturer grade and datasheet</li><li>Confirm melt flow, impact, colour and heat-resistance targets.</li><li>Check batch identification and any required compliance documents.</li></ul><p>Confirm appearance, impact and any flame-retardant requirements against the exact formulation.</p></div>
+                </section>
+                <section class="ab-supply-panel" id="off-grade" aria-labelledby="supply-heading-off-grade" data-grade="Off-grade">
+                    <div class="ab-supply-copy"><span class="ab-supply-kicker">Value route · batch reviewed</span><h2 id="supply-heading-off-grade">Off-grade ABS</h2><p>ABS sold outside its original prime specification, or as a declared off-grade lot. The deviation may relate to flow, colour or another property. Off-grade is not automatically recycled material.</p><a class="ab-btn" href="#primary-enquiry" data-grade-choice="Off-grade">Enquire about off-grade ABS <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a></div>
+                    <div class="ab-supply-spec"><span class="ab-supply-kicker">Your enquiry checklist</span><h3>Impact performance &amp; surface finish</h3><ul><li>Declared deviation and lot test results</li><li>Compare actual batch results with your melt flow, impact, colour and heat-resistance targets.</li><li>Agree a representative sample or trial before accepting the lot.</li></ul><p>Confirm appearance, impact and any flame-retardant requirements against the exact formulation.</p></div>
+                </section>
+                <section class="ab-supply-panel" id="recycled" aria-labelledby="supply-heading-recycled" data-grade="Recycled">
+                    <div class="ab-supply-copy"><span class="ab-supply-kicker">Circular supply · source matters</span><h2 id="supply-heading-recycled">Recycled ABS</h2><p>Recovered ABS that has been reprocessed for use as material again. Review source, segregation and batch consistency against the needs of your finished product.</p><a class="ab-btn" href="#primary-enquiry" data-grade-choice="Recycled">Enquire about recycled ABS <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a></div>
+                    <div class="ab-supply-spec"><span class="ab-supply-kicker">Your enquiry checklist</span><h3>Impact performance &amp; surface finish</h3><ul><li>Source stream and reprocessing history</li><li>Check melt flow, impact, colour and heat-resistance targets, contamination, odour and colour.</li><li>Confirm whether post-industrial or post-consumer feedstock is acceptable.</li></ul><p>Confirm appearance, impact and any flame-retardant requirements against the exact formulation.</p></div>
+                </section>
+                <section class="ab-supply-panel" id="scrap-regrind" aria-labelledby="supply-heading-scrap-regrind" data-grade="Scrap / Regrind">
+                    <div class="ab-supply-copy"><span class="ab-supply-kicker">Recovery feedstock · inspect first</span><h2 id="supply-heading-scrap-regrind">ABS Scrap / Regrind</h2><p>Sorted ABS production scrap or size-reduced regrind for a suitable recovery or conversion process. This is feedstock, not a promise of ready-to-use prime-equivalent resin.</p><a class="ab-btn" href="#primary-enquiry" data-grade-choice="Scrap / Regrind">Enquire about scrap / regrind ABS <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a></div>
+                    <div class="ab-supply-spec"><span class="ab-supply-kicker">Your enquiry checklist</span><h3>Impact performance &amp; surface finish</h3><ul><li>Polymer identification and source segregation</li><li>Confirm particle size, moisture, fines and contamination limits.</li><li>Share photos, form, packing and any required washing or filtration steps.</li></ul><p>Confirm appearance, impact and any flame-retardant requirements against the exact formulation.</p></div>
+                </section>
+            </div>
+            <p class="ab-supply-note"><svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-shield" /></svg>Availability, test results and application suitability are confirmed per enquiry. No grade or regulatory approval is implied.</p>
+        </div>
+    </section>
+
         <!-- 1. Hero section -->
         <section class="ab-prod-hero" aria-labelledby="hdpe-title">
             <div class="ab-wrap ab-prod-hero-grid">
                 <div class="ab-prod-copy ab-reveal is-visible">
                   <span
                         class="ab-eyebrow">Engineering thermoplastic · ABS</span>
-                    <h1 id="hdpe-title">ABS Plastic Resin and Grades </h1>
+                    <h2 id="hdpe-title">ABS material guide &amp; applications</h2>
                     <p>ABS stands for Acrylonitrile Butadiene Styrene. It is an engineering thermoplastic valued for impact resistance, rigidity, and dimensional stability. ABS is widely used in automotive components, electronic housings, appliances, and molded consumer products.</p>
                     <p>Explore ABS materials based on application, processing method, grade, and technical specifications. Verify material source, manufacturer, documentation, color requirements, and availability for every enquiry before supply.</p>
                  
                     <div class="ab-prod-actions"><a class="ab-btn" href="<?php echo home_url('/contact-us/'); ?>">REQUEST AN ABS QUOTE <svg
                                 class="ab-icon" aria-hidden="true">
                                 <use href="#ab-icon-arrow" />
-                            </svg></a><a class="ab-btn ab-btn--outline" href="#ab-ctm-b">UPLOAD A DATASHEET</a>
+                            </svg></a><a class="ab-btn ab-btn--outline" href="#datasheet-upload">UPLOAD A DATASHEET</a>
                     </div>
               
                 </div>
@@ -77,7 +110,7 @@ get_header();
         </section>
         <nav class="ab-prod-sticky-wrap" aria-label="ABS page sections">
             <div class="ab-prod-sticky" id="product-section-nav"><span class="ab-prod-sticky-label">On this
-                    page</span><a href="#overview">Overview</a><a href="#grades-processing">Grades &amp;
+                    page</span><a href="#supply-types">Supply types</a><a href="#overview">Overview</a><a href="#grades-processing">Grades &amp;
                     Processing</a><a href="#forms">Forms</a><a href="#applications">Applications</a><a
                     href="#industries">Industries</a><a href="#selection-guide">Selection Guide</a><a
                     href="#technical-support">Technical Support</a><a href="#faqs">FAQs</a><a
@@ -251,7 +284,7 @@ get_header();
             </div>
         </section>
         <!-- 5. Primary enquiry CTA -->
-        <section class="ab-primary-enquiry" id="ab-ctm-b" aria-labelledby="primary-enquiry-title">
+        <section class="ab-primary-enquiry" id="primary-enquiry" aria-labelledby="primary-enquiry-title">
             <div class="ab-wrap ab-primary-layout">
                 <div class="ab-primary-copy ab-reveal"><span class="ab-eyebrow">ABS enquiry</span>
                     <h2 id="primary-enquiry-title">Request an ABS quote</h2>
@@ -273,13 +306,13 @@ get_header();
                         <div class="ab-product-field"><label for="hdpe-email">Business email *</label><input
                                 id="hdpe-email" name="email" type="email" autocomplete="email" required
                                 placeholder="name@company.com"></div>
-                        <div class="ab-product-field"><label for="hdpe-material-type">Grade category</label><select
+                        <div class="ab-product-field"><label for="hdpe-material-type">Supply type</label><select
                                 id="hdpe-material-type" name="material_type">
-                                <option value="">Select if known</option>
-                                <option>Injection molding grade</option>
-                                <option>Automotive grade</option>
-                                <option>Electronics grade</option>
-                                <option>Application-specific</option>
+                                <option value="">Select supply type</option>
+                                <option>Prime / Virgin</option>
+                                <option>Off-grade</option>
+                                <option>Recycled</option>
+                                <option>Scrap / Regrind</option>
                                 <option>Not sure</option>
                             </select></div>
                         <div class="ab-product-field"><label for="hdpe-process">Processing method</label><select

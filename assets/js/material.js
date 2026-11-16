@@ -1,3 +1,74 @@
+/* Progressive enhancement only: all supply content is literal HTML in each material template.
+   Hashes are linkable views of one material URL, not separate indexable pages. */
+(() => {
+    const guide = document.querySelector('[data-supply-guide]');
+    if (!guide) return;
+    const tablist = guide.querySelector('.ab-supply-tabs');
+    const tabs = [...tablist.querySelectorAll('a')];
+    const panels = [...guide.querySelectorAll('.ab-supply-panel')];
+    const materialType = document.querySelector('select[name="material_type"]');
+    const panelFor = tab => panels.find(panel => `#${panel.id}` === tab.hash);
+    const chooseGrade = grade => {
+        if (!materialType) return;
+        materialType.value = grade;
+        materialType.dispatchEvent(new Event('change', { bubbles: true }));
+    };
+    tablist.setAttribute('role', 'tablist');
+    tablist.setAttribute('aria-orientation', 'horizontal');
+    tabs.forEach(tab => {
+        tab.setAttribute('role', 'tab');
+        tab.setAttribute('aria-controls', panelFor(tab).id);
+    });
+    panels.forEach(panel => {
+        panel.setAttribute('role', 'tabpanel');
+        panel.setAttribute('aria-labelledby', `supply-tab-${panel.id}`);
+        panel.tabIndex = 0;
+    });
+    function activate(tab, { focus = false, updateUrl = false, updateForm = false } = {}) {
+        tabs.forEach(item => {
+            const active = item === tab;
+            item.setAttribute('aria-selected', String(active));
+            item.tabIndex = active ? 0 : -1;
+            panelFor(item).hidden = !active;
+        });
+        if (focus) tab.focus({ preventScroll: true });
+        if (updateForm) chooseGrade(panelFor(tab).dataset.grade);
+        if (updateUrl && window.location.hash !== tab.hash) history.pushState(null, '', tab.hash);
+    }
+    const initialTab = tabs.find(tab => tab.hash === window.location.hash);
+    // Do not set a material type on a default page visit: the user must choose it.
+    activate(initialTab || tabs[0], { updateForm: Boolean(initialTab) });
+    tabs.forEach((tab, index) => {
+        tab.addEventListener('click', event => {
+            if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+            event.preventDefault();
+            activate(tab, { updateUrl: true, updateForm: true });
+        });
+        tab.addEventListener('keydown', event => {
+            let next;
+            if (event.key === 'ArrowRight') next = tabs[(index + 1) % tabs.length];
+            if (event.key === 'ArrowLeft') next = tabs[(index - 1 + tabs.length) % tabs.length];
+            if (event.key === 'Home') next = tabs[0];
+            if (event.key === 'End') next = tabs[tabs.length - 1];
+            if (!next) return;
+            event.preventDefault();
+            activate(next, { focus: true, updateUrl: true, updateForm: true });
+        });
+    });
+    guide.querySelectorAll('[data-grade-choice]').forEach(link => {
+        link.addEventListener('click', () => chooseGrade(link.dataset.gradeChoice));
+    });
+    function syncFromUrl() {
+        const tab = tabs.find(item => item.hash === window.location.hash);
+        if (tab) activate(tab, { updateForm: true });
+        else if (!window.location.hash) activate(tabs[0]);
+    }
+    window.addEventListener('hashchange', syncFromUrl);
+    window.addEventListener('popstate', syncFromUrl);
+    // Honour a deep link after the other, initially visible fallback panels collapse.
+    if (initialTab) requestAnimationFrame(() => tablist.scrollIntoView({ block: 'start' }));
+})();
+
 /* Navigation is owned by the shared controller in assets/js/navigation.js.
    Page scripts must not bind their own menu toggle: two controllers fight over
    the .is-open state and the menu can close itself on the first tap. */
