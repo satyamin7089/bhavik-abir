@@ -31,45 +31,6 @@ $bv_whatsapp  = '917007049478';
 $bv_email     = 'info@bhavikenterprises.com';
 $bv_address   = 'Village Barhat Bangar, Mandhana Bithoor Road, Kanpur – 209217, UP, India';
 
-$bv_products = array(
-    array(
-        'code'  => 'LDPE · Film & Liner Grades',
-        'icon'  => '#ab-icon-layers',
-        'title' => 'LDPE',
-        'desc'  => 'Low Density Polyethylene supplied in near virgin and reprocessed film, liner and general extrusion grades.',
-    ),
-    array(
-        'code'  => 'HDPE · Pipe, Blow & Raffia',
-        'icon'  => '#ab-icon-pipe',
-        'title' => 'HDPE',
-        'desc'  => 'High Density Polyethylene for pressure pipes, blow-moulded containers, crates and industrial parts.',
-    ),
-    array(
-        'code'  => 'PP · Moulding & Extrusion',
-        'icon'  => '#ab-icon-mould',
-        'title' => 'PP (Polypropylene)',
-        'desc'  => 'Homopolymer and copolymer grades suited to high-cycle injection moulding, household ware and packaging.',
-    ),
-    array(
-        'code'  => 'PVC · Rigid & Flexible',
-        'icon'  => '#ab-icon-cube',
-        'title' => 'PVC',
-        'desc'  => 'Polyvinyl Chloride resins and compounds for rigid conduits, agricultural pipes, profiles and cable sheathing.',
-    ),
-    array(
-        'code'  => 'Granules · Sorted & Tested',
-        'icon'  => '#ab-icon-recycle',
-        'title' => 'Plastic Granules',
-        'desc'  => 'Uniform, clean-melt reprocessed thermoplastic granules matched to repeat production runs and target MFI.',
-    ),
-    array(
-        'code'  => 'Prime · Certified Feedstock',
-        'icon'  => '#ab-icon-shield',
-        'title' => 'Near virgin Polymers',
-        'desc'  => 'Authorised prime polymer grades backed by Abiroverseas LLC sourcing and batch-level documentation.',
-    ),
-);
-
 $bv_industries = array(
     array(
         'title' => 'Packaging',
@@ -125,7 +86,7 @@ $bv_faqs = array(
     array(
         'cat' => 'Materials',
         'q'   => 'Which polymer families does Bhavik Enterprises supply?',
-        'a'   => 'We supply LDPE, HDPE, PP (Polypropylene) and PVC in both near virgin polymers and sorted reprocessed plastic granules, matched to your processing route and end-use specification.',
+        'a'   => 'We supply LDPE, HDPE, PP (Polypropylene), PVC and Polystyrene (PS). Compare prime / virgin, off-grade, recycled and scrap / regrind routes against your processing and end-use specification.',
     ),
     array(
         'cat' => 'Partnership',
@@ -274,24 +235,48 @@ height="18">
                 <div class="ab-section-head ab-reveal">
                     <span class="ab-eyebrow">Our products</span>
                     <h2 id="bv-products-title">High-quality polymers for diverse industrial uses</h2>
-                    <p>Available across near virgin and reprocessed grades — share your processing method, target properties and tonnage for an exact match.</p>
+                    <p>Compare prime / virgin, off-grade, recycled and scrap / regrind supply on dedicated pages. Share your processing method, target properties and tonnage for an exact match.</p>
                 </div>
                 <a class="ab-btn" href="<?php echo esc_url( ab_home_anchor_url( 'quick-enquiry' ) ); ?>">ENQUIRE BY GRADE
                     <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg>
                 </a>
             </div>
             <div class="ab-why-grid">
-                <?php foreach ( $bv_products as $idx => $product ) : ?>
-                    <article class="ab-why-card ab-reveal<?php echo $idx % 3 ? ' ab-reveal-delay-' . ( $idx % 3 ) : ''; ?>">
-                        <div class="ab-bv-product-top">
-                            <div class="ab-icon-box" aria-hidden="true"><svg class="ab-icon"><use href="<?php echo esc_attr( $product['icon'] ); ?>" /></svg></div>
-                            <span class="ab-why-tag"><?php echo esc_html( $product['code'] ); ?></span>
-                        </div>
-                        <h3><?php echo esc_html( $product['title'] ); ?></h3>
-                        <p><?php echo esc_html( $product['desc'] ); ?></p>
-                        <a class="ab-link" href="<?php echo esc_url( ab_home_anchor_url( 'quick-enquiry' ) ); ?>">Request availability <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
-                    </article>
-                <?php endforeach; ?>
+                <article class="ab-why-card ab-reveal">
+                    <div class="ab-bv-product-top"><div class="ab-icon-box" aria-hidden="true"><svg class="ab-icon"><use href="#ab-icon-layers" /></svg></div><span class="ab-why-tag">LDPE · Film &amp; Liner Grades</span></div>
+                    <h3>LDPE</h3><p>Low-Density Polyethylene for films, liners and general extrusion. Compare prime, off-grade, recycled and scrap / regrind supply.</p>
+                    <a class="ab-link" href="<?php echo esc_url( home_url( '/ldpe/' ) ); ?>">Explore materials <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
+                </article>
+                <article class="ab-why-card ab-reveal">
+                    <div class="ab-bv-product-top"><div class="ab-icon-box" aria-hidden="true"><svg class="ab-icon"><use href="#ab-icon-pipe" /></svg></div><span class="ab-why-tag">HDPE · Pipe &amp; Blow Moulding</span></div>
+                    <h3>HDPE</h3><p>High-Density Polyethylene for containers, pipes and moulded parts, subject to grade and application requirements.</p>
+                    <a class="ab-link" href="<?php echo esc_url( home_url( '/hdpe/' ) ); ?>">Explore materials <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
+                </article>
+                <article class="ab-why-card ab-reveal">
+                    <div class="ab-bv-product-top"><div class="ab-icon-box" aria-hidden="true"><svg class="ab-icon"><use href="#ab-icon-mould" /></svg></div><span class="ab-why-tag">PP · Moulding &amp; Extrusion</span></div>
+                    <h3>PP (Polypropylene)</h3><p>Homopolymer and copolymer materials for packaging, household ware and industrial parts. Match flow, rigidity and impact needs.</p>
+                    <a class="ab-link" href="<?php echo esc_url( home_url( '/pp/' ) ); ?>">Explore materials <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
+                </article>
+                <article class="ab-why-card ab-reveal">
+                    <div class="ab-bv-product-top"><div class="ab-icon-box" aria-hidden="true"><svg class="ab-icon"><use href="#ab-icon-cube" /></svg></div><span class="ab-why-tag">PVC · Rigid &amp; Flexible</span></div>
+                    <h3>PVC</h3><p>Polyvinyl Chloride resins and compounds for profiles, conduits and cable applications. Specify rigid or flexible formulations.</p>
+                    <a class="ab-link" href="<?php echo esc_url( home_url( '/pvc/' ) ); ?>">Explore materials <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
+                </article>
+                <article class="ab-why-card ab-reveal">
+                    <div class="ab-bv-product-top"><div class="ab-icon-box" aria-hidden="true"><svg class="ab-icon"><use href="#ab-icon-cube" /></svg></div><span class="ab-why-tag">PS · GPPS &amp; HIPS</span></div>
+                    <h3>Polystyrene (PS)</h3><p>Choose clarity-led GPPS or impact-modified HIPS, then compare the four supply types on their own pages.</p>
+                    <a class="ab-link" href="<?php echo esc_url( home_url( '/ps/' ) ); ?>">Explore materials <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
+                </article>
+                <article class="ab-why-card ab-reveal">
+                    <div class="ab-bv-product-top"><div class="ab-icon-box" aria-hidden="true"><svg class="ab-icon"><use href="#ab-icon-recycle" /></svg></div><span class="ab-why-tag">Granules · Reprocessed Materials</span></div>
+                    <h3>Plastic Granules</h3><p>Choose a polymer family to compare recovered and reprocessed feedstock against your source, colour and batch-consistency needs.</p>
+                    <a class="ab-link" href="<?php echo esc_url( home_url( '/product-range/' ) ); ?>">Explore materials <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
+                </article>
+                <article class="ab-why-card ab-reveal">
+                    <div class="ab-bv-product-top"><div class="ab-icon-box" aria-hidden="true"><svg class="ab-icon"><use href="#ab-icon-shield" /></svg></div><span class="ab-why-tag">Prime · Fresh Polymer Resin</span></div>
+                    <h3>Prime / Virgin Polymers</h3><p>Start with a polymer family, then open its Prime / Virgin page for fresh resin selection checks and documentation needs.</p>
+                    <a class="ab-link" href="<?php echo esc_url( home_url( '/product-range/' ) ); ?>">Explore materials <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
+                </article>
             </div>
         </div>
     </section>

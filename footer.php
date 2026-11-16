@@ -47,7 +47,7 @@ $ab_marquee_logos = array(
     <div class="ab-footer-layout">
       <div class="ab-footer-brand">
         <a class="ab-logo-slot ab-footer-logo" href="<?php echo esc_url( home_url( '/' ) ); ?>" aria-label="Bhavik Enterprises — home">
-          <span class="ab-logo-text">Bhavik Enterprises</span>
+          <span class="ab-logo-text"><span class="ab-logo-name">Bhavik</span><span class="ab-logo-descriptor">Enterprises</span></span>
         </a>
         <p>Authorised distributor of Abiroverseas LLC in India — Village Barhat Bangar, Mandhana Bithoor Road, Kanpur – 209217, UP, India. Head Office: Kanpur · Branches: Mumbai, Mundra.</p>
         <?php ab_social_icon_links( 'ab-footer-social', 'Bhavik Enterprises on social media' ); ?>

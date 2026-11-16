@@ -1,4 +1,4 @@
-# Bhavik Enterprises Polymer Materials — WordPress Theme (`v1.6.0`)
+# Bhavik Enterprises Polymer Materials — WordPress Theme (`v1.7.0`)
 
 A custom, lightweight classic WordPress theme engineered for **Bhavik Enterprises** — the authorised distributor of **Abiroverseas LLC** in India — with a structured Knowledge Center.
 
@@ -191,3 +191,50 @@ All enquiry forms across **Home**, **Contact Us**, **all 8 Material pages**, and
  #   b h a v i k - a b i r 
  
  
+## 9. Separate Material Supply Pages (v1.7.0)
+
+The product design stays on the existing `material.css` / `material.js` layout. The compact supply selector below the shared header is **normal page navigation**, not same-page tabs. Its current-page highlight is written into the HTML with `aria-current="page"`; it does not need JavaScript.
+
+### Routes
+
+Each of these materials has an overview and four independent, root-level WordPress pages:
+
+| Material | Overview | Prime / Virgin | Off-grade | Recycled | Scrap / Regrind |
+| --- | --- | --- | --- | --- | --- |
+| LDPE | `/ldpe/` | `/ldpe-prime/` | `/ldpe-offgrade/` | `/ldpe-recycled/` | `/ldpe-scrap-regrind/` |
+| HDPE | `/hdpe/` | `/hdpe-prime/` | `/hdpe-offgrade/` | `/hdpe-recycled/` | `/hdpe-scrap-regrind/` |
+| PP | `/pp/` | `/pp-prime/` | `/pp-offgrade/` | `/pp-recycled/` | `/pp-scrap-regrind/` |
+| PVC | `/pvc/` | `/pvc-prime/` | `/pvc-offgrade/` | `/pvc-recycled/` | `/pvc-scrap-regrind/` |
+| PS | `/ps/` | `/ps-prime/` | `/ps-offgrade/` | `/ps-recycled/` | `/ps-scrap-regrind/` |
+| ABS | `/abs/` | `/abs-prime/` | `/abs-offgrade/` | `/abs-recycled/` | `/abs-scrap-regrind/` |
+| EVA | `/eva/` | `/eva-prime/` | `/eva-offgrade/` | `/eva-recycled/` | `/eva-scrap-regrind/` |
+
+- Every overview introduces all four supply types and links to their pages.
+- Every supply page links to its overview and the other three types in both the top selector and the related-supply section.
+- PS is a Polystyrene-specific GPPS/HIPS guide, not the old HDPE placeholder. It is linked from the home page and both product directories.
+- The shared wordmark is **Bhavik** on the large upper line with **Enterprises** below it. Its sizing and colours are shared by `header.php`, `footer.php` and `assets/css/site.css`.
+
+### Static editing
+
+All new product copy, links, checklists, FAQs and selected form options are **literal HTML in each template**. There is no product-content array, shared data-driven renderer, AJAX fetch or client-side content swap. For example, edit `page-template/template-material-LDPE-prime.php` directly to change the prime LDPE page. Each template uses the same existing hero/gallery, section navigation and enquiry-form classes. The existing general-purpose page interaction script handles the gallery and form validation only; supply navigation works with JavaScript disabled.
+
+The grade form defaults to that page's supply type and carries its own `enquiry_page` value, so a submission can return to the same grade page even without a browser referrer. The shared handler accepts detailed enquiries for all seven materials, includes the supply type in the email, and applies the existing nonce, honeypot and attachment checks.
+
+### WordPress provisioning and deployment
+
+`inc/material-supply-pages.php` contains explicit installation calls for all 35 material routes. On the first request after deployment, it creates missing pages with their own template, SEO title and description. It preserves existing page titles, editorial content, publication status, custom templates and SEO values. A short-lived installation lock prevents concurrent first requests from creating duplicate pages; failed insertions leave the migration available to retry. The completion option is `ab_static_supply_pages_v1_ready`.
+
+After deployment:
+1. Visit the site once, then check **Pages** for the material overviews and 28 new supply pages.
+2. Check any pre-existing draft, private or custom-template page occupying one of the listed slugs. It is intentionally not republished or overwritten; publish or assign the appropriate supplied template manually if needed.
+3. Test navigation from an overview through all four types and back, including on mobile. Keep these documented slugs if editing the pages: their static cross-links use `home_url()`.
+4. Submit a real test enquiry and verify email delivery on the WordPress host. Local tests stub the mail transport; they do not prove SMTP delivery.
+5. Confirm the site's existing pretty-permalink configuration. These are regular WordPress pages, not custom rewrite endpoints.
+
+### Search indexing
+
+These are separate published pages with distinct titles, descriptions and material/supply-specific guidance. WordPress's normal singular-page canonical links and page sitemap apply; the new templates do not canonicalise grades to the overview or add `noindex`. Existing SEO plugin settings and WordPress search-visibility settings remain authoritative. Check those settings on the deployed site and submit the sitemap through your usual search tools. Separate URLs can be indexed independently, but no implementation can guarantee that a search engine will index or rank every page.
+
+### Regression checks
+
+Run `PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests -v` for route, link, active-state, static-content, HTML-nesting, form-default, PS and logo contracts. Also perform PHP lint and browser checks on deployment. Knowledge Hub templates, assets and logic are outside this change and remain untouched.
