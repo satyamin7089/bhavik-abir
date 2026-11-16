@@ -2,7 +2,7 @@
 /**
  * Template Name: Product Families — Bhavik Enterprises
  * Template Post Type: page
- * Searchable product-family overview.
+ * Six-card, searchable product-family overview.
  */
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 get_header();
@@ -38,7 +38,7 @@ $ab_families = array(
         <div class="ab-wrap">
             <div class="ab-products-section-head">
                 <div><span class="ab-eyebrow">Product directory</span><h2 id="ab-family-heading">Explore product families</h2><p>Choose a family to review the key selection points and common processing considerations.</p></div>
-                <span class="ab-products-total"><strong data-products-count><?php echo ( count( $ab_families ) + 1 ); ?></strong> families</span>
+                <span class="ab-products-total"><strong data-products-count><?php echo count( $ab_families ); ?></strong> families</span>
             </div>
             <div class="ab-products-search-wrap">
                 <label class="ab-products-search" for="ab-family-search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 4.5 4.5"></path></svg><input id="ab-family-search" type="search" placeholder="Search product families, polymers or applications…" autocomplete="off" data-product-search aria-controls="ab-family-grid"><kbd>⌕</kbd></label>
@@ -51,13 +51,9 @@ $ab_families = array(
                         <div class="ab-family-card-title"><h3><?php echo esc_html( $family['name'] ); ?></h3></div>
                     </a>
                 <?php endforeach; ?>
-                <a class="ab-family-card" href="<?php echo esc_url( home_url( '/ps/' ) ); ?>" data-product-card data-search="Polystyrene PS GPPS HIPS general purpose high impact styrenic injection moulding extrusion thermoforming">
-                    <div class="ab-family-card-image"><img src="<?php echo esc_url( get_theme_file_uri( '/assets/img/pellets-macro.jpg' ) ); ?>" alt="Polymer pellets illustrating Polystyrene resin supply" width="720" height="520" loading="lazy"></div>
-                    <div class="ab-family-card-title"><h3>Polystyrene (PS)</h3></div>
-                </a>
             </div>
             <div class="ab-products-empty" data-products-empty hidden><strong>No matching families found.</strong><span>Try a polymer name, abbreviation, or application.</span></div>
-            <p class="ab-products-live-status" data-products-status aria-live="polite" role="status"><?php echo ( count( $ab_families ) + 1 ); ?> product families shown</p>
+            <p class="ab-products-live-status" data-products-status aria-live="polite" role="status"><?php echo count( $ab_families ); ?> product families shown</p>
         </div>
     </section>
 </main>

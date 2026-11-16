@@ -249,7 +249,7 @@ array(
         <div class="ab-wrap">
             <div class="ab-products-section-head">
                 <div><span class="ab-eyebrow">Material guide</span><h2 id="ab-range-heading">Explore the product range</h2><p>Use the search to narrow the directory. Compare common forms and processing considerations, then confirm the exact grade for your use case.</p></div>
-                <span class="ab-products-total"><strong data-products-count><?php echo ( count( $ab_range_items ) + 1 ); ?></strong> materials</span>
+                <span class="ab-products-total"><strong data-products-count><?php echo count( $ab_range_items ); ?></strong> materials</span>
             </div>
             <div class="ab-products-search-wrap">
                 <label class="ab-products-search" for="ab-range-search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 4.5 4.5"></path></svg><input id="ab-range-search" type="search" placeholder="Search materials, grades, processing or applications…" autocomplete="off" data-product-search aria-controls="ab-range-grid"><kbd>⌕</kbd></label>
@@ -297,25 +297,9 @@ array(
                         </div>
                     </article>
                 <?php endforeach; ?>
-                <article class="ab-range-card" id="ps" data-product-card data-search="Polystyrene PS GPPS HIPS general purpose high impact prime virgin off-grade recycled scrap regrind injection moulding sheet extrusion thermoforming">
-                    <div class="ab-range-card-image">
-                        <img src="<?php echo esc_url( get_theme_file_uri( '/assets/img/pellets-macro.jpg' ) ); ?>" alt="Polymer pellets illustrating Polystyrene resin supply" width="800" height="500" loading="lazy" decoding="async">
-                        <span class="ab-range-card-badge">07 · GPPS &amp; HIPS</span>
-                    </div>
-                    <div class="ab-range-card-body">
-                        <div class="ab-range-card-icon" aria-hidden="true"><svg class="ab-icon"><use href="#ab-icon-cube" /></svg></div>
-                        <h3>Polystyrene (PS)</h3>
-                        <ul class="ab-range-points"><li>GPPS for clarity and rigidity; HIPS for improved toughness.</li><li>Explore prime, off-grade, recycled and scrap / regrind routes.</li><li>Confirm formulation, melt flow, colour and end-use requirements.</li></ul>
-                        <div class="ab-range-table-wrap"><table class="ab-range-table"><tbody><tr><th scope="row">Common forms</th><td>Pellets / granules / sorted regrind</td></tr><tr><th scope="row">Processing focus</th><td>Injection / sheet extrusion / thermoforming</td></tr><tr><th scope="row">Selection point</th><td>GPPS and HIPS differ in clarity and impact performance.</td></tr></tbody></table></div>
-                        <div class="ab-range-card-foot" role="group" aria-label="Polystyrene actions">
-                            <a class="ab-range-card-cta" href="<?php echo esc_url( home_url( '/ps/' ) ); ?>"><span>EXPLORE PS</span><svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
-                            <a class="ab-range-card-cta" href="<?php echo esc_url( home_url( '/ps/#primary-enquiry' ) ); ?>"><span>ENQUIRE NOW</span><svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-chat" /></svg></a>
-                        </div>
-                    </div>
-                </article>
             </div>
             <div class="ab-products-empty" data-products-empty hidden><strong>No matching materials found.</strong><span>Try an abbreviation such as PP, HDPE, PVC, or a processing term.</span></div>
-            <p class="ab-products-live-status" data-products-status aria-live="polite" role="status"><?php echo ( count( $ab_range_items ) + 1 ); ?> materials shown</p>
+            <p class="ab-products-live-status" data-products-status aria-live="polite" role="status"><?php echo count( $ab_range_items ); ?> materials shown</p>
           <!--  <p class="ab-products-disclaimer">All Products Are Dummy</p>-->
         </div>
     </section>
