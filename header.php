@@ -1,7 +1,10 @@
 <?php
 /**
  * Global site header and Appearance > Menus primary navigation.
- * Note: Bhavik Enterprises uses its own standalone header-bhavik.php.
+ *
+ * This is the single header for the whole Bhavik Enterprises website:
+ * Bhavik topbar contact details, the Bhavik Enterprises text logo and the
+ * WordPress primary menu. Every page template calls get_header().
  */
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 ?><!doctype html>
@@ -15,14 +18,12 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 
-<div class="ab-topbar" aria-label="Contact details and material price information">
+<div class="ab-topbar" aria-label="Bhavik Enterprises contact details and polymer supply ticker">
   <div class="ab-wrap ab-topbar-inner">
     <div class="ab-contact-line">
       <span>
-        <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-mail" /></svg>
-        Email: <a href="mailto:info@abiroverseas.com" class="ab-header-contact-link">info@abiroverseas.com</a>
-      </span><span><svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-phone" /></svg>
-        Phone: <a href="tel:+18565233366" class="ab-header-contact-link">+1 (856) 523 3366</a>
+        <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-mail" /></svg> <a href="mailto:info@bhavikenterprises.com" class="ab-header-contact-link">info@bhavikenterprises.com</a>
+      </span><span><svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-phone" /></svg><a href="tel:+917007049478" class="ab-header-contact-link">+91 7007049478</a>
       </span>
     </div>
     <div class="ab-ticker" aria-label="Indicative material information, not live prices">
@@ -33,14 +34,28 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
 </div>
 <header class="ab-mainnav" id="site-header">
   <div class="ab-wrap ab-nav-inner">
-    <a class="ab-logo-slot" href="<?php echo esc_url( home_url( '/' ) ); ?>" aria-label="Abiroverseas home"><img src="<?php echo esc_url( home_url( '/wp-content/uploads/2026/10/ABIR-Logo.png' ) ); ?>" alt="Abiroverseas logo"></a>
+    <a class="ab-logo-slot" href="<?php echo esc_url( home_url( '/' ) ); ?>" aria-label="Bhavik Enterprises home">
+      <span class="ab-logo-text">Bhavik Enterprises</span>
+    </a>
     <button class="ab-nav-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="primary-navigation"><span class="ab-menu-line"></span><span class="ab-menu-line"></span><span class="ab-menu-line"></span></button>
-    <nav class="ab-nav-links" id="primary-navigation" aria-label="Main navigation">
-      <?php wp_nav_menu( array( 'theme_location' => 'primary', 'container' => false, 'menu_class' => 'ab-nav-menu', 'menu_id' => 'ab-primary-menu', 'fallback_cb' => 'ab_primary_menu_fallback', 'depth' => 3 ) ); ?>
+    <nav class="ab-nav-links" id="primary-navigation" aria-label="Bhavik Enterprises navigation">
+      <?php
+      /* echo => false keeps the fallback menu visible: WordPress returns the
+         fallback markup instead of echoing it. */
+      echo wp_nav_menu( array(
+          'theme_location' => 'primary',
+          'container'      => false,
+          'menu_class'     => 'ab-nav-menu',
+          'menu_id'        => 'ab-primary-menu',
+          'fallback_cb'    => 'ab_primary_menu_fallback',
+          'depth'          => 3,
+          'echo'           => false,
+      ) );
+      ?>
     </nav>
   </div>
 </header>
-<svg aria-hidden="true" width="0" height="0" class="ab-icon-sprite"><!-- Shared icon sprite for global page layouts. -->
+<svg aria-hidden="true" width="0" height="0" class="ab-icon-sprite"><!-- Shared icon sprite for global page layouts (includes every icon used by the Bhavik Enterprises home layout). -->
 <symbol id="ab-icon-arrow" viewBox="0 0 24 24">
       <path d="M4 12h15M13 5l7 7-7 7" />
     </symbol>
@@ -142,6 +157,10 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
       <rect x="4" y="4" width="16" height="6.5" rx="1.5" />
       <rect x="4" y="13.5" width="16" height="6.5" rx="1.5" />
       <path d="M9 10.5v3M15 10.5v3M12 2v2M12 20v2" />
+    </symbol>
+<symbol id="ab-icon-home-goods" viewBox="0 0 24 24">
+      <rect x="4" y="8" width="16" height="11" rx="2.5" />
+      <path d="M3 8h18M9 5h6a1.5 1.5 0 0 1 1.5 1.5V8h-9V6.5A1.5 1.5 0 0 1 9 5Zm1 7h4" />
     </symbol>
 <symbol id="ab-icon-recycle" viewBox="0 0 24 24">
       <path d="m7.5 4.8 3-1.8 3 5.2M4.3 14.5 2.5 11.4l5.2-3M16.8 19.5h-3.6l3-5.2" />

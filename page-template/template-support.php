@@ -2,7 +2,7 @@
 /**
  * Template Name: Support
  * Template Post Type: page
- * Support page using the shared Abiroverseas material-enquiry handler.
+ * Support page for Bhavik Enterprises using the shared material-enquiry handler.
  * Same banner + enquiry form layout as the Contact page, with a department-wise
  * contact sidebar (product enquiry, logistics, accounts, operations, sales).
  */
@@ -47,32 +47,32 @@ if ( isset( $_GET['topic'] ) && is_scalar( $_GET['topic'] ) ) {
 $ab_support_departments = array(
     array(
         'name'  => 'Product Enquiry',
-        'email' => 'info@abiroverseas.com',
-        'phone' => '+1 (856) 523 3366',
+        'email' => 'info@bhavikenterprises.com',
+        'phone' => '+91 7007049478',
         'icon'  => '<path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3Z"/><path d="m4 7.5 8 4.5 8-4.5"/><path d="M12 12v9"/>',
     ),
     array(
         'name'  => 'Logistics',
-        'email' => 'info@abiroverseas.com',
-        'phone' => '+1 (856) 523 3366',
+        'email' => 'info@bhavikenterprises.com',
+        'phone' => '+91 7007049478',
         'icon'  => '<path d="M3 7h11v10H3z"/><path d="M14 10h4l3 3.5V17h-7z"/><circle cx="7" cy="18.4" r="1.7"/><circle cx="17" cy="18.4" r="1.7"/>',
     ),
     array(
         'name'  => 'Accounts',
-        'email' => 'info@abiroverseas.com',
-        'phone' => '+1 (856) 523 3366',
+        'email' => 'info@bhavikenterprises.com',
+        'phone' => '+91 7007049478',
         'icon'  => '<path d="M6 3h12v18l-2.4-1.6L13.2 21l-2.4-1.6L8.4 21 6 19.4V3Z"/><path d="M9 8h6M9 11.5h6M9 15h3.5"/>',
     ),
     array(
         'name'  => 'Operations',
-        'email' => 'info@abiroverseas.com',
-        'phone' => '+1 (856) 523 3366',
+        'email' => 'info@bhavikenterprises.com',
+        'phone' => '+91 7007049478',
         'icon'  => '<circle cx="12" cy="12" r="3"/><path d="M12 2.8v2.6M12 18.6v2.6M2.8 12h2.6M18.6 12h2.6M5.4 5.4l1.9 1.9M16.7 16.7l1.9 1.9M18.6 5.4l-1.9 1.9M7.3 16.7l-1.9 1.9"/>',
     ),
     array(
         'name'  => 'Sales',
-        'email' => 'info@abiroverseas.com',
-        'phone' => '+1 (856) 523 3366',
+        'email' => 'info@bhavikenterprises.com',
+        'phone' => '+91 7007049478',
         'icon'  => '<path d="M3 17 9 11l3.5 3.5L21 6"/><path d="M15 6h6v6"/>',
     ),
 );
@@ -98,7 +98,7 @@ $ab_support_phone_icon = '<path d="M7.1 3.8H4.8c-.8 0-1.4.7-1.3 1.5.7 7.9 7.1 14
 
             <?php if ( 'sent' === $ab_support_result ) : ?>
                 <div class="ab-contact-notice ab-contact-notice--success" role="status" aria-live="polite">
-                    <strong>Thank you for contacting Abiroverseas.</strong>
+                    <strong>Thank you for contacting Bhavik Enterprises.</strong>
                     <span>Your enquiry has been submitted successfully. We’ll review the details and follow up as appropriate.</span>
                 </div>
             <?php elseif ( 'error' === $ab_support_result ) : ?>
@@ -138,7 +138,7 @@ $ab_support_phone_icon = '<path d="M7.1 3.8H4.8c-.8 0-1.4.7-1.3 1.5.7 7.9 7.1 14
                         <span class="ab-contact-detail-icon" aria-hidden="true">
                             <svg viewBox="0 0 24 24" fill="none"><circle cx="17.5" cy="6" r="2.6" stroke="currentColor" stroke-width="1.7"/><circle cx="6.5" cy="12" r="2.6" stroke="currentColor" stroke-width="1.7"/><circle cx="17.5" cy="18" r="2.6" stroke="currentColor" stroke-width="1.7"/><path d="m8.9 10.7 6.2-3.4M8.9 13.3l6.2 3.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
                         </span>
-                        <?php ab_social_icon_links( 'ab-contact-social', 'Abiroverseas on social media' ); ?>
+                        <?php ab_social_icon_links( 'ab-contact-social', 'Bhavik Enterprises on social media' ); ?>
                     </div>
                    
                     <div class="ab-contact-aside-decoration" aria-hidden="true"><span></span><span></span><span></span></div>

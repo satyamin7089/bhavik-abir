@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Product Families — Abiroverseas
+ * Template Name: Product Families — Bhavik Enterprises
  * Template Post Type: page
  * Six-card, searchable product-family overview.
  */
