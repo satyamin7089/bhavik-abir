@@ -13,7 +13,7 @@ get_header();
     <section class="ab-legal-hero" aria-labelledby="ab-legal-title">
         <div class="ab-wrap">
             <h1 id="ab-legal-title">Privacy Policy</h1>
-<p class="ab-legal-intro">Abiroverseas (“Abiroverseas”, “we”, “us” or “our”) respects your privacy and is committed to protecting the personal information you share with us through this website. This Privacy Policy explains what information we collect, how we use it, and the choices you have. By using this website or contacting us, you agree to the practices described below.</p>
+<p class="ab-legal-intro">Bhavik Enterprises (“Bhavik Enterprises”, “we”, “us” or “our”) respects your privacy and is committed to protecting the personal information you share with us through this website. This Privacy Policy explains what information we collect, how we use it, and the choices you have. By using this website or contacting us, you agree to the practices described below.</p>
         </div>
     </section>
 
@@ -98,8 +98,9 @@ get_header();
                     <h2>12. Contact Us</h2>
                     <p>If you have any questions, concerns or requests regarding this Privacy Policy or the way we handle your personal information, please contact us:</p>
                     <ul>
-                        <li>Email: <a href="mailto:info@abiroverseas.com">info@abiroverseas.com</a></li>
-                        <li>Phone: <a href="tel:+18565233366">+1 (856) 523 3366</a></li>
+                        <li>Email: <a href="mailto:info@bhavikenterprises.com">info@bhavikenterprises.com</a></li>
+                        <li>Phone: <a href="tel:+917007049478">+91 7007049478</a></li>
+                        <li>Address: Village Barhat Bangar, Mandhana Bithoor Road, Kanpur – 209217, UP, India</li>
                     </ul>
                 </div>
             </article>

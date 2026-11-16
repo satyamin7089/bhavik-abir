@@ -1,8 +1,8 @@
 <?php
-/** Abiroverseas — WordPress theme functions. */
+/** Bhavik Enterprises — WordPress theme functions (authorised distributor of Abiroverseas LLC). */
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
-define( 'AB_THEME_VERSION', '1.5.7' );
+define( 'AB_THEME_VERSION', '1.6.0' );
 
 /**
  * Determine whether the current request renders the Bhavik Enterprises page.
@@ -85,8 +85,9 @@ function ab_enqueue_assets() {
         $template = get_page_template_slug( $page_id );
 
         if ( is_front_page() || 'home' === $slug || in_array( $template, array( 'page-template/template-home.php', 'page-templates/template-home.php' ), true ) ) {
-            $styles = array( 'home.css' );
-            $script = 'home.js';
+            // The home page is the Bhavik Enterprises layout, so it keeps the Bhavik stylesheet and script.
+            $styles = array( 'bhavik.css' );
+            $script = 'bhavik.js';
         } elseif ( 'about' === $slug || in_array( $template, array( 'page-template/template-about.php', 'page-templates/template-about.php' ), true ) ) {
             $styles = array( 'about.css' );
             $script = 'about.js';
@@ -104,7 +105,7 @@ function ab_enqueue_assets() {
             // Privacy Policy and Terms & Conditions share the simple legal layout.
             $styles = array( 'legal.css' );
         } elseif ( ab_is_bhavik_page() ) {
-            // Keep Bhavik Enterprises 100% isolated in its own dedicated stylesheet and script.
+            // The legacy /bhavik-enterprises/ route renders the same Bhavik home layout.
             $styles = array( 'bhavik.css' );
             $script = 'bhavik.js';
         } elseif (
@@ -245,13 +246,13 @@ function ab_seed_primary_menu() {
     } else { $menu_id = (int) $menu->term_id; }
     if ( $created ) {
         ab_add_primary_menu_item( $menu_id, 'Home', home_url( '/' ) );
-        $products = ab_add_primary_menu_item( $menu_id, 'Products', home_url( '/#product-families' ) );
-        ab_add_primary_menu_item( $menu_id, 'Product families', home_url( '/#product-families' ), $products );
+        $products = ab_add_primary_menu_item( $menu_id, 'Products', home_url( '/products/' ) );
+        ab_add_primary_menu_item( $menu_id, 'Product families', home_url( '/products/' ), $products );
+        ab_add_primary_menu_item( $menu_id, 'Product range', home_url( '/product-range/' ), $products );
         ab_add_primary_menu_item( $menu_id, 'HDPE', home_url( '/hdpe/' ), $products );
-        ab_add_primary_menu_item( $menu_id, 'Grades & forms', home_url( '/#materials' ), $products );
-        ab_add_primary_menu_item( $menu_id, 'Materials', home_url( '/#materials' ) );
-        ab_add_primary_menu_item( $menu_id, 'Industries', home_url( '/#markets' ) );
-        ab_add_primary_menu_item( $menu_id, 'Resources', home_url( '/knowledge/' ) );
+        ab_add_primary_menu_item( $menu_id, 'Grades & forms', home_url( '/#products' ), $products );
+        ab_add_primary_menu_item( $menu_id, 'Industries', home_url( '/#industries' ) );
+        ab_add_primary_menu_item( $menu_id, 'Knowledge Center', home_url( '/knowledge/' ) );
         ab_add_primary_menu_item( $menu_id, 'About Us', home_url( '/about/' ) );
         ab_add_primary_menu_item( $menu_id, 'Support', home_url( '/support/' ) );
         ab_add_primary_menu_item( $menu_id, 'Get a Custom Quote', home_url( '/#quick-enquiry' ), 0, array( 'ab-nav-quote' ) );
@@ -275,6 +276,50 @@ function ab_maybe_seed_primary_menu() {
     if ( get_theme_mod( 'ab_primary_menu_seeded' ) ) { return; }
     ab_seed_primary_menu();
     set_theme_mod( 'ab_primary_menu_seeded', 1 );
+}
+
+/**
+ * Point the auto-seeded menu items at destinations that still exist.
+ * The previous home layout supplied #product-families, #materials and #markets;
+ * the Bhavik Enterprises home layout uses real pages plus #products, #industries
+ * and #quick-enquiry. Only the theme's own seeded URLs are rewritten.
+ */
+add_action( 'init', 'ab_repair_seeded_menu_anchors', 21 );
+function ab_repair_seeded_menu_anchors() {
+    if ( get_option( 'ab_menu_anchors_bhavik_ready' ) ) { return; }
+
+    $map = array(
+        home_url( '/#product-families' ) => home_url( '/products/' ),
+        home_url( '/#materials' )        => home_url( '/#products' ),
+        home_url( '/#markets' )          => home_url( '/#industries' ),
+    );
+
+    $locations = get_nav_menu_locations();
+    $menu_id   = ! empty( $locations['primary'] ) ? (int) $locations['primary'] : 0;
+    if ( ! $menu_id ) {
+        $menu    = wp_get_nav_menu_object( 'primary' );
+        $menu_id = $menu ? (int) $menu->term_id : 0;
+    }
+
+    $menu_items = $menu_id ? wp_get_nav_menu_items( $menu_id ) : array();
+    foreach ( (array) $menu_items as $menu_item ) {
+        $url = isset( $menu_item->url ) ? untrailingslashit( $menu_item->url ) : '';
+        foreach ( $map as $old_url => $new_url ) {
+            if ( $url && untrailingslashit( $old_url ) === $url ) {
+                wp_update_nav_menu_item( $menu_id, (int) $menu_item->db_id, array(
+                    'menu-item-title'     => $menu_item->title,
+                    'menu-item-url'       => $new_url,
+                    'menu-item-status'    => 'publish',
+                    'menu-item-type'      => 'custom',
+                    'menu-item-parent-id' => (int) $menu_item->menu_item_parent,
+                    'menu-item-classes'   => (array) $menu_item->classes,
+                ) );
+                break;
+            }
+        }
+    }
+
+    update_option( 'ab_menu_anchors_bhavik_ready', 1 );
 }
 
 /**
@@ -488,24 +533,24 @@ function ab_ensure_support_and_legal_pages() {
             'title'           => 'Support',
             'template'        => 'page-template/template-support.php',
             'templates'       => array( 'page-template/template-support.php', 'page-templates/template-support.php' ),
-            'seo_title'       => 'Support | Department-Wise Contacts & Enquiry Form | Abiroverseas',
-            'seo_description' => 'Reach the right Abiroverseas desk directly — product enquiry, logistics, accounts, operations and sales — by email, phone or the support enquiry form.',
+            'seo_title'       => 'Support | Department-Wise Contacts & Enquiry Form | Bhavik Enterprises',
+            'seo_description' => 'Reach the right Bhavik Enterprises desk directly — product enquiry, logistics, accounts, operations and sales — by email, phone or the support enquiry form.',
         ),
         array(
             'slug'            => 'privacy-policy',
             'title'           => 'Privacy Policy',
             'template'        => 'page-template/template-privacy-policy.php',
             'templates'       => array( 'page-template/template-privacy-policy.php', 'page-templates/template-privacy-policy.php' ),
-            'seo_title'       => 'Privacy Policy | Abiroverseas',
-            'seo_description' => 'How Abiroverseas collects, uses, stores and protects personal information submitted through this website.',
+            'seo_title'       => 'Privacy Policy | Bhavik Enterprises',
+            'seo_description' => 'How Bhavik Enterprises collects, uses, stores and protects personal information submitted through this website.',
         ),
         array(
             'slug'            => 'terms-and-conditions',
             'title'           => 'Terms and Conditions',
             'template'        => 'page-template/template-terms-conditions.php',
             'templates'       => array( 'page-template/template-terms-conditions.php', 'page-templates/template-terms-conditions.php' ),
-            'seo_title'       => 'Terms and Conditions | Abiroverseas',
-            'seo_description' => 'The terms governing use of the Abiroverseas website, enquiries, quotations, orders and supply of polymer materials.',
+            'seo_title'       => 'Terms and Conditions | Bhavik Enterprises',
+            'seo_description' => 'The terms governing use of the Bhavik Enterprises website, enquiries, quotations, orders and supply of polymer materials.',
         ),
     );
 
@@ -551,13 +596,72 @@ function ab_ensure_support_and_legal_pages() {
     update_option( 'ab_support_legal_pages_ready', 1 );
 }
 
+/**
+ * One-time rebrand of the SEO meta the theme itself seeded during the
+ * Abiroverseas era. Only the exact seeded strings are replaced, so any title or
+ * description edited by the site owner is left untouched.
+ */
+add_action( 'init', 'ab_rebrand_seeded_page_meta', 34 );
+function ab_rebrand_seeded_page_meta() {
+    if ( get_option( 'ab_bhavik_rebrand_meta_ready' ) ) { return; }
+
+    $replacements = array(
+        'home'  => array(
+            'Abiroverseas | Polymer Materials & Supply Enquiries' => 'Bhavik Enterprises | Plastic Raw Material Supplier in India',
+            'Explore Abiroverseas polymer material categories, technical selection guidance and a clear path to a custom supply enquiry.' => 'Bhavik Enterprises, Kanpur, is the authorised distributor of Abiroverseas LLC — supplying LDPE, HDPE, PP, PVC, plastic granules and virgin polymers with Pan-India dispatch from Kanpur, Mumbai and Mundra.',
+        ),
+        'about' => array(
+            'About Abiroverseas | Polymer Materials Supply Partner' => 'About Bhavik Enterprises | Plastic Raw Material Supply Partner',
+            'About Abiroverseas — a requirements-first polymer materials partner connecting manufacturers with suitable grades, forms and supply conversations.' => 'About Bhavik Enterprises — a requirements-first plastic raw material partner connecting manufacturers across India with suitable grades, forms and supply conversations.',
+        ),
+        'hdpe'  => array(
+            'HDPE Reprocessed & Recycled Material | Grades, Forms & Applications | Abiroverseas' => 'HDPE Reprocessed & Recycled Material | Grades, Forms & Applications | Bhavik Enterprises',
+        ),
+    );
+
+    foreach ( $replacements as $slug => $pairs ) {
+        $page = get_page_by_path( $slug, OBJECT, 'page' );
+        if ( ! $page ) { continue; }
+
+        foreach ( array( 'ab_meta_title', 'ab_meta_description' ) as $meta_key ) {
+            $value = trim( (string) get_post_meta( $page->ID, $meta_key, true ) );
+            if ( '' === $value ) { continue; }
+            foreach ( $pairs as $old => $new ) {
+                if ( $value === $old ) {
+                    update_post_meta( $page->ID, $meta_key, $new );
+                    break;
+                }
+            }
+        }
+
+        /* The seeded About FAQ copy is part of the FAQPage schema. It is only
+           rewritten while it still starts with the seeded Abiroverseas question. */
+        if ( 'about' === $slug ) {
+            $faqs = get_post_meta( $page->ID, 'ab_page_faqs', true );
+            if ( is_array( $faqs ) && ! empty( $faqs[0]['question'] ) && 'What exactly does Abiroverseas do?' === $faqs[0]['question'] ) {
+                $rebranded = array();
+                foreach ( $faqs as $faq ) {
+                    $rebranded[] = array(
+                        'question' => str_replace( 'Abiroverseas', 'Bhavik Enterprises', (string) ( $faq['question'] ?? '' ) ),
+                        'answer'   => str_replace( 'Abiroverseas', 'Bhavik Enterprises', (string) ( $faq['answer'] ?? '' ) ),
+                    );
+                }
+                update_post_meta( $page->ID, 'ab_page_faqs', $rebranded );
+            }
+        }
+    }
+
+    update_option( 'ab_bhavik_rebrand_meta_ready', 1 );
+}
+
 function ab_primary_menu_fallback() {
     $items = array(
         array( 'Home', home_url( '/' ) ),
-        array( 'HDPE', home_url( '/hdpe/' ) ),
-        array( 'Resources', home_url( '/knowledge/' ) ),
         array( 'About Us', home_url( '/about/' ) ),
-        array( 'Support', home_url( '/support/' ) ),
+        array( 'Products', home_url( '/products/' ) ),
+        array( 'Industries', home_url( '/#industries' ) ),
+        array( 'Knowledge Center', home_url( '/knowledge/' ) ),
+        array( 'Contact Us', home_url( '/contact-us/' ) ),
         array( 'Get a Custom Quote', home_url( '/#quick-enquiry' ), 'ab-nav-quote' ),
     );
     $html = '<ul id="ab-primary-menu" class="ab-nav-menu">';
@@ -965,7 +1069,7 @@ function ab_knowledge_archive_description() {
     return get_option( 'ab_knowledge_archive_description', 'Search practical polymer material guides, comparisons, processing notes and FAQs by material, product type or topic.' );
 }
 function ab_filter_document_title( $title ) {
-    if ( is_404() && ! ab_has_seo_plugin() ) { return 'Page Not Found (404) | Abiroverseas'; }
+    if ( is_404() && ! ab_has_seo_plugin() ) { return 'Page Not Found (404) | Bhavik Enterprises'; }
     if ( is_post_type_archive( 'knowledge' ) ) { return ab_knowledge_archive_title() ?: $title; }
     if ( ab_has_seo_plugin() || ! is_singular() ) { return $title; }
     $custom = get_post_meta( get_queried_object_id(), 'ab_meta_title', true );
@@ -1122,7 +1226,7 @@ function ab_output_social_meta() {
     $image       = array( 'url' => '', 'width' => 0, 'height' => 0, 'alt' => '' );
 
     if ( is_404() ) {
-        $title = 'Page Not Found (404) | Abiroverseas';
+        $title = 'Page Not Found (404) | Bhavik Enterprises';
     } elseif ( is_post_type_archive( 'knowledge' ) ) {
         $title       = ab_knowledge_archive_title();
         $description = ab_knowledge_archive_description();
@@ -1150,7 +1254,7 @@ function ab_output_social_meta() {
     $title       = trim( wp_strip_all_tags( (string) $title ) );
     $description = trim( wp_strip_all_tags( (string) $description ) );
 
-    echo "\n<!-- Abiroverseas social share tags -->\n";
+    echo "\n<!-- Bhavik Enterprises social share tags -->\n";
     echo '<meta property="og:site_name" content="' . esc_attr( get_bloginfo( 'name' ) ) . '">' . "\n";
     echo '<meta property="og:locale" content="' . esc_attr( get_locale() ) . '">' . "\n";
     echo '<meta property="og:type" content="' . esc_attr( $type ) . '">' . "\n";
@@ -1202,9 +1306,11 @@ function ab_knowledge_article_url( $slug ) {
  */
 function ab_social_links() {
     return apply_filters( 'ab_social_links', array(
-        array( 'key' => 'facebook',  'label' => 'Facebook',  'url' => 'https://www.facebook.com/abiroverseas' ),
-        array( 'key' => 'linkedin',  'label' => 'LinkedIn',  'url' => 'https://www.linkedin.com/company/abiroverseas/' ),
-        array( 'key' => 'instagram', 'label' => 'Instagram', 'url' => 'https://www.instagram.com/abiroverseasllc' ),
+        /* Add the Bhavik Enterprises profile URLs here. An icon is skipped while
+           its URL is empty, so no Abiroverseas profile is linked from this site. */
+        array( 'key' => 'facebook',  'label' => 'Facebook',  'url' => '' ),
+        array( 'key' => 'linkedin',  'label' => 'LinkedIn',  'url' => '' ),
+        array( 'key' => 'instagram', 'label' => 'Instagram', 'url' => '' ),
     ) );
 }
 
@@ -1220,7 +1326,7 @@ function ab_social_icon_svg( $key ) {
 }
 
 /** Print the social icon links (no heading) for the footer and Contact card. */
-function ab_social_icon_links( $class = 'ab-social-icons', $aria_label = 'Abiroverseas on social media' ) {
+function ab_social_icon_links( $class = 'ab-social-icons', $aria_label = 'Bhavik Enterprises on social media' ) {
     $links = ab_social_links();
     $html  = '';
     foreach ( $links as $link ) {

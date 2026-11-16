@@ -13,7 +13,7 @@ get_header();
     <section class="ab-legal-hero" aria-labelledby="ab-legal-title">
         <div class="ab-wrap">
             <h1 id="ab-legal-title">Terms and Conditions</h1>
-<p class="ab-legal-intro">These Terms and Conditions (“Terms”) govern your use of the Abiroverseas website and any enquiry, quotation or order placed with Abiroverseas (“Abiroverseas”, “we”, “us” or “our”). By accessing this website or engaging with us commercially, you agree to be bound by these Terms. If you do not agree, please do not use this website or our services.</p>
+<p class="ab-legal-intro">These Terms and Conditions (“Terms”) govern your use of the Bhavik Enterprises website and any enquiry, quotation or order placed with Bhavik Enterprises (“Bhavik Enterprises”, “we”, “us” or “our”). By accessing this website or engaging with us commercially, you agree to be bound by these Terms. If you do not agree, please do not use this website or our services.</p>
         </div>
     </section>
 
@@ -56,7 +56,7 @@ get_header();
 
                 <div class="ab-legal-section">
                     <h2>7. Intellectual Property</h2>
-                    <p>All content on this website — including text, layouts, graphics, logos, images and code — is the property of Abiroverseas or its licensors and is protected by intellectual property laws. You may view and print pages for your own business reference, but you may not reproduce, distribute, modify or commercially exploit any part of the website without our prior written consent.</p>
+                    <p>All content on this website — including text, layouts, graphics, logos, images and code — is the property of Bhavik Enterprises or its licensors and is protected by intellectual property laws. You may view and print pages for your own business reference, but you may not reproduce, distribute, modify or commercially exploit any part of the website without our prior written consent.</p>
                 </div>
 
                 <div class="ab-legal-section">
@@ -66,17 +66,17 @@ get_header();
 
                 <div class="ab-legal-section">
                     <h2>9. Limitation of Liability</h2>
-                    <p>To the fullest extent permitted by law, Abiroverseas shall not be liable for any indirect, incidental, special or consequential loss, or for loss of profit, revenue, goodwill or data arising out of or in connection with the use of this website or the supply of products. Our total aggregate liability arising from any order shall not exceed the price paid for the products giving rise to the claim. Nothing in these Terms limits liability that cannot be limited by law.</p>
+                    <p>To the fullest extent permitted by law, Bhavik Enterprises shall not be liable for any indirect, incidental, special or consequential loss, or for loss of profit, revenue, goodwill or data arising out of or in connection with the use of this website or the supply of products. Our total aggregate liability arising from any order shall not exceed the price paid for the products giving rise to the claim. Nothing in these Terms limits liability that cannot be limited by law.</p>
                 </div>
 
                 <div class="ab-legal-section">
                     <h2>10. Indemnification</h2>
-                    <p>You agree to indemnify and hold harmless Abiroverseas, its officers, employees and agents from and against any claims, liabilities, damages and expenses (including reasonable legal fees) arising out of your misuse of this website, your breach of these Terms, or your infringement of any third-party right.</p>
+                    <p>You agree to indemnify and hold harmless Bhavik Enterprises, its officers, employees and agents from and against any claims, liabilities, damages and expenses (including reasonable legal fees) arising out of your misuse of this website, your breach of these Terms, or your infringement of any third-party right.</p>
                 </div>
 
                 <div class="ab-legal-section">
                     <h2>11. Governing Law and Jurisdiction</h2>
-                    <p>These Terms are governed by the laws of the jurisdiction in which Abiroverseas is established, without regard to its conflict-of-law principles. Any dispute arising out of or in connection with these Terms or a supply contract shall be subject to the exclusive jurisdiction of the competent courts of that jurisdiction.</p>
+                    <p>These Terms are governed by the laws of India, without regard to its conflict-of-law principles. Any dispute arising out of or in connection with these Terms or a supply contract shall be subject to the exclusive jurisdiction of the competent courts at Kanpur, Uttar Pradesh, India.</p>
                 </div>
 
                 <div class="ab-legal-section">
@@ -88,8 +88,9 @@ get_header();
                     <h2>13. Contact Us</h2>
                     <p>If you have any questions about these Terms and Conditions, please contact us:</p>
                     <ul>
-                        <li>Email: <a href="mailto:info@abiroverseas.com">info@abiroverseas.com</a></li>
-                        <li>Phone: <a href="tel:+18565233366">+1 (856) 523 3366</a></li>
+                        <li>Email: <a href="mailto:info@bhavikenterprises.com">info@bhavikenterprises.com</a></li>
+                        <li>Phone: <a href="tel:+917007049478">+91 7007049478</a></li>
+                        <li>Address: Village Barhat Bangar, Mandhana Bithoor Road, Kanpur – 209217, UP, India</li>
                     </ul>
                 </div>
             </article>

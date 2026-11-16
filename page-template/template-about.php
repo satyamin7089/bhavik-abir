@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: About Abiroverseas
+ * Template Name: About Bhavik Enterprises
  * Template Post Type: page
  * Exact layout/content based on the supplied finalized HTML file.
  */
@@ -15,8 +15,8 @@ get_header();
         <div class="ab-about-hero-grid">
           <div class="ab-about-hero-copy ab-reveal is-visible">
             <span class="ab-eyebrow">Who We Are</span>
-            <h1 id="about-title">Welcome to ABIR Overseas</h1>
-            <p class="lead">We are dedicated to delivering high-quality plastic raw materials while driving innovation and sustainability across the industry. With a strong presence in the USA, India, Japan, Middle East, South East Asia, Australia, and more, we have firmly established ourselves as a leader in the industry. Our commitment to quality assurance, sustainable solutions, and customer satisfaction sets us apart.</p>
+            <h1 id="about-title">Welcome to Bhavik Enterprises</h1>
+            <p class="lead">We are dedicated to delivering high-quality plastic raw materials while driving innovation and sustainability across the industry. As the authorised distributor of Abiroverseas LLC, we supply manufacturers across India from our head office in Kanpur and branch hubs in Mumbai and Mundra. Our commitment to quality assurance, sustainable solutions, and customer satisfaction sets us apart.</p>
    <div class="ab-story-pills" style="margin-bottom:20px;">
             <span class="ab-story-pill" style="background-color:#FFFFFF">Requirements-first</span>
             <span class="ab-story-pill" style="background-color:#FFFFFF">Grade-aware</span>
@@ -63,7 +63,7 @@ get_header();
         <div class="ab-story-copy ab-reveal">
           <span class="ab-eyebrow">Our story</span>
           <h2>We help manufacturers choose material by requirement — not by catalogue</h2>
-          <p>Abiroverseas was built on a simple idea: polymer supply should start with the <strong>application and
+          <p>Bhavik Enterprises was built on a simple idea: polymer supply should start with the <strong>application and
               specification</strong>, not a shortlist of grades picked in isolation. We work with buyers, processors and
             technical teams who want a clear path from brief to confirmed material</p>
           <p>Our focus spans reprocessed and recycled polymers, mainstream resin families such as PP, HDPE, LDPE /
@@ -108,7 +108,7 @@ get_header();
                 <use href="#ab-icon-compass" />
               </svg></div>
             <h3>Our Vision</h3>
-            <p>Our vision at Abir Overseas is to be the global trailblazer in plastics processing, setting new standards for excellence, sustainability, and client satisfaction.</p>
+            <p>Our vision at Bhavik Enterprises is to be a trusted supply partner for plastics processors across India, setting new standards for excellence, sustainability, and client satisfaction.</p>
             <!-- <ul>
               <li>Clear portfolio navigation across polymer families.</li>
               <li>Supply conversations supported by real datasheets.</li>
@@ -132,7 +132,7 @@ get_header();
                 <use href="#ab-icon-target" />
               </svg></div>
             <h3>Corporate Social Responsibility (CSR)</h3>
-            <p>At Abir Overseas, Corporate Social Responsibility (CSR) is ingrained in our core values. We are committed to making a positive impact on society and the environment. Our CSR initiatives include.</p>
+            <p>At Bhavik Enterprises, Corporate Social Responsibility (CSR) is ingrained in our core values. We are committed to making a positive impact on society and the environment. Our CSR initiatives include.</p>
             <!--<ul>
               <li>Replace guesswork with structured specification.</li>
               <li>Match material to process and operating conditions.</li>
@@ -320,7 +320,7 @@ get_header();
       <div class="ab-wrap ab-promise-grid">
         <div class="ab-promise-copy ab-reveal">
           <span class="ab-eyebrow">What you can expect</span>
-          <h2 id="promise-title">Working with Abiroverseas, from first email onward.</h2>
+          <h2 id="promise-title">Working with Bhavik Enterprises, from first email onward.</h2>
           <p>Material supply doesn't need to feel opaque. Here's the kind of experience we aim for on every enquiry —
             whether it's a single trial consignment or a repeat industrial requirement.</p>
 
@@ -408,12 +408,12 @@ get_header();
       </div>
     </section> -->
 
-    <!-- 8. WHY ABIROVERSEAS -->
-    <section class="ab-section ab-why" id="why-abiroverseas" aria-labelledby="why-title">
+    <!-- 8. WHY BHAVIK ENTERPRISES -->
+    <section class="ab-section ab-why" id="why-bhavik" aria-labelledby="why-title">
       <div class="ab-wrap">
         <div class="ab-section-head ab-reveal">
           <span class="ab-eyebrow">Why buyers stay</span>
-          <h2 id="why-title">Why teams choose Abiroverseas for polymer briefs</h2>
+          <h2 id="why-title">Why teams choose Bhavik Enterprises for polymer briefs</h2>
           <p>Three themes come up most often from processors and procurement teams we work with.</p>
         </div>
 
@@ -463,7 +463,7 @@ get_header();
           <aside class="ab-faq-side">
             <div class="ab-faq-side-sticky ab-reveal">
               <span class="ab-eyebrow">Common questions</span>
-              <h2 id="faq-title">About Abiroverseas — in plain terms</h2>
+              <h2 id="faq-title">About Bhavik Enterprises — in plain terms</h2>
               <p class="lead">A focused set of answers that often come up in first conversations with new buyers,
                 procurement teams and processors.</p>
 
@@ -503,12 +503,12 @@ get_header();
                       <use href="#ab-icon-arrow" />
                     </svg>
                   </a>
-                  <a href="mailto:info@abiroverseas.com" class="ab-faq-help-link">
-    <svg class="ab-icon" aria-hidden="true">
-        #icon-mail</use>
-    </svg>
-    info@abiroverseas.com
-</a>
+                  <a href="mailto:info@bhavikenterprises.com" class="ab-faq-help-link">
+                    <svg class="ab-icon" aria-hidden="true">
+                      <use href="#ab-icon-mail" />
+                    </svg>
+                    info@bhavikenterprises.com
+                  </a>
                 </div>
               </div>
             </div>
@@ -521,7 +521,7 @@ get_header();
                 <summary class="ab-faq-summary">
                   <div class="ab-faq-summary-content">
                     <span class="ab-faq-category-tag">Scope &amp; portfolio</span>
-                    <h3 class="ab-faq-q">What exactly does Abiroverseas do?</h3>
+                    <h3 class="ab-faq-q">What exactly does Bhavik Enterprises do?</h3>
                   </div>
                   <div class="ab-faq-trigger-icon" aria-hidden="true">
                     <svg class="ab-icon">

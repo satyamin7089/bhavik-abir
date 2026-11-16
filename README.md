@@ -1,6 +1,6 @@
-# Abiroverseas Polymer Materials — WordPress Theme (`v1.5.6`)
+# Bhavik Enterprises Polymer Materials — WordPress Theme (`v1.6.0`)
 
-A custom, lightweight classic WordPress theme (`abiroverseas-theme`) engineered for **Abiroverseas LLC** and its authorised India distributor landing page (**Bhavik Enterprises**).
+A custom, lightweight classic WordPress theme engineered for **Bhavik Enterprises** — the authorised distributor of **Abiroverseas LLC** in India — with a structured Knowledge Center.
 
 This `README.md` is written so any developer, designer, or site administrator can understand **the entire theme flow, file map, CSS/JS isolation rules, header/footer setup, and editing workflow in one read**.
 
@@ -11,31 +11,28 @@ This `README.md` is written so any developer, designer, or site administrator ca
 ```text
 Incoming WordPress URL
         │
-        ├──► Global Pages & Knowledge Center
-        │       1. Loads header.php        (Global topbar + Appearance → Menus primary nav + SVG sprite)
-        │       2. Runs Page / CPT Template (e.g., template-home.php, template-product-range.php, single-knowledge.php)
-        │       3. Enqueues ONLY that page's CSS + JS (via ab_enqueue_assets() in functions.php) + site.css + navigation.js
-        │       4. Loads footer.php        (Global 4-column Abiroverseas footer + scroll-to-top button)
-        │
-        └──► Bhavik Enterprises (/bhavik-enterprises/)
-                1. Loads header-bhavik.php (Standalone Header Two — same visual layout & logo, #anchor nav, India contact bar)
-                2. Runs page-template/template-bhavik-enterprises.php
-                3. Enqueues ONLY bhavik.css + bhavik.js + site.css + navigation.js
-                4. Loads footer-bhavik.php (Standalone Footer Two — same 4-column layout & white logo, Kanpur/Mumbai/Mundra details)
+        1. Loads header.php   (Bhavik Enterprises topbar + text logo + Appearance → Menus primary nav + SVG sprite)
+        2. Runs the Page / CPT template (e.g., template-home.php, template-product-range.php, single-knowledge.php)
+        3. Enqueues ONLY that page's CSS + JS (via ab_enqueue_assets() in functions.php) + site.css + navigation.js
+        4. Loads footer.php   (Bhavik Enterprises 4-column footer: address, phone, email, WhatsApp + scroll-to-top)
 ```
+
+The home page (`/`) renders `page-template/template-home.php`, which is the **Bhavik Enterprises layout**, so it
+loads `bhavik.css` + `bhavik.js`. `/bhavik-enterprises/` is a legacy alias of the same home layout. There is exactly
+**one header and one footer** in the theme — no page carries its own chrome.
 
 ---
 
 ## 2. Directory Structure at a Glance
 
 ```text
-abiroverseas-theme/
-├── style.css                                   # WordPress theme header metadata (v1.5.5)
+bhavik-enterprises-theme/
+├── style.css                                   # WordPress theme header metadata (v1.6.0)
 ├── functions.php                               # Theme setup, per-page CSS/JS enqueue, CPT/taxonomies, SEO/FAQ meta, enquiry handler
-├── header.php                                  # Global Header One (Abiroverseas LLC sitewide navigation & SVG icon sprite)
-├── footer.php                                  # Global Footer One (Abiroverseas LLC 4-column footer)
-├── header-bhavik.php                           # Standalone Header Two — dedicated to Bhavik Enterprises (get_header('bhavik'))
-├── footer-bhavik.php                           # Standalone Footer Two — dedicated to Bhavik Enterprises (get_footer('bhavik'))
+├── header.php                                  # The site header (Bhavik Enterprises topbar, text logo, primary menu, icon sprite)
+├── footer.php                                  # The site footer (Bhavik Enterprises 4-column footer + partner marquee)
+├── header-bhavik.php                           # Legacy, no longer included anywhere (kept for reference)
+├── footer-bhavik.php                           # Legacy, no longer included anywhere (kept for reference)
 ├── 404.php                                     # Custom Error 404 page with smart "Back to Previous Page" button
 ├── page.php / index.php                        # Fallback standard WordPress page & index templates
 ├── archive-knowledge.php                       # Knowledge Center hub (/knowledge/) with search & taxonomy filters
@@ -46,12 +43,12 @@ abiroverseas-theme/
 ├── inc/
 │   └── default-content.php                     # Starter page definitions & default SEO/FAQ metadata seeded once on activation
 ├── page-template/
-│   ├── template-home.php                       # Front Page / Home
+│   ├── template-home.php                       # Front Page / Home — Bhavik Enterprises layout
 │   ├── template-about.php                      # About Us (/about/)
 │   ├── template-contact.php                    # Contact Us (/contact-us/)
 │   ├── template-product-families.php           # Product Families 6-card searchable directory (/products/)
 │   ├── template-product-range.php              # Product Range 12-card 2x2 3D borderless directory (/product-range/)
-│   ├── template-bhavik-enterprises.php         # Bhavik Enterprises standalone distributor page (/bhavik-enterprises/)
+│   ├── template-bhavik-enterprises.php         # Legacy alias of template-home.php (/bhavik-enterprises/)
 │   ├── template-material.php                   # HDPE Material Page (/hdpe/)
 │   ├── template-material-LDPE.php              # LDPE Material Page (/ldpe/)
 │   ├── template-material-PP.php                # Polypropylene (PP) Material Page (/pp/)
@@ -62,7 +59,7 @@ abiroverseas-theme/
 │   └── template-material-Recycled-Plastics.php # Recycled Plastics Material Page (/recycled-plastics/)
 └── assets/
     ├── css/
-    │   ├── home.css                            # Isolated styles for Home page ONLY
+    │   ├── home.css                            # Retained from the previous Abiroverseas home layout (no longer enqueued)
     │   ├── about.css                           # Isolated styles for About Us page ONLY
     │   ├── contact.css                         # Isolated styles for Contact Us page ONLY
     │   ├── products.css                        # Isolated styles for Product Families & 2x2 Product Range ONLY
@@ -74,7 +71,7 @@ abiroverseas-theme/
     │   └── knowledge-admin.css                 # WP Admin meta box styles for Knowledge Center editor
     ├── js/
     │   ├── navigation.js                       # Shared mobile drawer & scroll-to-top controller (loaded on every page)
-    │   ├── home.js                             # Home hero photo slider & scroll reveal
+    │   ├── home.js                             # Retained from the previous Abiroverseas home layout (no longer enqueued)
     │   ├── about.js                            # About scroll reveal & FAQ category tabs
     │   ├── products.js                         # Live instant client-side search filter for Product Families & Product Range
     │   ├── material.js                         # Material gallery carousel & scroll reveal
@@ -96,7 +93,7 @@ abiroverseas-theme/
 
 | Page / Route | PHP Template | Dedicated CSS | Dedicated JS | Header / Footer |
 | :--- | :--- | :--- | :--- | :--- |
-| **Home** (`/`) | `page-template/template-home.php` | `home.css` | `home.js` | `header.php` / `footer.php` |
+| **Home** (`/`) — Bhavik Enterprises layout | `page-template/template-home.php` | `bhavik.css` | `bhavik.js` | `header.php` / `footer.php` |
 | **About Us** (`/about/`) | `page-template/template-about.php` | `about.css` | `about.js` | `header.php` / `footer.php` |
 | **Contact Us** (`/contact-us/`) | `page-template/template-contact.php` | `contact.css` | — | `header.php` / `footer.php` |
 | **Product Families** (`/products/`) | `page-template/template-product-families.php` | `products.css` | `products.js` | `header.php` / `footer.php` |
@@ -104,31 +101,36 @@ abiroverseas-theme/
 | **Material Pages** (`/hdpe/`, `/pp/`, `/ldpe/`, `/pvc/`, `/ps/`, `/abs/`, `/eva/`, `/recycled-plastics/`) | `page-template/template-material*.php` | `material.css` | `material.js` | `header.php` / `footer.php` |
 | **Knowledge Hub** (`/knowledge/` & taxonomies) | `archive-knowledge.php`, `taxonomy-*.php` | `knowledge.css` | `knowledge-hub.js` | `header.php` / `footer.php` |
 | **Knowledge Article** (`/knowledge/{slug}/`) | `single-knowledge.php` | `knowledge.css` | `knowledge-single.js` | `header.php` / `footer.php` |
-| **Bhavik Enterprises** (`/bhavik-enterprises/`) | `page-template/template-bhavik-enterprises.php` | `bhavik.css` | `bhavik.js` | `header-bhavik.php` / `footer-bhavik.php` |
+| **Bhavik Enterprises** (`/bhavik-enterprises/`, legacy alias of the home layout) | `page-template/template-bhavik-enterprises.php` | `bhavik.css` | `bhavik.js` | `header.php` / `footer.php` |
 | **Error 404** (any missing URL) | `404.php` | `error-404.css` | `error-404.js` | `header.php` / `footer.php` |
 
 > **What `site.css` & `navigation.js` do:** Loaded on all front-end views solely to power the sticky header bar, topbar ticker, mobile hamburger drawer, 4-column footer, and floating back-to-top button.
 
 ---
 
-## 4. Separate Headers & Footers (Global vs Bhavik Enterprises)
+## 4. One Header, One Footer — Bhavik Enterprises Brand Data
 
-To make ongoing maintenance effortless without conditional tangles:
+The site is the **Bhavik Enterprises** website, so every page shares the same header and footer:
 
-1. **Global Site (`header.php` + `footer.php`)**
-   - Used by Home, About, Contact, Products, all 8 Material pages, and Knowledge Center.
-   - Pulls primary menu items dynamically from **Appearance → Menus → Primary Menu**.
-   - Displays Abiroverseas LLC contact info (`info@abiroverseas.com`, `+1 (856) 523 3366`).
+1. **`header.php`**
+   - Bhavik Enterprises topbar: `info@bhavikenterprises.com` · `+91 7007049478`
+   - Bhavik Enterprises text logo, rendered as styled text without a logo-image dependency.
+   - Primary menu from **Appearance → Menus → Primary Menu**; `wp_nav_menu()` is called with `echo => false` so the
+     `ab_primary_menu_fallback()` menu is still printed when no menu is assigned.
 
-2. **Bhavik Enterprises (`header-bhavik.php` + `footer-bhavik.php`)**
-   - Loaded via `get_header( 'bhavik' );` and `get_footer( 'bhavik' );` inside `template-bhavik-enterprises.php`.
-   - Keeps the **exact same visual header/footer layout and Abiroverseas logos** (`ABIR-Logo.png` & `Abir-Logo_white-textr-1.png`) as the global site.
-   - Uses clean in-page anchor navigation (`#bv-hero`, `#about`, `#products`, `#industries`, `#the-way`, `#faqs`, `#quick-enquiry`) so visitors stay on the Bhavik landing page.
-   - Displays Bhavik Enterprises' India details:
+2. **`footer.php`**
+   - Bhavik Enterprises text logo, partner marquee, and the full Bhavik Enterprises data:
      - **Address:** Village Barhat Bangar, Mandhana Bithoor Road, Kanpur – 209217, UP, India
+     - **Head Office:** Kanpur · **Branches:** Mumbai, Mundra
      - **Phone / WhatsApp:** `+91 7007049478`
      - **Email:** `info@bhavikenterprises.com`
-     - **Our Presence:** **Head Office:** Kanpur and **Branches:** Mumbai, Mundra (stacked vertically inside the Contact Us section across desktop, tablet landscape, and mobile)
+   - Every internal link is generated with `home_url()` / `ab_home_anchor_url()` — no hardcoded paths.
+
+3. **Legacy files:** `header-bhavik.php` and `footer-bhavik.php` are no longer included by any template. They are kept
+   only for reference and can be deleted safely.
+
+4. **Social profiles:** `ab_social_links()` in `functions.php` currently returns empty URLs, so no Abiroverseas profile
+   is linked from the Bhavik Enterprises site. Add Bhavik Enterprises' own profile URLs there to show the icons.
 
 ---
 
@@ -154,7 +156,7 @@ All enquiry forms across **Home**, **Contact Us**, **all 8 Material pages**, and
 1. Verifies WordPress nonce (`ab_material_enquiry_nonce`) and invisible honeypot (`ab_website`).
 2. Sanitizes all submitted fields (`name`, `company`, `email`, `phone`, `material`, `quantity`, `application`, `enquiry_kind`).
 3. Supports optional spec/datasheet file attachments up to 5 MB (`.pdf`, `.doc`, `.docx`, `.xls`, `.xlsx`, `.csv`, `.jpg`, `.jpeg`, `.png`) on Material forms without exposing uploads in the public Media Library.
-4. Sends formatted notification email to **Settings → General → Administration Email Address** and redirects back to the originating page with `?enquiry=sent` (or `?enquiry=error`).
+4. Sends formatted notification email to **Settings → General → Administration Email Address** and redirects back to the originating page with `?ab_enquiry=sent` (or `?ab_enquiry=error`).
 
 ---
 
@@ -172,17 +174,20 @@ All enquiry forms across **Home**, **Contact Us**, **all 8 Material pages**, and
 ## 8. Installation & Quick Editing Guide
 
 ### Installing the Theme
-1. Zip the `abiroverseas-theme/` directory (ensuring `style.css` is at the root of the archive).
+1. Zip the theme directory (ensuring `style.css` is at the root of the archive).
 2. In WordPress Admin, go to **Appearance → Themes → Add New → Upload Theme**, upload the zip, and click **Activate**.
-3. Starter pages (`Home`, `About`, `HDPE`, `Product Families`, `Product Range`, `Bhavik Enterprises`) and the starter `Primary Menu` are created automatically without overwriting existing content.
+3. Starter pages (`Home`, `About`, `HDPE`, `Product Families`, `Product Range`, `Bhavik Enterprises`) and the starter `Primary Menu` are created automatically without overwriting existing content. The Home page renders the Bhavik Enterprises layout.
 4. Visit **Settings → Permalinks** and click **Save Changes** once to flush `/knowledge/` rewrite rules.
-5. Ensure brand logo uploads exist at `/wp-content/uploads/2026/10/ABIR-Logo.png` and `/wp-content/uploads/2026/10/Abir-Logo_white-textr-1.png`.
+5. The shared header and footer render "Bhavik Enterprises" as a styled text logo; no logo uploads are required for them. Retain the existing partner-logo uploads for the footer marquee.
 
 ### Common Maintenance Tasks
-- **Edit Global Header / Menu / Footer:** Edit `header.php`, `footer.php`, or **Appearance → Menus → Primary Menu**.
-- **Edit Bhavik Header / Footer / Contact Info:** Edit `header-bhavik.php`, `footer-bhavik.php`, and the `$bv_*` variables at the top of `page-template/template-bhavik-enterprises.php`.
+- **Edit the Header / Menu / Footer:** Edit `header.php`, `footer.php`, or **Appearance → Menus → Primary Menu**.
+- **Edit Contact Details:** The Bhavik Enterprises email/phone/WhatsApp/address live in `header.php`, `footer.php`, the `$bv_*` variables at the top of `page-template/template-home.php`, and the legal/support pages.
+- **Edit the Home Page:** Edit `page-template/template-home.php` (the layout is Bhavik Enterprises; `home.css` / `home.js` from the previous Abiroverseas home page are no longer used).
 - **Edit Styles Safely:** Open only the target page's CSS file in `assets/css/` (see the table in Section 3) and bump `AB_THEME_VERSION` in `functions.php` so browsers fetch the updated stylesheet immediately.
 - **Requirements:** WordPress 6.0+ and PHP 7.4+. No WooCommerce or ACF Pro required.
-#   b h a v i k - a b i r  
- #   b h a v i k - a b i r  
+#   b h a v i k - a b i r 
+ 
+ #   b h a v i k - a b i r 
+ 
  
