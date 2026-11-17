@@ -81,68 +81,197 @@ get_header();
     </section>
 
     <!-- PRODUCT CATEGORIES -->
-    <section class="ab-section ab-product-categories" id="about-product-categories" aria-labelledby="about-product-categories-title">
+    <section class="ab-section ab-product-categories" id="about-product-categories" aria-labelledby="about-product-categories-title" data-category-tabs data-initial-material="hdpe">
         <div class="ab-wrap">
-            <div class="ab-category-heading"><div><span class="ab-eyebrow">Explore by category</span><h2 id="about-product-categories-title">Your material. Your supply type.</h2></div><p>Start with a polymer, or choose a supply category below to open the dedicated material page.</p></div>
-            <div class="ab-category-polymers" aria-label="Browse polymer families">
-                <a href="<?php echo esc_url( home_url( '/ldpe/' ) ); ?>"><strong>LDPE</strong><span>Low-Density Polyethylene</span><svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
-                <a href="<?php echo esc_url( home_url( '/hdpe/' ) ); ?>"><strong>HDPE</strong><span>High-Density Polyethylene</span><svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
-                <a href="<?php echo esc_url( home_url( '/pp/' ) ); ?>"><strong>PP</strong><span>Polypropylene</span><svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
-                <a href="<?php echo esc_url( home_url( '/pvc/' ) ); ?>"><strong>PVC</strong><span>Polyvinyl Chloride</span><svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
-                <a href="<?php echo esc_url( home_url( '/ps/' ) ); ?>"><strong>PS</strong><span>Polystyrene</span><svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
-                <a href="<?php echo esc_url( home_url( '/abs/' ) ); ?>"><strong>ABS</strong><span>Acrylonitrile Butadiene Styrene</span><svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
-                <a href="<?php echo esc_url( home_url( '/eva/' ) ); ?>"><strong>EVA</strong><span>Ethylene Vinyl Acetate</span><svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
+            <svg class="ab-category-sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><defs>
+                <symbol id="about-category-icon-arrow" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6"/></symbol>
+                <symbol id="about-category-icon-open" viewBox="0 0 24 24"><path d="M14 4h6v6m0-6L10 14m0-10H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-5"/></symbol>
+                <symbol id="about-category-icon-cubes" viewBox="0 0 32 32"><path d="m16 2 8 5-8 5-8-5Zm-8 5v9l8 5 8-5V7M16 12v9M8 16l-7 4 8 5 7-4 7 4 8-5-7-4M1 20v9l8 5v-9m22-5v9l-8 5v-9" transform="translate(1 0) scale(.9)"/></symbol>
+                <symbol id="about-category-icon-recycle" viewBox="0 0 32 32"><path d="m10 10 4-7a2 2 0 0 1 4 0l5 8m-1-7 1 7-7-1m9 5 4 8a2 2 0 0 1-2 4h-9m6 4-6-4 4-6M12 27H5a2 2 0 0 1-2-4l5-8m-6 4 6-4 4 6"/></symbol>
+                <symbol id="about-category-icon-gear" viewBox="0 0 32 32"><path d="m13 3-1 4-4 2-4-1-2 5 3 3v3l-2 3 3 4 4-1 3 2 1 3h5l1-4 4-2 4 1 2-5-3-3v-3l2-3-3-4-4 1-3-2-1-3Z"/><circle cx="16" cy="16" r="5"/></symbol>
+                <symbol id="about-category-icon-globe" viewBox="0 0 32 32"><circle cx="16" cy="16" r="13"/><ellipse cx="16" cy="16" rx="6" ry="13"/><path d="M3 16h26M6 8h20M6 24h20"/></symbol>
+                <symbol id="about-category-icon-shield" viewBox="0 0 32 32"><path d="m16 2 12 5v8c0 7-6 12-12 15C10 27 4 22 4 15V7Zm-7 14 5 5 10-11"/></symbol>
+                <symbol id="about-category-icon-truck" viewBox="0 0 32 32"><path d="M2 6h18v18H2Zm18 7h6l5 6v5H20M25 13v6h6"/><circle cx="8" cy="25" r="4"/><circle cx="25" cy="25" r="4"/></symbol>
+                <symbol id="about-category-icon-factory" viewBox="0 0 32 32"><path d="M3 29V14l9 4v-9l10 5V3h7v26Zm4-6h2m6 0h2m6 0h2"/></symbol>
+            </defs></svg>
+            <div class="ab-category-heading"><div><span class="ab-eyebrow">Explore by category</span><h2 id="about-product-categories-title">Your material. Your supply type.</h2></div><p>Select a polymer to view its supply types, material guidance and dedicated pages.</p></div>
+            <div class="ab-category-toolbar" hidden>
+                <span class="ab-category-position" aria-live="polite" aria-atomic="true">2 of 7 · HDPE</span>
+                <div class="ab-category-controls"><button class="ab-category-prev" type="button" aria-label="Previous material"><svg class="ab-category-icon" aria-hidden="true" focusable="false"><use href="#about-category-icon-arrow" /></svg></button><button class="ab-category-next" type="button" aria-label="Next material"><svg class="ab-category-icon" aria-hidden="true" focusable="false"><use href="#about-category-icon-arrow" /></svg></button></div>
             </div>
-            <div class="ab-category-grid">
-                <article class="ab-category-card">
-                    <span class="ab-category-kicker">01 · Supply category</span><h3>Prime / Virgin</h3><p>Fresh polymer resin selected by its manufacturer grade and technical specification.</p>
-                    <div class="ab-category-material-links" aria-label="Prime / Virgin materials">
-                        <a href="<?php echo esc_url( home_url( '/ldpe-prime/' ) ); ?>">LDPE <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
-                        <a href="<?php echo esc_url( home_url( '/hdpe-prime/' ) ); ?>">HDPE <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
-                        <a href="<?php echo esc_url( home_url( '/pp-prime/' ) ); ?>">PP <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
-                        <a href="<?php echo esc_url( home_url( '/pvc-prime/' ) ); ?>">PVC <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
-                        <a href="<?php echo esc_url( home_url( '/ps-prime/' ) ); ?>">PS <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
-                        <a href="<?php echo esc_url( home_url( '/abs-prime/' ) ); ?>">ABS <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
-                        <a href="<?php echo esc_url( home_url( '/eva-prime/' ) ); ?>">EVA <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
-                    </div>
-                </article>
-                <article class="ab-category-card">
-                    <span class="ab-category-kicker">02 · Supply category</span><h3>Off-grade</h3><p>Lot-specific materials reviewed against the declared variation and your process needs.</p>
-                    <div class="ab-category-material-links" aria-label="Off-grade materials">
-                        <a href="<?php echo esc_url( home_url( '/ldpe-offgrade/' ) ); ?>">LDPE <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
-                        <a href="<?php echo esc_url( home_url( '/hdpe-offgrade/' ) ); ?>">HDPE <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
-                        <a href="<?php echo esc_url( home_url( '/pp-offgrade/' ) ); ?>">PP <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
-                        <a href="<?php echo esc_url( home_url( '/pvc-offgrade/' ) ); ?>">PVC <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
-                        <a href="<?php echo esc_url( home_url( '/ps-offgrade/' ) ); ?>">PS <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
-                        <a href="<?php echo esc_url( home_url( '/abs-offgrade/' ) ); ?>">ABS <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
-                        <a href="<?php echo esc_url( home_url( '/eva-offgrade/' ) ); ?>">EVA <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
-                    </div>
-                </article>
-                <article class="ab-category-card">
-                    <span class="ab-category-kicker">03 · Supply category</span><h3>Recycled</h3><p>Recovered and reprocessed polymers selected by source, consistency and end use.</p>
-                    <div class="ab-category-material-links" aria-label="Recycled materials">
-                        <a href="<?php echo esc_url( home_url( '/ldpe-recycled/' ) ); ?>">LDPE <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
-                        <a href="<?php echo esc_url( home_url( '/hdpe-recycled/' ) ); ?>">HDPE <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
-                        <a href="<?php echo esc_url( home_url( '/pp-recycled/' ) ); ?>">PP <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
-                        <a href="<?php echo esc_url( home_url( '/pvc-recycled/' ) ); ?>">PVC <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
-                        <a href="<?php echo esc_url( home_url( '/ps-recycled/' ) ); ?>">PS <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
-                        <a href="<?php echo esc_url( home_url( '/abs-recycled/' ) ); ?>">ABS <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
-                        <a href="<?php echo esc_url( home_url( '/eva-recycled/' ) ); ?>">EVA <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
-                    </div>
-                </article>
-                <article class="ab-category-card">
-                    <span class="ab-category-kicker">04 · Supply category</span><h3>Scrap / Regrind</h3><p>Sorted scrap and size-reduced feedstock for a suitable recovery or conversion process.</p>
-                    <div class="ab-category-material-links" aria-label="Scrap / Regrind materials">
-                        <a href="<?php echo esc_url( home_url( '/ldpe-scrap-regrind/' ) ); ?>">LDPE <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
-                        <a href="<?php echo esc_url( home_url( '/hdpe-scrap-regrind/' ) ); ?>">HDPE <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
-                        <a href="<?php echo esc_url( home_url( '/pp-scrap-regrind/' ) ); ?>">PP <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
-                        <a href="<?php echo esc_url( home_url( '/pvc-scrap-regrind/' ) ); ?>">PVC <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
-                        <a href="<?php echo esc_url( home_url( '/ps-scrap-regrind/' ) ); ?>">PS <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
-                        <a href="<?php echo esc_url( home_url( '/abs-scrap-regrind/' ) ); ?>">ABS <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
-                        <a href="<?php echo esc_url( home_url( '/eva-scrap-regrind/' ) ); ?>">EVA <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
-                    </div>
-                </article>
+            <div class="ab-category-polymers" aria-label="Choose a polymer">
+                <a class="ab-category-tab ab-category-tab--ldpe" id="about-category-tab-ldpe" href="#about-category-panel-ldpe" data-material="ldpe"><strong>LDPE</strong><span>Low-Density Polyethylene</span><img src="<?php echo esc_url( get_theme_file_uri( '/assets/img/categories/natural.webp' ) ); ?>" alt="" width="560" height="420" loading="lazy" decoding="async"></a>
+                <a class="ab-category-tab ab-category-tab--hdpe" id="about-category-tab-hdpe" href="#about-category-panel-hdpe" data-material="hdpe"><strong>HDPE</strong><span>High-Density Polyethylene</span><img src="<?php echo esc_url( get_theme_file_uri( '/assets/img/categories/blue.webp' ) ); ?>" alt="" width="560" height="420" loading="lazy" decoding="async"></a>
+                <a class="ab-category-tab ab-category-tab--pp" id="about-category-tab-pp" href="#about-category-panel-pp" data-material="pp"><strong>PP</strong><span>Polypropylene</span><img src="<?php echo esc_url( get_theme_file_uri( '/assets/img/categories/white.webp' ) ); ?>" alt="" width="560" height="420" loading="lazy" decoding="async"></a>
+                <a class="ab-category-tab ab-category-tab--pvc" id="about-category-tab-pvc" href="#about-category-panel-pvc" data-material="pvc"><strong>PVC</strong><span>Polyvinyl Chloride</span><img src="<?php echo esc_url( get_theme_file_uri( '/assets/img/categories/natural.webp' ) ); ?>" alt="" width="560" height="420" loading="lazy" decoding="async"></a>
+                <a class="ab-category-tab ab-category-tab--ps" id="about-category-tab-ps" href="#about-category-panel-ps" data-material="ps"><strong>PS</strong><span>Polystyrene</span><img src="<?php echo esc_url( get_theme_file_uri( '/assets/img/categories/natural.webp' ) ); ?>" alt="" width="560" height="420" loading="lazy" decoding="async"></a>
+                <a class="ab-category-tab ab-category-tab--abs" id="about-category-tab-abs" href="#about-category-panel-abs" data-material="abs"><strong>ABS</strong><span>Acrylonitrile Butadiene Styrene</span><img src="<?php echo esc_url( get_theme_file_uri( '/assets/img/categories/black.webp' ) ); ?>" alt="" width="560" height="420" loading="lazy" decoding="async"></a>
+                <a class="ab-category-tab ab-category-tab--eva" id="about-category-tab-eva" href="#about-category-panel-eva" data-material="eva"><strong>EVA</strong><span>Ethylene Vinyl Acetate</span><img src="<?php echo esc_url( get_theme_file_uri( '/assets/img/categories/natural.webp' ) ); ?>" alt="" width="560" height="420" loading="lazy" decoding="async"></a>
             </div>
+            <div class="ab-category-panels">
+                <div class="ab-category-panel" id="about-category-panel-ldpe" data-material="ldpe" aria-labelledby="about-category-tab-ldpe">
+                    <div class="ab-category-panel-head"><div class="ab-category-material-name"><h3>LDPE</h3><p>Low-Density Polyethylene</p></div><div class="ab-category-panel-actions"><a class="ab-category-details" href="<?php echo esc_url( home_url( '/ldpe/' ) ); ?>">View LDPE material details <svg class="ab-category-icon" aria-hidden="true" focusable="false"><use href="#about-category-icon-open" /></svg></a></div></div>
+                    <div class="ab-category-panel-body"><h4 class="ab-category-supply-title">Available supply types in LDPE</h4>
+                        <div class="ab-category-grid">
+                            <article class="ab-category-card">
+                                <img class="ab-category-card-art" src="<?php echo esc_url( get_theme_file_uri( '/assets/img/categories/white.webp' ) ); ?>" alt="" width="560" height="420" loading="lazy" decoding="async">
+                                <div class="ab-category-card-copy"><svg class="ab-category-icon" aria-hidden="true" focusable="false"><use href="#about-category-icon-shield" /></svg><h5>LDPE – Prime / Virgin</h5><p>Fresh LDPE resin selected by manufacturer grade, technical specification and application.</p><a href="<?php echo esc_url( home_url( '/ldpe-prime/' ) ); ?>">Explore LDPE Prime / Virgin <svg class="ab-category-icon" aria-hidden="true" focusable="false"><use href="#about-category-icon-arrow" /></svg></a></div>
+                            </article>
+                            <article class="ab-category-card">
+                                <img class="ab-category-card-art" src="<?php echo esc_url( get_theme_file_uri( '/assets/img/categories/natural.webp' ) ); ?>" alt="" width="560" height="420" loading="lazy" decoding="async">
+                                <div class="ab-category-card-copy"><svg class="ab-category-icon" aria-hidden="true" focusable="false"><use href="#about-category-icon-cubes" /></svg><h5>LDPE – Off-grade</h5><p>Lot-specific LDPE materials reviewed against declared variation and your process needs.</p><a href="<?php echo esc_url( home_url( '/ldpe-offgrade/' ) ); ?>">Explore LDPE Off-grade <svg class="ab-category-icon" aria-hidden="true" focusable="false"><use href="#about-category-icon-arrow" /></svg></a></div>
+                            </article>
+                            <article class="ab-category-card">
+                                <img class="ab-category-card-art" src="<?php echo esc_url( get_theme_file_uri( '/assets/img/categories/blue.webp' ) ); ?>" alt="" width="560" height="420" loading="lazy" decoding="async">
+                                <div class="ab-category-card-copy"><svg class="ab-category-icon" aria-hidden="true" focusable="false"><use href="#about-category-icon-recycle" /></svg><h5>LDPE – Recycled</h5><p>Recovered and reprocessed LDPE. Review feedstock, consistency and application suitability.</p><a href="<?php echo esc_url( home_url( '/ldpe-recycled/' ) ); ?>">Explore LDPE Recycled <svg class="ab-category-icon" aria-hidden="true" focusable="false"><use href="#about-category-icon-arrow" /></svg></a></div>
+                            </article>
+                            <article class="ab-category-card">
+                                <img class="ab-category-card-art" src="<?php echo esc_url( get_theme_file_uri( '/assets/img/categories/mixed.webp' ) ); ?>" alt="" width="560" height="420" loading="lazy" decoding="async">
+                                <div class="ab-category-card-copy"><svg class="ab-category-icon" aria-hidden="true" focusable="false"><use href="#about-category-icon-gear" /></svg><h5>LDPE – Scrap / Regrind</h5><p>Sorted LDPE scrap and size-reduced feedstock for recovery or conversion.</p><a href="<?php echo esc_url( home_url( '/ldpe-scrap-regrind/' ) ); ?>">Explore LDPE Scrap / Regrind <svg class="ab-category-icon" aria-hidden="true" focusable="false"><use href="#about-category-icon-arrow" /></svg></a></div>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+                <div class="ab-category-panel" id="about-category-panel-hdpe" data-material="hdpe" aria-labelledby="about-category-tab-hdpe">
+                    <div class="ab-category-panel-head"><div class="ab-category-material-name"><h3>HDPE</h3><p>High-Density Polyethylene</p></div><div class="ab-category-panel-actions"><a class="ab-category-details" href="<?php echo esc_url( home_url( '/hdpe/' ) ); ?>">View HDPE material details <svg class="ab-category-icon" aria-hidden="true" focusable="false"><use href="#about-category-icon-open" /></svg></a></div></div>
+                    <div class="ab-category-panel-body"><h4 class="ab-category-supply-title">Available supply types in HDPE</h4>
+                        <div class="ab-category-grid">
+                            <article class="ab-category-card">
+                                <img class="ab-category-card-art" src="<?php echo esc_url( get_theme_file_uri( '/assets/img/categories/white.webp' ) ); ?>" alt="" width="560" height="420" loading="lazy" decoding="async">
+                                <div class="ab-category-card-copy"><svg class="ab-category-icon" aria-hidden="true" focusable="false"><use href="#about-category-icon-shield" /></svg><h5>HDPE – Prime / Virgin</h5><p>Fresh HDPE resin selected by manufacturer grade, technical specification and application.</p><a href="<?php echo esc_url( home_url( '/hdpe-prime/' ) ); ?>">Explore HDPE Prime / Virgin <svg class="ab-category-icon" aria-hidden="true" focusable="false"><use href="#about-category-icon-arrow" /></svg></a></div>
+                            </article>
+                            <article class="ab-category-card">
+                                <img class="ab-category-card-art" src="<?php echo esc_url( get_theme_file_uri( '/assets/img/categories/natural.webp' ) ); ?>" alt="" width="560" height="420" loading="lazy" decoding="async">
+                                <div class="ab-category-card-copy"><svg class="ab-category-icon" aria-hidden="true" focusable="false"><use href="#about-category-icon-cubes" /></svg><h5>HDPE – Off-grade</h5><p>Lot-specific HDPE materials reviewed against declared variation and your process needs.</p><a href="<?php echo esc_url( home_url( '/hdpe-offgrade/' ) ); ?>">Explore HDPE Off-grade <svg class="ab-category-icon" aria-hidden="true" focusable="false"><use href="#about-category-icon-arrow" /></svg></a></div>
+                            </article>
+                            <article class="ab-category-card">
+                                <img class="ab-category-card-art" src="<?php echo esc_url( get_theme_file_uri( '/assets/img/categories/blue.webp' ) ); ?>" alt="" width="560" height="420" loading="lazy" decoding="async">
+                                <div class="ab-category-card-copy"><svg class="ab-category-icon" aria-hidden="true" focusable="false"><use href="#about-category-icon-recycle" /></svg><h5>HDPE – Recycled</h5><p>Recovered and reprocessed HDPE. Review feedstock, consistency and application suitability.</p><a href="<?php echo esc_url( home_url( '/hdpe-recycled/' ) ); ?>">Explore HDPE Recycled <svg class="ab-category-icon" aria-hidden="true" focusable="false"><use href="#about-category-icon-arrow" /></svg></a></div>
+                            </article>
+                            <article class="ab-category-card">
+                                <img class="ab-category-card-art" src="<?php echo esc_url( get_theme_file_uri( '/assets/img/categories/mixed.webp' ) ); ?>" alt="" width="560" height="420" loading="lazy" decoding="async">
+                                <div class="ab-category-card-copy"><svg class="ab-category-icon" aria-hidden="true" focusable="false"><use href="#about-category-icon-gear" /></svg><h5>HDPE – Scrap / Regrind</h5><p>Sorted HDPE scrap and size-reduced feedstock for recovery or conversion.</p><a href="<?php echo esc_url( home_url( '/hdpe-scrap-regrind/' ) ); ?>">Explore HDPE Scrap / Regrind <svg class="ab-category-icon" aria-hidden="true" focusable="false"><use href="#about-category-icon-arrow" /></svg></a></div>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+                <div class="ab-category-panel" id="about-category-panel-pp" data-material="pp" aria-labelledby="about-category-tab-pp">
+                    <div class="ab-category-panel-head"><div class="ab-category-material-name"><h3>PP</h3><p>Polypropylene</p></div><div class="ab-category-panel-actions"><a class="ab-category-details" href="<?php echo esc_url( home_url( '/pp/' ) ); ?>">View PP material details <svg class="ab-category-icon" aria-hidden="true" focusable="false"><use href="#about-category-icon-open" /></svg></a></div></div>
+                    <div class="ab-category-panel-body"><h4 class="ab-category-supply-title">Available supply types in PP</h4>
+                        <div class="ab-category-grid">
+                            <article class="ab-category-card">
+                                <img class="ab-category-card-art" src="<?php echo esc_url( get_theme_file_uri( '/assets/img/categories/white.webp' ) ); ?>" alt="" width="560" height="420" loading="lazy" decoding="async">
+                                <div class="ab-category-card-copy"><svg class="ab-category-icon" aria-hidden="true" focusable="false"><use href="#about-category-icon-shield" /></svg><h5>PP – Prime / Virgin</h5><p>Fresh PP resin selected by manufacturer grade, technical specification and application.</p><a href="<?php echo esc_url( home_url( '/pp-prime/' ) ); ?>">Explore PP Prime / Virgin <svg class="ab-category-icon" aria-hidden="true" focusable="false"><use href="#about-category-icon-arrow" /></svg></a></div>
+                            </article>
+                            <article class="ab-category-card">
+                                <img class="ab-category-card-art" src="<?php echo esc_url( get_theme_file_uri( '/assets/img/categories/natural.webp' ) ); ?>" alt="" width="560" height="420" loading="lazy" decoding="async">
+                                <div class="ab-category-card-copy"><svg class="ab-category-icon" aria-hidden="true" focusable="false"><use href="#about-category-icon-cubes" /></svg><h5>PP – Off-grade</h5><p>Lot-specific PP materials reviewed against declared variation and your process needs.</p><a href="<?php echo esc_url( home_url( '/pp-offgrade/' ) ); ?>">Explore PP Off-grade <svg class="ab-category-icon" aria-hidden="true" focusable="false"><use href="#about-category-icon-arrow" /></svg></a></div>
+                            </article>
+                            <article class="ab-category-card">
+                                <img class="ab-category-card-art" src="<?php echo esc_url( get_theme_file_uri( '/assets/img/categories/blue.webp' ) ); ?>" alt="" width="560" height="420" loading="lazy" decoding="async">
+                                <div class="ab-category-card-copy"><svg class="ab-category-icon" aria-hidden="true" focusable="false"><use href="#about-category-icon-recycle" /></svg><h5>PP – Recycled</h5><p>Recovered and reprocessed PP. Review feedstock, consistency and application suitability.</p><a href="<?php echo esc_url( home_url( '/pp-recycled/' ) ); ?>">Explore PP Recycled <svg class="ab-category-icon" aria-hidden="true" focusable="false"><use href="#about-category-icon-arrow" /></svg></a></div>
+                            </article>
+                            <article class="ab-category-card">
+                                <img class="ab-category-card-art" src="<?php echo esc_url( get_theme_file_uri( '/assets/img/categories/mixed.webp' ) ); ?>" alt="" width="560" height="420" loading="lazy" decoding="async">
+                                <div class="ab-category-card-copy"><svg class="ab-category-icon" aria-hidden="true" focusable="false"><use href="#about-category-icon-gear" /></svg><h5>PP – Scrap / Regrind</h5><p>Sorted PP scrap and size-reduced feedstock for recovery or conversion.</p><a href="<?php echo esc_url( home_url( '/pp-scrap-regrind/' ) ); ?>">Explore PP Scrap / Regrind <svg class="ab-category-icon" aria-hidden="true" focusable="false"><use href="#about-category-icon-arrow" /></svg></a></div>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+                <div class="ab-category-panel" id="about-category-panel-pvc" data-material="pvc" aria-labelledby="about-category-tab-pvc">
+                    <div class="ab-category-panel-head"><div class="ab-category-material-name"><h3>PVC</h3><p>Polyvinyl Chloride</p></div><div class="ab-category-panel-actions"><a class="ab-category-details" href="<?php echo esc_url( home_url( '/pvc/' ) ); ?>">View PVC material details <svg class="ab-category-icon" aria-hidden="true" focusable="false"><use href="#about-category-icon-open" /></svg></a></div></div>
+                    <div class="ab-category-panel-body"><h4 class="ab-category-supply-title">Available supply types in PVC</h4>
+                        <div class="ab-category-grid">
+                            <article class="ab-category-card">
+                                <img class="ab-category-card-art" src="<?php echo esc_url( get_theme_file_uri( '/assets/img/categories/white.webp' ) ); ?>" alt="" width="560" height="420" loading="lazy" decoding="async">
+                                <div class="ab-category-card-copy"><svg class="ab-category-icon" aria-hidden="true" focusable="false"><use href="#about-category-icon-shield" /></svg><h5>PVC – Prime / Virgin</h5><p>Fresh PVC resin selected by manufacturer grade, technical specification and application.</p><a href="<?php echo esc_url( home_url( '/pvc-prime/' ) ); ?>">Explore PVC Prime / Virgin <svg class="ab-category-icon" aria-hidden="true" focusable="false"><use href="#about-category-icon-arrow" /></svg></a></div>
+                            </article>
+                            <article class="ab-category-card">
+                                <img class="ab-category-card-art" src="<?php echo esc_url( get_theme_file_uri( '/assets/img/categories/natural.webp' ) ); ?>" alt="" width="560" height="420" loading="lazy" decoding="async">
+                                <div class="ab-category-card-copy"><svg class="ab-category-icon" aria-hidden="true" focusable="false"><use href="#about-category-icon-cubes" /></svg><h5>PVC – Off-grade</h5><p>Lot-specific PVC materials reviewed against declared variation and your process needs.</p><a href="<?php echo esc_url( home_url( '/pvc-offgrade/' ) ); ?>">Explore PVC Off-grade <svg class="ab-category-icon" aria-hidden="true" focusable="false"><use href="#about-category-icon-arrow" /></svg></a></div>
+                            </article>
+                            <article class="ab-category-card">
+                                <img class="ab-category-card-art" src="<?php echo esc_url( get_theme_file_uri( '/assets/img/categories/blue.webp' ) ); ?>" alt="" width="560" height="420" loading="lazy" decoding="async">
+                                <div class="ab-category-card-copy"><svg class="ab-category-icon" aria-hidden="true" focusable="false"><use href="#about-category-icon-recycle" /></svg><h5>PVC – Recycled</h5><p>Recovered and reprocessed PVC. Review feedstock, consistency and application suitability.</p><a href="<?php echo esc_url( home_url( '/pvc-recycled/' ) ); ?>">Explore PVC Recycled <svg class="ab-category-icon" aria-hidden="true" focusable="false"><use href="#about-category-icon-arrow" /></svg></a></div>
+                            </article>
+                            <article class="ab-category-card">
+                                <img class="ab-category-card-art" src="<?php echo esc_url( get_theme_file_uri( '/assets/img/categories/mixed.webp' ) ); ?>" alt="" width="560" height="420" loading="lazy" decoding="async">
+                                <div class="ab-category-card-copy"><svg class="ab-category-icon" aria-hidden="true" focusable="false"><use href="#about-category-icon-gear" /></svg><h5>PVC – Scrap / Regrind</h5><p>Sorted PVC scrap and size-reduced feedstock for recovery or conversion.</p><a href="<?php echo esc_url( home_url( '/pvc-scrap-regrind/' ) ); ?>">Explore PVC Scrap / Regrind <svg class="ab-category-icon" aria-hidden="true" focusable="false"><use href="#about-category-icon-arrow" /></svg></a></div>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+                <div class="ab-category-panel" id="about-category-panel-ps" data-material="ps" aria-labelledby="about-category-tab-ps">
+                    <div class="ab-category-panel-head"><div class="ab-category-material-name"><h3>PS</h3><p>Polystyrene</p></div><div class="ab-category-panel-actions"><a class="ab-category-details" href="<?php echo esc_url( home_url( '/ps/' ) ); ?>">View PS material details <svg class="ab-category-icon" aria-hidden="true" focusable="false"><use href="#about-category-icon-open" /></svg></a></div></div>
+                    <div class="ab-category-panel-body"><h4 class="ab-category-supply-title">Available supply types in PS</h4>
+                        <div class="ab-category-grid">
+                            <article class="ab-category-card">
+                                <img class="ab-category-card-art" src="<?php echo esc_url( get_theme_file_uri( '/assets/img/categories/white.webp' ) ); ?>" alt="" width="560" height="420" loading="lazy" decoding="async">
+                                <div class="ab-category-card-copy"><svg class="ab-category-icon" aria-hidden="true" focusable="false"><use href="#about-category-icon-shield" /></svg><h5>PS – Prime / Virgin</h5><p>Fresh PS resin selected by manufacturer grade, technical specification and application.</p><a href="<?php echo esc_url( home_url( '/ps-prime/' ) ); ?>">Explore PS Prime / Virgin <svg class="ab-category-icon" aria-hidden="true" focusable="false"><use href="#about-category-icon-arrow" /></svg></a></div>
+                            </article>
+                            <article class="ab-category-card">
+                                <img class="ab-category-card-art" src="<?php echo esc_url( get_theme_file_uri( '/assets/img/categories/natural.webp' ) ); ?>" alt="" width="560" height="420" loading="lazy" decoding="async">
+                                <div class="ab-category-card-copy"><svg class="ab-category-icon" aria-hidden="true" focusable="false"><use href="#about-category-icon-cubes" /></svg><h5>PS – Off-grade</h5><p>Lot-specific PS materials reviewed against declared variation and your process needs.</p><a href="<?php echo esc_url( home_url( '/ps-offgrade/' ) ); ?>">Explore PS Off-grade <svg class="ab-category-icon" aria-hidden="true" focusable="false"><use href="#about-category-icon-arrow" /></svg></a></div>
+                            </article>
+                            <article class="ab-category-card">
+                                <img class="ab-category-card-art" src="<?php echo esc_url( get_theme_file_uri( '/assets/img/categories/blue.webp' ) ); ?>" alt="" width="560" height="420" loading="lazy" decoding="async">
+                                <div class="ab-category-card-copy"><svg class="ab-category-icon" aria-hidden="true" focusable="false"><use href="#about-category-icon-recycle" /></svg><h5>PS – Recycled</h5><p>Recovered and reprocessed PS. Review feedstock, consistency and application suitability.</p><a href="<?php echo esc_url( home_url( '/ps-recycled/' ) ); ?>">Explore PS Recycled <svg class="ab-category-icon" aria-hidden="true" focusable="false"><use href="#about-category-icon-arrow" /></svg></a></div>
+                            </article>
+                            <article class="ab-category-card">
+                                <img class="ab-category-card-art" src="<?php echo esc_url( get_theme_file_uri( '/assets/img/categories/mixed.webp' ) ); ?>" alt="" width="560" height="420" loading="lazy" decoding="async">
+                                <div class="ab-category-card-copy"><svg class="ab-category-icon" aria-hidden="true" focusable="false"><use href="#about-category-icon-gear" /></svg><h5>PS – Scrap / Regrind</h5><p>Sorted PS scrap and size-reduced feedstock for recovery or conversion.</p><a href="<?php echo esc_url( home_url( '/ps-scrap-regrind/' ) ); ?>">Explore PS Scrap / Regrind <svg class="ab-category-icon" aria-hidden="true" focusable="false"><use href="#about-category-icon-arrow" /></svg></a></div>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+                <div class="ab-category-panel" id="about-category-panel-abs" data-material="abs" aria-labelledby="about-category-tab-abs">
+                    <div class="ab-category-panel-head"><div class="ab-category-material-name"><h3>ABS</h3><p>Acrylonitrile Butadiene Styrene</p></div><div class="ab-category-panel-actions"><a class="ab-category-details" href="<?php echo esc_url( home_url( '/abs/' ) ); ?>">View ABS material details <svg class="ab-category-icon" aria-hidden="true" focusable="false"><use href="#about-category-icon-open" /></svg></a></div></div>
+                    <div class="ab-category-panel-body"><h4 class="ab-category-supply-title">Available supply types in ABS</h4>
+                        <div class="ab-category-grid">
+                            <article class="ab-category-card">
+                                <img class="ab-category-card-art" src="<?php echo esc_url( get_theme_file_uri( '/assets/img/categories/white.webp' ) ); ?>" alt="" width="560" height="420" loading="lazy" decoding="async">
+                                <div class="ab-category-card-copy"><svg class="ab-category-icon" aria-hidden="true" focusable="false"><use href="#about-category-icon-shield" /></svg><h5>ABS – Prime / Virgin</h5><p>Fresh ABS resin selected by manufacturer grade, technical specification and application.</p><a href="<?php echo esc_url( home_url( '/abs-prime/' ) ); ?>">Explore ABS Prime / Virgin <svg class="ab-category-icon" aria-hidden="true" focusable="false"><use href="#about-category-icon-arrow" /></svg></a></div>
+                            </article>
+                            <article class="ab-category-card">
+                                <img class="ab-category-card-art" src="<?php echo esc_url( get_theme_file_uri( '/assets/img/categories/natural.webp' ) ); ?>" alt="" width="560" height="420" loading="lazy" decoding="async">
+                                <div class="ab-category-card-copy"><svg class="ab-category-icon" aria-hidden="true" focusable="false"><use href="#about-category-icon-cubes" /></svg><h5>ABS – Off-grade</h5><p>Lot-specific ABS materials reviewed against declared variation and your process needs.</p><a href="<?php echo esc_url( home_url( '/abs-offgrade/' ) ); ?>">Explore ABS Off-grade <svg class="ab-category-icon" aria-hidden="true" focusable="false"><use href="#about-category-icon-arrow" /></svg></a></div>
+                            </article>
+                            <article class="ab-category-card">
+                                <img class="ab-category-card-art" src="<?php echo esc_url( get_theme_file_uri( '/assets/img/categories/blue.webp' ) ); ?>" alt="" width="560" height="420" loading="lazy" decoding="async">
+                                <div class="ab-category-card-copy"><svg class="ab-category-icon" aria-hidden="true" focusable="false"><use href="#about-category-icon-recycle" /></svg><h5>ABS – Recycled</h5><p>Recovered and reprocessed ABS. Review feedstock, consistency and application suitability.</p><a href="<?php echo esc_url( home_url( '/abs-recycled/' ) ); ?>">Explore ABS Recycled <svg class="ab-category-icon" aria-hidden="true" focusable="false"><use href="#about-category-icon-arrow" /></svg></a></div>
+                            </article>
+                            <article class="ab-category-card">
+                                <img class="ab-category-card-art" src="<?php echo esc_url( get_theme_file_uri( '/assets/img/categories/mixed.webp' ) ); ?>" alt="" width="560" height="420" loading="lazy" decoding="async">
+                                <div class="ab-category-card-copy"><svg class="ab-category-icon" aria-hidden="true" focusable="false"><use href="#about-category-icon-gear" /></svg><h5>ABS – Scrap / Regrind</h5><p>Sorted ABS scrap and size-reduced feedstock for recovery or conversion.</p><a href="<?php echo esc_url( home_url( '/abs-scrap-regrind/' ) ); ?>">Explore ABS Scrap / Regrind <svg class="ab-category-icon" aria-hidden="true" focusable="false"><use href="#about-category-icon-arrow" /></svg></a></div>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+                <div class="ab-category-panel" id="about-category-panel-eva" data-material="eva" aria-labelledby="about-category-tab-eva">
+                    <div class="ab-category-panel-head"><div class="ab-category-material-name"><h3>EVA</h3><p>Ethylene Vinyl Acetate</p></div><div class="ab-category-panel-actions"><a class="ab-category-details" href="<?php echo esc_url( home_url( '/eva/' ) ); ?>">View EVA material details <svg class="ab-category-icon" aria-hidden="true" focusable="false"><use href="#about-category-icon-open" /></svg></a></div></div>
+                    <div class="ab-category-panel-body"><h4 class="ab-category-supply-title">Available supply types in EVA</h4>
+                        <div class="ab-category-grid">
+                            <article class="ab-category-card">
+                                <img class="ab-category-card-art" src="<?php echo esc_url( get_theme_file_uri( '/assets/img/categories/white.webp' ) ); ?>" alt="" width="560" height="420" loading="lazy" decoding="async">
+                                <div class="ab-category-card-copy"><svg class="ab-category-icon" aria-hidden="true" focusable="false"><use href="#about-category-icon-shield" /></svg><h5>EVA – Prime / Virgin</h5><p>Fresh EVA resin selected by manufacturer grade, technical specification and application.</p><a href="<?php echo esc_url( home_url( '/eva-prime/' ) ); ?>">Explore EVA Prime / Virgin <svg class="ab-category-icon" aria-hidden="true" focusable="false"><use href="#about-category-icon-arrow" /></svg></a></div>
+                            </article>
+                            <article class="ab-category-card">
+                                <img class="ab-category-card-art" src="<?php echo esc_url( get_theme_file_uri( '/assets/img/categories/natural.webp' ) ); ?>" alt="" width="560" height="420" loading="lazy" decoding="async">
+                                <div class="ab-category-card-copy"><svg class="ab-category-icon" aria-hidden="true" focusable="false"><use href="#about-category-icon-cubes" /></svg><h5>EVA – Off-grade</h5><p>Lot-specific EVA materials reviewed against declared variation and your process needs.</p><a href="<?php echo esc_url( home_url( '/eva-offgrade/' ) ); ?>">Explore EVA Off-grade <svg class="ab-category-icon" aria-hidden="true" focusable="false"><use href="#about-category-icon-arrow" /></svg></a></div>
+                            </article>
+                            <article class="ab-category-card">
+                                <img class="ab-category-card-art" src="<?php echo esc_url( get_theme_file_uri( '/assets/img/categories/blue.webp' ) ); ?>" alt="" width="560" height="420" loading="lazy" decoding="async">
+                                <div class="ab-category-card-copy"><svg class="ab-category-icon" aria-hidden="true" focusable="false"><use href="#about-category-icon-recycle" /></svg><h5>EVA – Recycled</h5><p>Recovered and reprocessed EVA. Review feedstock, consistency and application suitability.</p><a href="<?php echo esc_url( home_url( '/eva-recycled/' ) ); ?>">Explore EVA Recycled <svg class="ab-category-icon" aria-hidden="true" focusable="false"><use href="#about-category-icon-arrow" /></svg></a></div>
+                            </article>
+                            <article class="ab-category-card">
+                                <img class="ab-category-card-art" src="<?php echo esc_url( get_theme_file_uri( '/assets/img/categories/mixed.webp' ) ); ?>" alt="" width="560" height="420" loading="lazy" decoding="async">
+                                <div class="ab-category-card-copy"><svg class="ab-category-icon" aria-hidden="true" focusable="false"><use href="#about-category-icon-gear" /></svg><h5>EVA – Scrap / Regrind</h5><p>Sorted EVA scrap and size-reduced feedstock for recovery or conversion.</p><a href="<?php echo esc_url( home_url( '/eva-scrap-regrind/' ) ); ?>">Explore EVA Scrap / Regrind <svg class="ab-category-icon" aria-hidden="true" focusable="false"><use href="#about-category-icon-arrow" /></svg></a></div>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <ul class="ab-category-benefits" aria-label="Our supply approach"><li><svg class="ab-category-icon" aria-hidden="true" focusable="false"><use href="#about-category-icon-globe" /></svg><span>Global sourcing</span></li><li><svg class="ab-category-icon" aria-hidden="true" focusable="false"><use href="#about-category-icon-shield" /></svg><span>Grade-specific checks</span></li><li><svg class="ab-category-icon" aria-hidden="true" focusable="false"><use href="#about-category-icon-truck" /></svg><span>Supply coordination</span></li><li><svg class="ab-category-icon" aria-hidden="true" focusable="false"><use href="#about-category-icon-factory" /></svg><span>Industrial applications</span></li></ul>
         </div>
     </section>
 

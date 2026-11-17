@@ -2,7 +2,7 @@
 /** Bhavik Enterprises — WordPress theme functions (authorised distributor of Abiroverseas LLC). */
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
-define( 'AB_THEME_VERSION', '1.7.3' );
+define( 'AB_THEME_VERSION', '1.7.4' );
 
 require_once __DIR__ . '/inc/material-supply-pages.php';
 require_once __DIR__ . '/inc/navigation-mega-menu.php';
@@ -176,6 +176,9 @@ function ab_enqueue_assets() {
     }
     wp_enqueue_style( 'ab-site-footer', $base . '/assets/css/site.css', array( $last_style ), $asset_ver( '/assets/css/site.css' ) );
     if ( $script ) { wp_enqueue_script( 'ab-page-interactions', $base . '/assets/js/' . $script, array(), $asset_ver( '/assets/js/' . $script ), true ); }
+    if ( in_array( 'product-categories.css', $styles, true ) ) {
+        wp_enqueue_script( 'ab-product-categories', $base . '/assets/js/product-categories.js', array(), $asset_ver( '/assets/js/product-categories.js' ), true );
+    }
     // One navigation controller serves the shared header on every page.
     wp_enqueue_script( 'ab-navigation', $base . '/assets/js/navigation.js', array(), $asset_ver( '/assets/js/navigation.js' ), true );
 }

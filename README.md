@@ -1,4 +1,4 @@
-# Bhavik Enterprises Polymer Materials — WordPress Theme (`v1.7.3`)
+# Bhavik Enterprises Polymer Materials — WordPress Theme (`v1.7.4`)
 
 A custom, lightweight classic WordPress theme engineered for **Bhavik Enterprises** — the authorised distributor of **Abiroverseas LLC** in India — with a structured Knowledge Center.
 
@@ -242,7 +242,7 @@ Run `PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests -v` for rou
 
 ## 10. Product category navigation (v1.7.1)
 
-- **Home and About:** Each now has a static product-category section with seven polymer overview links and four supply-category cards. Each card links directly to all seven matching supply pages. Edit these literal sections in `page-template/template-home.php` and `page-template/template-about.php`; their shared styling is in `assets/css/product-categories.css`, loaded only on those layouts (including the legacy Bhavik home alias).
+- **Home and About:** Each has a material-first category explorer with seven polymer tabs and four static supply cards per polymer. Each panel links to its material overview and all four dedicated supply pages. Edit these literal sections in `page-template/template-home.php` and `page-template/template-about.php`; their shared styling is in `assets/css/product-categories.css`, loaded only on those layouts (including the legacy Bhavik home alias).
 - **Products mega menu:** `template-parts/products-mega-menu.php` contains the static seven-polymer/four-supply-type link grid. `inc/navigation-mega-menu.php` attaches it to the primary menu's top-level Products item, recognised by its Products/Product Range URL, Products title, or explicit `ab-menu-mega` CSS class. The fallback primary menu uses the same panel. Saved menu items are not deleted or rewritten. Additional custom links under Products are retained under “More product links”; other menu branches and locations are left alone.
 - **Interaction:** The shared `assets/js/navigation.js` controller supports desktop hover, focus, disclosure buttons, touch, Escape with focus return, outside-click dismissal and viewport resizing. At 1100px and below, navigation collapses before the logo, links and quote button can overlap; the mega menu expands inside that scrollable panel, so its final links remain reachable. Without JavaScript, desktop hover/focus still exposes the panel.
 - **Supply-page cleanup:** The new supply templates no longer render breadcrumb trails or the repeated supply disclaimer note. Their body copy, eyebrow labels and text-arrow links use 17px; the new supply-card headings use 22px. Typography overrides are scoped to the new supply-page layout and new supply-directory components, not older page headings or Knowledge Hub styles. The five-way links between separate supply pages remain intact.
@@ -271,3 +271,23 @@ NODE_PATH=/tmp/bhavik-scroll-tests/node_modules node tests/test_navigation_scrol
 ```
 
 Alternatively set `CHROMIUM_PATH` to a local Chromium executable (only `playwright-core` is then needed). Minimal Linux environments may need Chromium's shared libraries installed or available through `LD_LIBRARY_PATH`. These are controlled browser checks, not verification of the deployed WordPress server or of the separately reported live PHP critical error.
+
+
+### Material-first category explorer (v1.7.4)
+
+- Home and About now follow the supplied visual reference: seven photographic polymer selectors, a teal active state, a material-details header, four angled-image supply cards (including **Prime / Virgin**), and a compact sourcing/application benefit strip. Existing theme fonts, teal/ink colours and shared container widths are retained. The local WebP photos in `assets/img/categories/` are small crops of existing theme assets and are decorative, not lot-specific product photographs.
+- All seven panels and 35 page destinations remain literal HTML/PHP in each template. There is no runtime product array, content fetch, new PHP include, page migration, or change to the separate material/supply routes. Edit the Home and About sections together when changing product copy.
+- `assets/js/product-categories.js` adds accessible tab roles, roving keyboard focus, Arrow/Home/End keys, previous/next buttons, a polite selection indicator, and a short **vertical** panel-entry transition. The material-card rail scrolls horizontally on smaller screens; controls centre the selected card without deliberately scrolling the page vertically. Motion is disabled for reduced-motion users. Without JavaScript, every panel and all 35 destinations remain visible and the selectors are anchor links.
+- Supply cards use four columns from 1200px, two columns from 701–1199px, and a single column up to 700px. The seven-tab rail becomes horizontally scrollable at 1100px and below. The arrows work at every size and stop at the first/last material. HDPE is initially selected to match the reference.
+- The controller is enqueued only when `product-categories.css` is loaded (Home, About and the existing legacy home alias). Shared header/menu, Knowledge Center assets and logic, and other product layouts are unchanged.
+
+Validation: `python3 -m unittest discover -s tests -v` checks static markup, references and destinations. `tests/test_category_tabs.cjs` exercises all seven materials, four supply cards, route targets, equal-sized grid cards, overflow, keyboard navigation and arrow state at 15 viewport widths on both Home/About stylesheets, plus actual touch swiping, rotation, reduced motion and no-JS fallback. Run with Node.js and `playwright-core` plus either a Chromium executable or `@sparticuz/chromium`, as with `test_navigation_scroll.cjs` above:
+
+```sh
+NODE_PATH=/tmp/bhavik-scroll-tests/node_modules node tests/test_category_tabs.cjs
+# Optional: split a longer run by layout.
+CATEGORY_LAYOUTS=home NODE_PATH=/tmp/bhavik-scroll-tests/node_modules node tests/test_category_tabs.cjs
+CATEGORY_LAYOUTS=about NODE_PATH=/tmp/bhavik-scroll-tests/node_modules node tests/test_category_tabs.cjs
+```
+
+These browser fixtures and PHP syntax checks do not replace a deployment check on the real WordPress host.

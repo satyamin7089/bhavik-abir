@@ -18,11 +18,25 @@ class CategoryNavigationTests(unittest.TestCase):
         for page in ('home', 'about'):
             with self.subTest(page=page):
                 source = (ROOT / f'page-template/template-{page}.php').read_text()
-                category = source.split(f'id="{page}-product-categories"', 1)[1].split('</section>', 1)[0]
+                category = re.search(r'<section class="ab-section ab-product-categories".*?</section>', source, re.S).group(0)
                 self.assert_all_material_destinations(category)
                 self.assertNotIn('foreach', category)
                 self.assertNotIn('array(', category)
-                self.assertEqual(category.count('class="ab-category-card"'), 4)
+                self.assertEqual(category.count('class="ab-category-card"'), 28)
+                self.assertEqual(category.count('class="ab-category-panel"'), 7)
+                self.assertEqual(category.count('class="ab-category-tab '), 7)
+                self.assertIn('data-initial-material="hdpe"', category)
+                self.assertIn('aria-label="Previous material"', category)
+                self.assertIn('aria-label="Next material"', category)
+                self.assertNotRegex(category, r'class="ab-category-panel"[^>]*\bhidden\b')
+                parser = Structure()
+                parser.feed(re.sub(r'<\?php.*?\?>', '', category, flags=re.S))
+                self.assertEqual(parser.errors, [])
+                self.assertEqual(parser.stack, [])
+                ids = re.findall(r'\bid="([^"]+)"', category)
+                self.assertEqual(len(ids), len(set(ids)))
+                for target in re.findall(r'<use href="#([^"]+)"', category):
+                    self.assertIn(target, ids)
 
     def test_mega_menu_covers_all_material_and_supply_pages(self):
         source = (ROOT / 'template-parts/products-mega-menu.php').read_text()
