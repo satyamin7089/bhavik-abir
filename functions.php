@@ -2,7 +2,7 @@
 /** Bhavik Enterprises — WordPress theme functions (authorised distributor of Abiroverseas LLC). */
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
-define( 'AB_THEME_VERSION', '1.7.4' );
+define( 'AB_THEME_VERSION', '1.7.5' );
 
 require_once __DIR__ . '/inc/material-supply-pages.php';
 require_once __DIR__ . '/inc/navigation-mega-menu.php';
