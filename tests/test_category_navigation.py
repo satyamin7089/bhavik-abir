@@ -56,6 +56,17 @@ class CategoryNavigationTests(unittest.TestCase):
         self.assertNotRegex(css, r'box-shadow:[^;]*\b0 0 0 [1-9]')
         self.assertNotIn('blur(', css)
 
+    def test_compact_tabs_and_desktop_only_two_by_two_cards(self):
+        css = (ROOT / 'assets/css/product-categories.css').read_text()
+        desktop = css.split('@media (min-width: 1200px) {', 1)[1].split('\n}', 1)[0]
+        self.assertIn('grid-template-columns: repeat(2, minmax(0, 1fr))', desktop)
+        self.assertIn('width: 50%;', desktop)
+        self.assertIn('polygon(0 0, 70% 0, 50% 100%, 0 100%)', desktop)
+        self.assertRegex(css, r'\.ab-category-tab\s*\{[^}]*min-height: 176px;[^}]*padding: 14px 12px 84px;')
+        self.assertRegex(css, r'\.ab-category-tab img\s*\{[^}]*height: 80px;')
+        phone = css.split('@media (max-width: 700px) {', 1)[1].split('\n}', 1)[0]
+        self.assertIn('grid-template-columns: minmax(0, 1fr)', phone)
+
     def test_mega_menu_covers_all_material_and_supply_pages(self):
         source = (ROOT / 'template-parts/products-mega-menu.php').read_text()
         self.assert_all_material_destinations(source)

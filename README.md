@@ -1,4 +1,4 @@
-# Bhavik Enterprises Polymer Materials — WordPress Theme (`v1.7.5`)
+# Bhavik Enterprises Polymer Materials — WordPress Theme (`v1.7.6`)
 
 A custom, lightweight classic WordPress theme engineered for **Bhavik Enterprises** — the authorised distributor of **Abiroverseas LLC** in India — with a structured Knowledge Center.
 
@@ -302,3 +302,11 @@ These browser fixtures and PHP syntax checks do not replace a deployment check o
 - The category browser fixture now includes the actual `.ab-bhavik-page` Home wrapper, so generic theme image rules participate in the cascade. Added checks cover image-to-card top/bottom bounds, full opacity, border widths, and every grain element's exact URL, contain/bottom alignment, and lack of filters/masks. Home/About checks cover desktop, tablet, phone and layout boundaries, alongside existing tab, touch, keyboard and route assertions. Python checks: 11 tests.
 
 The supplied remote PNG could not be downloaded in the sandbox. Browser fixtures deliberately abort that external image request and validate its literal URL and layout rules; they do **not** claim to verify the actual remote image pixels, availability or transparent padding. Confirm its final appearance on the WordPress host, or supply the PNG file for a complete local visual review. No Knowledge Center or shared header/menu code is changed.
+
+
+### Compact selectors and desktop 2×2 supply cards (v1.7.6)
+
+- Material selector minimum height is reduced from 236px to 176px, with smaller reserved image space (80px rather than 112px) and tighter padding. Long material names can still grow the tabs naturally without overlapping the grain image. Fonts, tab widths, active styling, grain sources, keyboard and arrow behaviour are unchanged.
+- **Only at desktop widths of 1200px and above**, the four supply cards now form a two-column/two-row grid. The diagonal window reveals 30% of a card at the top and 50% at the bottom, approximately 40% on average. The photo backs the right half of the card so it fills that entire slanted window. Desktop text/button widths are constrained to suit the wider image; existing full-height cover sizing and borderless soft shadows remain intact.
+- Existing tablet/phone card media rules (1199px, 1100px, 700px and 420px) are unchanged, including their grid, photo widths and slant geometry. The shorter tabs apply across screen sizes as requested. No templates, product content, tab JavaScript, shared navigation or Knowledge Center code is changed.
+- Regression checks now cover compact tab bounds, label/image separation, desktop 2×2 columns and diagonal geometry, and unchanged smaller-screen image ratios. All 12 Python tests pass. Controlled browser layout cases and isolated touch/rotation/reduced-motion/no-JS checks passed; longer batched Chromium runs in this sandbox also exhibited intermittent actionability timeouts and a browser startup crash. Use `CATEGORY_WIDTHS`/`CATEGORY_LAYOUTS` to isolate viewport cases; `CATEGORY_INTERACTION_ONLY=1` and `CATEGORY_SKIP_INTERACTIONS=1` split interaction checks from layout checks. The supplied remote grain PNG remains excluded from offline browser downloads as documented above.

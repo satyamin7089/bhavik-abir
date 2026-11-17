@@ -43,8 +43,11 @@ const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
     const errors = [];
     page.on('pageerror', e => errors.push(e.message));
     const url = `http://127.0.0.1:${server.address().port}/`;
-    for (const layout of (process.env.CATEGORY_LAYOUTS || 'home,about').split(',')) {
+    for (const layout of (process.env.CATEGORY_INTERACTION_ONLY ? [] : (process.env.CATEGORY_LAYOUTS || 'home,about').split(','))) {
       for (const width of (process.env.CATEGORY_WIDTHS || '1920,1440,1280,1200,1199,1101,1100,1024,850,768,700,600,420,390,320').split(',').map(Number)) {
+        // Unload the previous fixture before resizing, so its ResizeObserver
+        // and smooth rail scrolling cannot race the next viewport case.
+        await page.goto('about:blank');
         await page.setViewportSize({ width, height: 1000 });
         await page.goto(url + '?page=' + layout);
         const root = page.locator('[data-category-tabs]');
@@ -81,12 +84,23 @@ const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
             const style = getComputedStyle(img);
             return { source: img.src, height: style.height, fit: style.objectFit, position: style.objectPosition, filter: style.filter, mask: style.maskImage, opacity: style.opacity };
           }));
-          assert(tabsStyle.every(i => i.source === 'https://lightgoldenrodyellow-crocodile-540922.hostingersite.com/wp-content/uploads/2026/11/image-grains.png' && i.height === '112px' && i.fit === 'contain' && i.position === '50% 100%' && i.filter === 'none' && i.mask === 'none' && i.opacity === '1'), 'Grain image alignment, sizing or clarity changed');
+          assert(tabsStyle.every(i => i.source === 'https://lightgoldenrodyellow-crocodile-540922.hostingersite.com/wp-content/uploads/2026/11/image-grains.png' && i.height === '80px' && i.fit === 'contain' && i.position === '50% 100%' && i.filter === 'none' && i.mask === 'none' && i.opacity === '1'), 'Grain image alignment, sizing or clarity changed');
           const borders = await root.locator('.ab-category-tab, .ab-category-panel:not([hidden]), .ab-category-card, .ab-category-card a, .ab-category-details').evaluateAll(nodes => nodes.map(n => getComputedStyle(n).borderWidth));
           assert(borders.every(b => b === '0px'), 'Decorative borders returned');
+          const geometry = await panel.evaluate(e => {
+            const image = e.querySelector('.ab-category-card-art');
+            return { imageRatio: image.getBoundingClientRect().width / image.parentElement.getBoundingClientRect().width, cut: getComputedStyle(e.querySelector('.ab-category-card-copy'), '::before').clipPath };
+          });
+          const expectedImageRatio = width >= 1200 ? .5 : width <= 420 ? .32 : .4;
+          assert(Math.abs(geometry.imageRatio - expectedImageRatio) < .005, 'Slanted image width changed outside its breakpoint');
+          if (width >= 1200) assert.equal(geometry.cut, 'polygon(0px 0px, 70% 0px, 50% 100%, 0px 100%)');
+          const tabHeights = await root.locator('.ab-category-tab').evaluateAll(nodes => nodes.map(n => n.getBoundingClientRect().height));
+          assert(tabHeights.every(height => height >= 176 && height <= 200), `Tabs are not compact: ${tabHeights}`);
+          const tabSpacing = await root.locator('.ab-category-tab').evaluateAll(nodes => nodes.map(tab => tab.querySelector('img').getBoundingClientRect().top - tab.querySelector('span').getBoundingClientRect().bottom));
+          assert(tabSpacing.every(gap => gap >= 3), 'Compact tabs overlap their labels and grain images');
           assert.equal(result.overflow, false, `${layout} overflow at ${width}`);
           assert.deepEqual(result.clipped, [], `${layout} clipped labels at ${width}`);
-          assert.equal(result.columns, width >= 1200 ? 4 : width > 700 ? 2 : 1);
+          assert.equal(result.columns, width > 700 ? 2 : 1);
           const row = result.cards.slice(0, result.columns);
           assert(row.every(n => Math.abs(n.height-row[0].height)<2 && Math.abs(n.width-row[0].width)<2 && Math.abs(n.pTop-row[0].pTop)<2 && Math.abs(n.linkBottom-row[0].linkBottom)<2), 'Cards, descriptions or buttons do not align');
         }
@@ -106,6 +120,7 @@ const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
         console.log(`${layout} ${width}px: tabs, four cards, routes, alignment and keyboard pass`);
       }
     }
+    if (process.env.CATEGORY_SKIP_INTERACTIONS) return;
     await page.goto(url);
     const frames = await page.evaluate(() => {
       document.querySelector('.ab-category-next').click();
@@ -139,7 +154,8 @@ const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
     const reduced = await browser.newPage({ reducedMotion: 'reduce' });
     await reduced.route(grainsUrl, route => route.abort());
     await reduced.goto(url);
-    await reduced.locator('[data-material="pp"][role="tab"]').click();
+    await reduced.locator('[data-material="pp"][role="tab"]').evaluate(e => e.focus({preventScroll:true}));
+    await reduced.keyboard.press('Enter');
     assert.equal(await reduced.locator('[role="tabpanel"]:visible').evaluate(e => e.getAnimations().length), 0);
     const fallback = await browser.newPage({ javaScriptEnabled: false });
     await fallback.route(grainsUrl, route => route.abort());
