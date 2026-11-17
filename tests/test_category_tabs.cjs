@@ -17,7 +17,7 @@ const html = name => `<!doctype html><html lang="en"><head><meta charset="utf-8"
 <link rel="stylesheet" href="/assets/css/product-categories.css"><link rel="stylesheet" href="/assets/css/site.css">
 ${process.env.CATEGORY_FONT ? '<style>@font-face{font-family:"Reddit Sans";src:url(/font.ttf)}</style>' : ''}
 </head><body><header class="ab-mainnav" style="position:static;height:80px;padding:20px">Bhavik Enterprises · category review</header>
-<main>${section(name)}</main><footer style="height:300px"></footer><script src="/assets/js/product-categories.js"></script></body></html>`;
+<main class="${name === 'home' ? 'ab-bhavik-page' : ''}">${section(name)}</main><footer style="height:300px"></footer><script src="/assets/js/product-categories.js"></script></body></html>`;
 const server = http.createServer((req, res) => {
   const url = new URL(req.url, 'http://fixture.test');
   if (url.pathname === '/') { res.setHeader('Content-Type', 'text/html'); res.end(html(url.searchParams.get('page') === 'about' ? 'about' : 'home')); return; }
@@ -36,6 +36,10 @@ const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
     const packaged = module && (module.default || module);
     browser = await chromium.launch({ executablePath: process.env.CHROMIUM_PATH || await packaged.executablePath(), args: packaged ? packaged.args : ['--no-sandbox'], headless: true });
     const page = await browser.newPage();
+    // The supplied remote PNG is intentionally not fetched in offline tests.
+    // Its exact per-tab source and contain/bottom/no-filter rules are checked.
+    const grainsUrl = 'https://lightgoldenrodyellow-crocodile-540922.hostingersite.com/wp-content/uploads/2026/11/image-grains.png';
+    await page.route(grainsUrl, route => route.abort());
     const errors = [];
     page.on('pageerror', e => errors.push(e.message));
     const url = `http://127.0.0.1:${server.address().port}/`;
@@ -65,6 +69,21 @@ const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
             columns: getComputedStyle(e.querySelector('.ab-category-grid')).gridTemplateColumns.split(' ').length,
             cards: [...e.querySelectorAll('.ab-category-card')].map(n => ({y:n.offsetTop,height:n.offsetHeight,width:n.offsetWidth,pTop:n.querySelector('p').offsetTop,linkBottom:n.querySelector('a').offsetTop+n.querySelector('a').offsetHeight})),
           }));
+          const imagery = await panel.evaluate(e => [...e.querySelectorAll('.ab-category-card')].map(card => {
+            const c = card.getBoundingClientRect();
+            const image = card.querySelector('.ab-category-card-art');
+            const i = image.getBoundingClientRect();
+            const style = getComputedStyle(image);
+            return { top: Math.abs(c.top-i.top), bottom: Math.abs(c.bottom-i.bottom), fit: style.objectFit, opacity: style.opacity };
+          }));
+          assert(imagery.every(i => i.top < 1 && i.bottom < 1 && i.fit === 'cover' && i.opacity === '1'), `Slanted images do not fill cards: ${layout} ${width}px ${JSON.stringify(imagery)}`);
+          const tabsStyle = await root.locator('.ab-category-tab img').evaluateAll(images => images.map(img => {
+            const style = getComputedStyle(img);
+            return { source: img.src, height: style.height, fit: style.objectFit, position: style.objectPosition, filter: style.filter, mask: style.maskImage, opacity: style.opacity };
+          }));
+          assert(tabsStyle.every(i => i.source === 'https://lightgoldenrodyellow-crocodile-540922.hostingersite.com/wp-content/uploads/2026/11/image-grains.png' && i.height === '112px' && i.fit === 'contain' && i.position === '50% 100%' && i.filter === 'none' && i.mask === 'none' && i.opacity === '1'), 'Grain image alignment, sizing or clarity changed');
+          const borders = await root.locator('.ab-category-tab, .ab-category-panel:not([hidden]), .ab-category-card, .ab-category-card a, .ab-category-details').evaluateAll(nodes => nodes.map(n => getComputedStyle(n).borderWidth));
+          assert(borders.every(b => b === '0px'), 'Decorative borders returned');
           assert.equal(result.overflow, false, `${layout} overflow at ${width}`);
           assert.deepEqual(result.clipped, [], `${layout} clipped labels at ${width}`);
           assert.equal(result.columns, width >= 1200 ? 4 : width > 700 ? 2 : 1);
@@ -102,6 +121,7 @@ const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
     assert.equal(await page.locator('[role="tabpanel"]:visible').count(), 1, 'Rapid changes left multiple panels visible');
     const context = await browser.newContext({ hasTouch: true, isMobile: true, viewport: { width: 390, height: 850 } });
     const touch = await context.newPage();
+    await touch.route(grainsUrl, route => route.abort());
     await touch.goto(url);
     const rail = touch.locator('.ab-category-polymers');
     const box = await rail.boundingBox();
@@ -117,10 +137,12 @@ const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
     await touch.locator('.ab-category-next').dispatchEvent('click');
     assert.equal(await touch.locator('[aria-selected="true"]').getAttribute('data-material'), 'pp');
     const reduced = await browser.newPage({ reducedMotion: 'reduce' });
+    await reduced.route(grainsUrl, route => route.abort());
     await reduced.goto(url);
     await reduced.locator('[data-material="pp"][role="tab"]').click();
     assert.equal(await reduced.locator('[role="tabpanel"]:visible').evaluate(e => e.getAnimations().length), 0);
     const fallback = await browser.newPage({ javaScriptEnabled: false });
+    await fallback.route(grainsUrl, route => route.abort());
     await fallback.goto(url + '?page=about');
     assert.equal(await fallback.locator('.ab-category-panel:visible').count(), 7);
     assert.equal(await fallback.locator('.ab-category-panel a').count(), 35);

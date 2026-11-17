@@ -1,4 +1,4 @@
-# Bhavik Enterprises Polymer Materials — WordPress Theme (`v1.7.4`)
+# Bhavik Enterprises Polymer Materials — WordPress Theme (`v1.7.5`)
 
 A custom, lightweight classic WordPress theme engineered for **Bhavik Enterprises** — the authorised distributor of **Abiroverseas LLC** in India — with a structured Knowledge Center.
 
@@ -291,3 +291,14 @@ CATEGORY_LAYOUTS=about NODE_PATH=/tmp/bhavik-scroll-tests/node_modules node test
 ```
 
 These browser fixtures and PHP syntax checks do not replace a deployment check on the real WordPress host.
+
+
+### Full-height diagonal artwork and borderless grain tabs (v1.7.5)
+
+- The diagonal card artwork now uses the section-qualified `.ab-product-categories .ab-category-card-art` selector with `height: 100%`, `min-height: 100%` and `object-fit: cover`. This overrides Home's general `.ab-bhavik-page img { height: auto; }` rule, which previously reduced the image to its intrinsic ratio and left the lower slanted area empty. Breakpoint image-width overrides use the same specificity. Artwork stays fully opaque, including on phones.
+- Tabs, supply cards, panel and CTAs use rounded corners, soft blurred **shadows** and inset highlights, not borders or zero-blur spread rings. The active tab keeps its solid-looking dark teal gradient; its image has no blur, colour filter, mask or fade. Keyboard focus outlines remain for accessibility.
+- Every material selector on Home/About independently references the exact supplied transparent PNG: `https://lightgoldenrodyellow-crocodile-540922.hostingersite.com/wp-content/uploads/2026/11/image-grains.png`. Each `<img data-category-grains="hdpe" ...>` (or other material key) has its own literal `src`; there is no shared CSS image or runtime source array. To change only HDPE later, replace that image's `src` in both `page-template/template-home.php` and `page-template/template-about.php`. Repeat for any other material as needed. The existing local supply-card photos are unchanged.
+- Grain images are contained without distortion in a bottom-aligned 112px area, with room reserved below the tab labels. The source PNG is not transformed or re-encoded.
+- The category browser fixture now includes the actual `.ab-bhavik-page` Home wrapper, so generic theme image rules participate in the cascade. Added checks cover image-to-card top/bottom bounds, full opacity, border widths, and every grain element's exact URL, contain/bottom alignment, and lack of filters/masks. Home/About checks cover desktop, tablet, phone and layout boundaries, alongside existing tab, touch, keyboard and route assertions. Python checks: 11 tests.
+
+The supplied remote PNG could not be downloaded in the sandbox. Browser fixtures deliberately abort that external image request and validate its literal URL and layout rules; they do **not** claim to verify the actual remote image pixels, availability or transparent padding. Confirm its final appearance on the WordPress host, or supply the PNG file for a complete local visual review. No Knowledge Center or shared header/menu code is changed.

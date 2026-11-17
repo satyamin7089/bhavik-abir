@@ -38,6 +38,24 @@ class CategoryNavigationTests(unittest.TestCase):
                 for target in re.findall(r'<use href="#([^"]+)"', category):
                     self.assertIn(target, ids)
 
+    def test_independent_grain_images_and_borderless_full_height_styles(self):
+        url = 'https://lightgoldenrodyellow-crocodile-540922.hostingersite.com/wp-content/uploads/2026/11/image-grains.png'
+        for page in ('home', 'about'):
+            source = (ROOT / f'page-template/template-{page}.php').read_text()
+            images = re.findall(r'<img data-category-grains="([^"]+)" src="([^"]+)"', source)
+            self.assertEqual(len(images), 7)
+            self.assertEqual({material for material, _ in images}, {m.lower() for m in MATERIALS})
+            self.assertTrue(all(src == url for _, src in images))
+        css = (ROOT / 'assets/css/product-categories.css').read_text()
+        art = re.search(r'\.ab-product-categories \.ab-category-card-art\s*\{([^}]+)', css).group(1)
+        for rule in ('height: 100%;', 'min-height: 100%;', 'object-fit: cover;'):
+            self.assertIn(rule, art)
+        grain = re.search(r'\.ab-product-categories \.ab-category-tab img\s*\{([^}]+)', css).group(1)
+        for rule in ('object-fit: contain;', 'object-position: center bottom;', 'filter: none;', 'mask-image: none;', 'opacity: 1;'):
+            self.assertIn(rule, grain)
+        self.assertNotRegex(css, r'box-shadow:[^;]*\b0 0 0 [1-9]')
+        self.assertNotIn('blur(', css)
+
     def test_mega_menu_covers_all_material_and_supply_pages(self):
         source = (ROOT / 'template-parts/products-mega-menu.php').read_text()
         self.assert_all_material_destinations(source)
