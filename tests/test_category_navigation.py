@@ -67,6 +67,20 @@ class CategoryNavigationTests(unittest.TestCase):
         phone = css.split('@media (max-width: 700px) {', 1)[1].split('\n}', 1)[0]
         self.assertIn('grid-template-columns: minmax(0, 1fr)', phone)
 
+    def test_soft_bevels_and_twenty_percent_stronger_section_tint(self):
+        css = (ROOT / 'assets/css/product-categories.css').read_text()
+        # Original end-stop is a 20% blend of #bedcd7 over white; 24% is
+        # a 20% relative increase in tint strength, not 20% darker text/UI.
+        tint = tuple(round(255 + (channel - 255) * .24) for channel in (190, 220, 215))
+        self.assertEqual(tint, (239, 247, 245))
+        self.assertIn('background: linear-gradient(155deg, #fff, #eff7f5);', css)
+        bevel = re.search(r'\.ab-category-card::after\s*\{([^}]+)', css).group(1)
+        for rule in ('position: absolute;', 'inset: 0;', 'z-index: 1;', 'border-radius: inherit;', 'pointer-events: none;'):
+            self.assertIn(rule, bevel)
+        self.assertIn('inset 0 2px 5px', bevel)
+        self.assertIn('inset 0 -4px 10px', bevel)
+        self.assertNotRegex(css, r'box-shadow:[^;]*\b0 0 0 [1-9]')
+
     def test_mega_menu_covers_all_material_and_supply_pages(self):
         source = (ROOT / 'template-parts/products-mega-menu.php').read_text()
         self.assert_all_material_destinations(source)
