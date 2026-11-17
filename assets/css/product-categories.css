@@ -1,5 +1,5 @@
 /* Home/About explorer; all product copy and links remain static in templates. */
-.ab-product-categories { padding: 80px 0; color: #142334; background: linear-gradient(155deg, #fff, #f2f8f7); font-family: "Reddit Sans", Arial, Helvetica, sans-serif; }
+.ab-product-categories { padding: 80px 0; color: #142334; background: linear-gradient(155deg, #fff, #eff7f5); font-family: "Reddit Sans", Arial, Helvetica, sans-serif; }
 .ab-product-categories *, .ab-product-categories *::before, .ab-product-categories *::after { box-sizing: border-box; }
 .ab-product-categories [hidden] { display: none !important; }
 .ab-product-categories .ab-category-sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
@@ -17,14 +17,14 @@
 .ab-category-controls button:disabled { opacity: .35; cursor: not-allowed; }
 .ab-category-prev .ab-category-icon { transform: rotate(180deg); }
 .ab-category-polymers { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 12px; margin: 0 0 28px; padding: 5px 4px 18px; }
-.ab-product-categories .ab-category-tab { position: relative; isolation: isolate; display: flex; flex-direction: column; gap: 6px; min-width: 0; min-height: 176px; padding: 14px 12px 84px; border: 0; border-radius: 15px; color: #142334; background: linear-gradient(145deg, #fff, #edf3f4); box-shadow: inset 0 2px 3px rgba(255,255,255,.95), inset 0 -4px 8px rgba(37,83,92,.04), 0 8px 18px rgba(20,60,70,.07); text-decoration: none; scroll-margin-inline: 6px; transition: background .2s, color .2s, box-shadow .2s; }
+.ab-product-categories .ab-category-tab { position: relative; isolation: isolate; display: flex; flex-direction: column; gap: 6px; min-width: 0; min-height: 176px; padding: 14px 12px 84px; border: 0; border-radius: 15px; color: #142334; background: linear-gradient(145deg, #fff, #edf3f4); box-shadow: inset 0 2px 3px rgba(255,255,255,.95), inset 0 -4px 8px rgba(37,83,92,.06), 0 3px 6px rgba(20,60,70,.06), 0 10px 24px rgba(20,60,70,.12); text-decoration: none; scroll-margin-inline: 6px; transition: background .2s, color .2s, box-shadow .2s; }
 .ab-category-tab strong { color: inherit; font-size: 26px; font-weight: 800; line-height: 1.15; letter-spacing: -.025em; }
 .ab-category-tab > span { color: inherit; max-width: 100%; font-size: 14px; font-weight: 400; line-height: 1.4; overflow-wrap: anywhere; }
 /* Match the Home wrapper specificity so its general height:auto image rule
    cannot shrink these images. Transparent PNGs keep their original colours. */
 .ab-product-categories .ab-category-tab img { display: block; position: absolute; z-index: -1; bottom: 0; left: 0; width: 100%; height: 80px; max-height: none; object-fit: contain; object-position: center bottom; border-radius: 0 0 15px 15px; opacity: 1; filter: none; mask-image: none; -webkit-mask-image: none; }
-.ab-product-categories .ab-category-tab:hover { box-shadow: inset 0 2px 3px rgba(255,255,255,.9), inset 0 -4px 8px rgba(0,111,110,.05), 0 10px 24px rgba(20,80,80,.13); }
-.ab-product-categories .ab-category-tab[aria-selected="true"] { color: #fff; background: linear-gradient(135deg, #168d85, #006862); box-shadow: inset 0 2px 3px rgba(255,255,255,.25), inset 0 -4px 10px rgba(0,49,47,.18), 0 12px 26px rgba(0,118,120,.23); }
+.ab-product-categories .ab-category-tab:hover { box-shadow: inset 0 2px 3px rgba(255,255,255,.9), inset 0 -4px 8px rgba(0,111,110,.08), 0 4px 8px rgba(20,80,80,.08), 0 12px 28px rgba(20,80,80,.17); }
+.ab-product-categories .ab-category-tab[aria-selected="true"] { color: #fff; background: linear-gradient(135deg, #168d85, #006862); box-shadow: inset 0 2px 3px rgba(255,255,255,.3), inset 0 -4px 10px rgba(0,49,47,.22), 0 4px 8px rgba(0,82,83,.1), 0 14px 28px rgba(0,118,120,.27); }
 .ab-category-tab[aria-selected="true"]::after { content: ""; position: absolute; left: calc(50% - 10px); bottom: -13px; width: 20px; height: 20px; background: #00776e; transform: rotate(45deg); z-index: -2; }
 .ab-category-panel { min-width: 0; margin-bottom: 28px; border-radius: 22px; background: rgba(255,255,255,.95); box-shadow: inset 0 2px 3px #fff, inset 0 -3px 8px rgba(32,90,100,.025), 0 14px 30px rgba(32,90,100,.07); scroll-margin-top: calc(var(--ab-nav-h, 80px) + 20px); }
 .ab-category-panel:last-child { margin-bottom: 0; }
@@ -40,7 +40,12 @@
 .ab-product-categories .ab-category-supply-title { display: flex; align-items: center; gap: 12px; margin: 0 0 22px; color: #142334; font-size: 22px; font-weight: 700; line-height: 1.3; letter-spacing: -.02em; }
 .ab-category-supply-title::before { content: ""; width: 34px; height: 3px; flex: none; border-radius: 4px; background: #008080; }
 .ab-category-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
-.ab-product-categories .ab-category-card { position: relative; isolation: isolate; min-width: 0; overflow: hidden; border: 0; border-radius: 15px; background: #f0f6f6; box-shadow: inset 0 2px 3px rgba(255,255,255,.98), 0 7px 20px rgba(26,75,87,.075); }
+.ab-product-categories .ab-category-card { position: relative; isolation: isolate; min-width: 0; overflow: hidden; border: 0; border-radius: 15px; background: #f0f6f6; box-shadow: inset 0 2px 3px rgba(255,255,255,.98), 0 3px 6px rgba(26,75,87,.06), 0 10px 24px rgba(26,75,87,.13); }
+/* Paint soft bevels above the artwork, so the images cannot hide the
+   highlights. These decorative layers never intercept links or tab clicks. */
+.ab-product-categories .ab-category-tab::before,
+.ab-product-categories .ab-category-card::after { content: ""; position: absolute; inset: 0; z-index: 1; border-radius: inherit; box-shadow: inset 0 2px 5px rgba(255,255,255,.85), inset 0 -4px 10px rgba(26,75,87,.1); pointer-events: none; }
+.ab-product-categories .ab-category-tab[aria-selected="true"]::before { box-shadow: inset 0 2px 5px rgba(255,255,255,.3), inset 0 -4px 10px rgba(0,49,47,.2); }
 /* Full-height image, including on Home where .ab-bhavik-page img sets
    height:auto. Cover the entire diagonal window, not just the image's ratio. */
 .ab-product-categories .ab-category-card-art { display: block; position: absolute; z-index: -2; top: 0; right: 0; bottom: 0; width: 36%; height: 100%; min-height: 100%; max-height: none; object-fit: cover; object-position: center; opacity: 1; }
